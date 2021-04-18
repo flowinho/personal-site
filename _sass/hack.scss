@@ -1,0 +1,28 @@
+@font-face {
+  font-family: 'Hack NF';
+  src: local(bttf_font), url('hack/NF-Hack-Regular.ttf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+} 
+
+@font-face {
+  font-family: 'Hack-Bold NF ';
+  src: local(bttf_font), url('hack/NF-Hack-Bold.ttf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Hack-Italic NF';
+  src: local(bttf_font), url('hack/NF-Hack-Italic.ttf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Hack-BoldItalic NF';
+  src: local(bttf_font), url('hack/NF-Hack-BoldItalic.ttf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+}
+

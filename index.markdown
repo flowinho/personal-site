@@ -5,3 +5,4 @@
 layout: home
 ---
 
+Some sample content

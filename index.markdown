@@ -5,4 +5,10 @@
 layout: home
 ---
 
-Some sample content
+# Sample H1
+content
+## Sample H2
+content
+
+### Sample H3
+content

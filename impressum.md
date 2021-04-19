@@ -2,7 +2,8 @@
 layout: page
 permalink: /impressum/
 ---
-# Impressum
+<h1>Impressum</h1>
+
 ## Angaben gemäß § 5 TMG
 
 Florian Schuttkowski   

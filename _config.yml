@@ -28,7 +28,8 @@ twitter_username: flowinho
 github_username:  flowinho
 
 # Build settings
-theme: minima
+#theme: minima
+remote_theme: "mmistakes/minimal-mistakes@4.22.0"
 plugins:
   - jekyll-feed
 

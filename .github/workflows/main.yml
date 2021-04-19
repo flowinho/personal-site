@@ -1,5 +1,5 @@
 
-name: Nightly Build Personal Website
+name: Nightly
 on:
   push:
   schedule:

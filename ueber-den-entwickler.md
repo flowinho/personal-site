@@ -1,6 +1,7 @@
 ---
 layout: page
-title: "Über den Entwickler 💻"
+title: "Über den Entwickler"
+uikit-icon: "git-branch"
 ---
 
 # h1 inside post

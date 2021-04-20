@@ -1,5 +1,5 @@
 ---
 layout: page
-title: "Über diese Seite 🛠"
-permalink: /ueber-diese-seite/
+title: "Über diese Seite"
+uikit-icon: server
 ---

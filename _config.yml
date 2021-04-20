@@ -7,8 +7,18 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: flowinho
 github_username:  flowinho
 
-# Build settings
+# Minima settings
+header_pages:
+  - ueber-den-papa.md
+  - ueber-den-entwickler.md
+  - ueber-den-fotograf.md
+  - ueber-den-podcaster.md
+  - ueber-diese-seite.md
 
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
 theme: minima
 plugins:
   - jekyll-feed

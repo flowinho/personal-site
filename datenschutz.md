@@ -1,8 +1,9 @@
 ---
 layout: page
 permalink: /datenschutz/
+title: "Datenschutzerklärung"
 ---
-<h1>Datenschutzerklärung</h1>
+<!-- <h1>Datenschutzerklärung</h1> -->
 <h2>Einleitung</h2>
 <p>Mit der folgenden Datenschutzerklärung möchte ich Sie darüber aufklären, welche Arten Ihrer personenbezogenen Daten (nachfolgend auch kurz als "Daten“ bezeichnet) ich zu welchen Zwecken und in welchem Umfang verarbeiten. Die Datenschutzerklärung gilt für alle von mir durchgeführten Verarbeitungen personenbezogener Daten, sowohl im Rahmen der Erbringung meiner Leistungen als auch insbesondere auf meiner Webseiter, in mobilen Applikationen sowie innerhalb externer Onlinepräsenzen, wie z.B. meiner Social-Media-Profile (nachfolgend zusammenfassend bezeichnet als "Onlineangebot“).</p>
 <p>Die verwendeten Begriffe sind nicht geschlechtsspezifisch.</p>

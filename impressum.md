@@ -1,8 +1,9 @@
 ---
 layout: page
 permalink: /impressum/
+title: Impressum
 ---
-<h1>Impressum</h1>
+<!-- <h1>Impressum</h1> -->
 
 ## Angaben gemäß § 5 TMG
 

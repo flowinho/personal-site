@@ -1,4 +1,5 @@
 ---
 layout: page
-title: "Über den Fotograf 📷"
+title: "Über den Fotograf"
+uikit-icon: camera
 ---

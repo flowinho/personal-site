@@ -1,0 +1,80 @@
+I"0<p>Jepp, ich programmiere diese Apps für euer iPhone <span uk-icon="phone"></span>. Apps, das sind kleine Programme mit großer Logik. Warum ich das tue? Damit ihr das nicht machen müsst! Und weil es mir wichtig ist, dass die Programme auf allen Endgeräten dasselbe für die Nutzer tun, fokussiere ich mich auf Apple-Geräte. Neben meiner Tätigkeit als iOS-Entwickler tüflte ich aber gerne an verschiedenste anderen Technologien herum, die meistens was mit diesem “Internet” zu tun haben.</p>
+
+<p>Meine iOS-spezifischen Kenntnisse fließen auch in den Podcast <a href="https://audiodump.de">Audiodump</a> ein – ich versuche dort, mal mehr, mal weniger verzweifelt, so manchen komplizierten Sachverhalt möglichst einfach zu erläutern.</p>
+
+<p>Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="database"></span> eines Projekts gesehen, aber nur wenige haben diese Erfahrung überlebt.</p>
+
+<h2 id="meine-motivation-hinter-der-software-entwicklung">Meine Motivation hinter der Software-Entwicklung</h2>
+
+<h2 id="elevator-cv">Elevator CV</h2>
+
+<p><span class="uk-text-muted">Die unten aufgelisteten Themen und Technologien sind unvollständig. Weitere Details dürfen aus Compliance-Gründen nicht genannt werden.</span></p>
+
+<div class="uk-child-width-1-2@s uk-grid-collapse uk-text-center" uk-grid="">
+    <div>
+        <div class="uk-tile uk-tile-default">
+            <p class="uk-h3 uk-text-primary">Robert Bosch GmbH</p>
+            <span class="uk-text-muted">2018 - Heute</span>
+            <div align="left">
+            <ul>
+                <li>Implementierung CI/CD-Pipelines mehrere Apps mit MS Azure DevOps und MS AppCenter. </li>
+                <li>Analyse, technisches Konzept und Umsetzung von Apps im Themenfeld von Corporate Mobility.</li>
+                <li>Mitarbeit in Themengebieten der Geschäftsbereiche CS/PA-UR, CS/EBS, EB, CS/XCP-ENG.</li>
+            </ul>
+            </div>
+            <span class="uk-badge">swift</span>
+            <span class="uk-badge">objective-c</span>
+            <span class="uk-badge">azure devops</span>
+            <span class="uk-badge">ms appcenter</span>
+            <span class="uk-badge">yaml</span>
+            <span class="uk-badge">oauth2</span>
+            <span class="uk-badge">cocoapods</span>
+            <span class="uk-badge">carthage</span>
+        </div>
+    </div>
+    <div>
+        <div class="uk-tile uk-tile-muted">
+            <p class="uk-h3">myScotty</p>
+            <span class="uk-text-muted">2017 - 2018</span>
+            <ul>
+                <li>a</li>
+                <li>b</li>
+                <li>c</li>
+            </ul>
+            <span class="uk-badge">swift</span>
+            <span class="uk-badge">objective-c</span>
+            <span class="uk-badge">azure devops</span>
+            <span class="uk-badge">ms appcenter</span>
+            <span class="uk-badge">yaml</span>
+            <span class="uk-badge">cocoapods</span>
+        </div>
+    </div>
+    <div>
+        <div class="uk-tile uk-tile-muted">
+            <p class="uk-h3">Zeitland media &amp; games GmbH</p>
+            <span class="uk-text-muted">2014 - 2017</span>
+            <ul>
+                <li>a</li>
+                <li>b</li>
+                <li>c</li>
+            </ul>
+            <span class="uk-badge">swift</span>
+            <span class="uk-badge">objective-c</span>
+            <span class="uk-badge">c#</span>
+            <span class="uk-badge">cocoapods</span>
+        </div>
+    </div>
+    <div>
+        <div class="uk-tile uk-tile-default">
+            <p class="uk-h3">Selbstständiger Unternehmer</p>
+            <span class="uk-text-muted">2013 - 2014</span>
+            <ul>
+                <li>a</li>
+                <li>b</li>
+                <li>c</li>
+            </ul>
+            <span class="uk-badge">objective-c</span>
+        </div>
+    </div>
+</div>
+:ET

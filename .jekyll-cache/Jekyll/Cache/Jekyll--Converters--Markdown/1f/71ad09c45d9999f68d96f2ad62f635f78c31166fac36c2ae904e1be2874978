@@ -1,18 +1,12 @@
----
-layout: page
-title: "Über den Entwickler"
-uikit-icon: "git-branch"
----
+I"X<p>Jepp, ich programmiere diese Apps für euer iPhone <span uk-icon="phone"></span>. Apps, das sind kleine Programme mit großer Logik. Warum ich das tue? Damit ihr das nicht machen müsst! Und weil es mir wichtig ist, dass die Programme auf allen Endgeräten dasselbe für die Nutzer tun, fokussiere ich mich auf Apple-Geräte. Neben meiner Tätigkeit als iOS-Entwickler tüflte ich aber gerne an verschiedenste anderen Technologien herum, die meistens was mit diesem “Internet” zu tun haben.</p>
 
-Jepp, ich programmiere diese Apps für euer iPhone <span uk-icon="phone"></span>. Apps, das sind kleine Programme mit großer Logik. Warum ich das tue? Damit ihr das nicht machen müsst! Und weil es mir wichtig ist, dass die Programme auf allen Endgeräten dasselbe für die Nutzer tun, fokussiere ich mich auf Apple-Geräte. Neben meiner Tätigkeit als iOS-Entwickler tüflte ich aber gerne an verschiedenste anderen Technologien herum, die meistens was mit diesem "Internet" zu tun haben.
+<p>Meine iOS-spezifischen Kenntnisse fließen auch in den Podcast <a href="https://audiodump.de">Audiodump</a> ein – ich versuche dort, mal mehr, mal weniger verzweifelt, so manchen komplizierten Sachverhalt möglichst einfach zu erläutern.</p>
 
-Meine iOS-spezifischen Kenntnisse fließen auch in den Podcast [Audiodump](https://audiodump.de) ein -- ich versuche dort, mal mehr, mal weniger verzweifelt, so manchen komplizierten Sachverhalt möglichst einfach zu erläutern.
+<p>Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="database"></span> eines Projekts gesehen, aber nur wenige haben diese Erfahrung überlebt.</p>
 
-Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="database"></span> eines Projekts gesehen, aber nur wenige haben diese Erfahrung überlebt.
+<h2 id="meine-motivation-hinter-der-software-entwicklung">Meine Motivation hinter der Software-Entwicklung</h2>
 
-## Meine Motivation hinter der Software-Entwicklung
-
-<div class="uk-grid-divider" uk-grid>
+<div class="uk-grid-divider" uk-grid="">
     <div class="uk-width-expand@m">
     <ul>
         <!-- <li>Arc42</li>
@@ -27,11 +21,11 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
     </div>
 </div>
 
-## Elevator CV
+<h2 id="elevator-cv">Elevator CV</h2>
 
-<span class="uk-text-muted">Die unten aufgelisteten Themen und Technologien sind unvollständig. Weitere Details dürfen aus Compliance-Gründen nicht genannt werden.</span>
+<p><span class="uk-text-muted">Die unten aufgelisteten Themen und Technologien sind unvollständig. Weitere Details dürfen aus Compliance-Gründen nicht genannt werden.</span></p>
 
-<div class="uk-child-width-1-2@s uk-grid-collapse uk-text-center" uk-grid>
+<div class="uk-child-width-1-2@s uk-grid-collapse uk-text-center" uk-grid="">
     <div>
         <div class="uk-tile uk-tile-default">
             <p class="uk-h3 uk-text-primary">Robert Bosch GmbH</p>
@@ -40,10 +34,8 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
             <ul>
                 <li>Analyse, technisches Konzept und Umsetzung von Apps im Themenfeld von Corporate Mobility, eBike und autonomem Fahren.</li>
                 <li>Implementierung CI/CD-Pipelines mehrere Apps mit MS Azure DevOps und MS AppCenter. </li>
-                <li>Mitglied in der Gilde "Continous Integration".</li>
                 <li>Mitarbeit in SAFe Teams zwischen 50 und 120+ Teammitgliedern.</li>
                 <li>Mitarbeit in Themengebieten der Geschäftsbereiche CS/PA-UR, CS/EBS, EB, CS/XCP-ENG.</li>
-                <li>Schnittstelle App-Entwicklung <> UX</li>
                 <li>Weitere Inhalte folgen nach Freigabe.</li>
             </ul>
             </div>
@@ -55,8 +47,6 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
             <span class="uk-badge">oauth2</span>
             <span class="uk-badge">cocoapods</span>
             <span class="uk-badge">carthage</span>
-            <span class="uk-badge">adobe photoshop</span>
-            <span class="uk-badge">adobe xD</span>
         </div>
     </div>
     <div>
@@ -69,7 +59,6 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
                 <li>Einführung von OKR in das Unternehmen.</li>
                 <li>Koordination des iOS-Entwicklerteam in Ludwigsburg (DE) und Cluj-Napoca (RO).</li>
                 <li>Anpassung der iOS-Softwarearchitektur um Wartbarkeit, Testbarkeit und Zuverlässigkeit zu erhöhen.</li>
-                <li>Schnittstelle App-Entwicklung <> UX</li>
             </ul>
             </div>
             <span class="uk-badge">swift</span>
@@ -78,19 +67,17 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
             <span class="uk-badge">ms appcenter</span>
             <span class="uk-badge">yaml</span>
             <span class="uk-badge">cocoapods</span>
-            <span class="uk-badge">adobe photoshop</span>
-            <span class="uk-badge">adobe xD</span>
         </div>
     </div>
     <div>
         <div class="uk-tile uk-tile-muted">
-            <p class="uk-h3">Zeitland media & games GmbH</p>
+            <p class="uk-h3">Zeitland media &amp; games GmbH</p>
             <span class="uk-text-muted">Technical Director, 2014 - 2017</span>
             <div align="left">
             <ul>
                 <li>Implementierung von cross-platform Apps und Videospielen in Microsoft Xamarin bzw. Unity3D.</li>
-                <li>Lead-Entwicklung native iOS-Entwicklung u.a. im Pharma-Bereich.</li>
-                <li>Unterstützung unserer Kunden bei der Verteilung von Apps innerhalb ihres Unternehmens.</li>
+                <li>b</li>
+                <li>c</li>
             </ul>
             </div>
             <span class="uk-badge">swift</span>
@@ -105,18 +92,17 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
             <span class="uk-text-muted">2013 - 2014</span>
             <div align="left">
             <ul>
-                <li>Native iOS-Entwicklung.</li>
-                <li>Unterstützung in Konzept und Entwurf von Software-Oberflächen.</li>
-                <li>Unterstützung meiner Kunden bei der Verteilung von Apps innerhalb ihres Unternehmens.</li>
+                <li>a</li>
+                <li>b</li>
+                <li>c</li>
             </ul>
             </div>
             <span class="uk-badge">objective-c</span>
-            <span class="uk-badge">adobe photoshop</span>
         </div>
     </div>
 </div>
 
-<div class="uk-grid-divider" uk-grid>
+<div class="uk-grid-divider" uk-grid="">
     <div class="uk-width-1-3@m">
     <h4>Programmiersprachen</h4>
     <ul>
@@ -137,23 +123,21 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
         <li>JetBrains AppCode</li>
         <li>Carthage</li>
         <li>Cocoapods</li>
-        <li>Adobe Photoshop</li>
-        <li>Adobe xD</li>
         <li>Microsoft Xamarin.iOS</li>
         <li>Unity3D</li>
         <li>Jekyll</li>
         <li>Homebrew</li>
         <li>VSCode</li>
-        <li>GIT</li>
     </ul>
     </div>
     <div class="uk-width-1-3@m">
     <h4>Corporate</h4>
     <ul>
-        <li>SAFe & Scrum</li>
+        <li>SAFe &amp; Scrum</li>
         <li>Atlassian Bitbucket</li>
         <li>Atlassian Jira</li>
         <li>Atlassian Confluence</li>
     </ul>
     </div>
 </div>
+:ET

@@ -1,23 +1,17 @@
----
-layout: page
-title: "Über den Entwickler"
-uikit-icon: "git-branch"
----
+I""<p>Jepp, ich programmiere diese Apps für euer iPhone <span uk-icon="phone"></span>. Apps, das sind kleine Programme mit großer Logik. Warum ich das seit grob 2013 mache? Damit ihr das nicht machen müsst! Und weil es mir wichtig ist, dass die Programme auf allen Endgeräten dasselbe für die Nutzer tun, fokussiere ich mich auf Apple-Geräte.</p>
 
-Jepp, ich programmiere diese Apps für euer iPhone <span uk-icon="phone"></span>. Apps, das sind kleine Programme mit großer Logik. Warum ich das seit grob 2013 mache? Damit ihr das nicht machen müsst! Und weil es mir wichtig ist, dass die Programme auf allen Endgeräten dasselbe für die Nutzer tun, fokussiere ich mich auf Apple-Geräte. 
+<p>Neben meiner Tätigkeit als iOS-Entwickler tüftel ich auch gerne an verschiedenste anderen Technologien herum, die meistens was mit diesem ominösen “Internet” zu tun haben, ein Beispiele dafür ist <a href="/ueber-diese-seite/">diese Website</a>.</p>
 
-Neben meiner Tätigkeit als iOS-Entwickler tüftel ich auch gerne an verschiedenste anderen Technologien herum, die meistens was mit diesem ominösen "Internet" zu tun haben, ein Beispiele dafür ist [diese Website](/ueber-diese-seite/).
+<p>Meine iOS-spezifischen Kenntnisse fließen in den Podcast <a href="https://audiodump.de">Audiodump</a> ein – ich versuche dort, mal mehr, mal weniger verzweifelt, so manchen komplizierten Sachverhalt möglichst einfach zu erläutern.</p>
 
-Meine iOS-spezifischen Kenntnisse fließen in den Podcast [Audiodump](https://audiodump.de) ein -- ich versuche dort, mal mehr, mal weniger verzweifelt, so manchen komplizierten Sachverhalt möglichst einfach zu erläutern.
-
-<div class="uk-alert-warning" uk-alert>
-    <a class="uk-alert-close" uk-close></a>
+<div class="uk-alert-warning" uk-alert="">
+    <a class="uk-alert-close" uk-close=""></a>
     <p><span uk-icon="warning"></span> Aufgrund meiner aktuellen Beschäftigung stehe ich nicht für Auftragsarbeiten zur Verfügung.</p>
 </div>
 
-Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="database"></span> eines Projekts gesehen, aber nur wenige haben diese Erfahrung überlebt.
+<p>Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="database"></span> eines Projekts gesehen, aber nur wenige haben diese Erfahrung überlebt.</p>
 
-<div class="" uk-grid>
+<div class="" uk-grid="">
     <div class="uk-width-expand@m">
     <h3>Meine Motivation hinter der Software-Entwicklung</h3>
     <ul>
@@ -41,36 +35,33 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
     </div>
 </div>
 
-## Nebenprojekt: Ladefuchs -- Einfach schlau laden.
+<h2 id="nebenprojekt-ladefuchs--einfach-schlau-laden">Nebenprojekt: Ladefuchs – Einfach schlau laden.</h2>
 
-<div class="" uk-grid>
+<div class="" uk-grid="">
     <div class="uk-width-1-3@m" uk-lightbox="animation: slide">
     <a class="uk-inline" href="/assets/entwickler/ladefuchs.png" data-caption="Caption 1">
-            <img src="/assets/entwickler/ladefuchs.png" alt="">
+            <img src="/assets/entwickler/ladefuchs.png" alt="" />
         </a>
     </div>
     <div class="uk-width-expand@m">
-        <div uk-alert>
+        <div uk-alert="">
             <p>WAS KOSTET DER STROM FÜR DEIN E-AUTO? <br />
                 Blitzschnell die günstigste Ladekarte finden. Mit einem Fingerwischen zeigt Dir der Ladefuchs die günstigste Ladekarte an der Elektro-Ladesäule. <br />
                 Nicht mehr, nicht weniger. </p>
         </div>
         <span class="uk-text-muted">Beschreibung der App, übernommen von <a href="https://ladefuchs.app">https://ladefuchs.app</a>.</span><br /><br />
         <ul>
-            <li>Ladefuchs ist ein Kooperationsprojekt von Mitgliedern der Podcasts <a href="https://www.cleanelectric.de/">Clean Electric</a>, <a href="http://www.bitsundso.de/category/podcast/">Bits und so</a> und <a href="https://audiodump.de">Audiodump</a>.</li>
-            <li>Die App ein Geschenk an alle Fahrer von Elektro-Fahrzeugen, die gesamte EV-Community und alle Hörer unserer Podcasts und wird unentgeltlich von uns entwickelt.</li>
+            <li>Ladefuchs ist ein Kooperationsprojekt von Mitgliedern der Podcasts <a href="">Clean Electric</a>, <a href="">Bits und so</a> und <a href="">Audiodump</a>.</li>
             <li>Ladefuchs-Strompreise werden durch eine Kooperation mit <a href="https://www.chargeprice.app/">ChargePrice</a> zur Verfügung gestellt.</li> 
-            <li>Mein Beitrag zum Ladefuchs ist die Entwicklung der iOS-App.</li>
         </ul>
     </div>
 </div>
 
+<h2 id="elevator-cv">Elevator CV</h2>
 
-## Elevator CV
+<p><span class="uk-text-muted">Die unten aufgelisteten Themen und Technologien sind unvollständig. Weitere Details dürfen aus Compliance-Gründen nicht genannt werden.</span></p>
 
-<span class="uk-text-muted">Die unten aufgelisteten Themen und Technologien sind unvollständig. Weitere Details dürfen aus Compliance-Gründen nicht genannt werden.</span>
-
-<div class="uk-child-width-1-2@s uk-grid-collapse uk-text-center" uk-grid>
+<div class="uk-child-width-1-2@s uk-grid-collapse uk-text-center" uk-grid="">
     <div>
         <div class="uk-tile uk-tile-default">
             <p class="uk-h3 uk-text-primary">Robert Bosch GmbH</p>
@@ -123,7 +114,7 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
     </div>
     <div>
         <div class="uk-tile uk-tile-muted">
-            <p class="uk-h3">Zeitland media & games GmbH</p>
+            <p class="uk-h3">Zeitland media &amp; games GmbH</p>
             <span class="uk-text-muted">Technical Director, 2014 - 2017</span>
             <div align="left">
             <ul>
@@ -155,9 +146,9 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
     </div>
 </div>
 
-## Für Fans von Listen
+<h2 id="für-fans-von-listen">Für Fans von Listen</h2>
 
-<div class="uk-grid-divider" uk-grid>
+<div class="uk-grid-divider" uk-grid="">
     <div class="uk-width-1-3@m">
     <h4>Programmiersprachen</h4>
     <ul>
@@ -191,10 +182,11 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
     <div class="uk-width-1-3@m">
     <h4>Corporate</h4>
     <ul>
-        <li>SAFe & Scrum</li>
+        <li>SAFe &amp; Scrum</li>
         <li>Atlassian Bitbucket</li>
         <li>Atlassian Jira</li>
         <li>Atlassian Confluence</li>
     </ul>
     </div>
 </div>
+:ET

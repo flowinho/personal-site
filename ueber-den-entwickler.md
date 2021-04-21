@@ -10,6 +10,11 @@ Neben meiner Tätigkeit als iOS-Entwickler tüftle ich aber gerne an verschieden
 
 Meine iOS-spezifischen Kenntnisse fließen auch in den Podcast [Audiodump](https://audiodump.de) ein -- ich versuche dort, mal mehr, mal weniger verzweifelt, so manchen komplizierten Sachverhalt möglichst einfach zu erläutern.
 
+<div class="uk-alert-warning" uk-alert>
+    <a class="uk-alert-close" uk-close></a>
+    <p><span uk-icon="warning"></span> Aufgrund meiner aktuellen Beschäftigung stehe ich nicht für Auftragsarbeiten zur Verfügung.</p>
+</div>
+
 Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="database"></span> eines Projekts gesehen, aber nur wenige haben diese Erfahrung überlebt.
 
 ## Meine Motivation hinter der Software-Entwicklung

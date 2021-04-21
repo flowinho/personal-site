@@ -6,7 +6,7 @@ uikit-icon: "git-branch"
 
 Jepp, ich programmiere diese Apps für euer iPhone <span uk-icon="phone"></span>. Apps, das sind kleine Programme mit großer Logik. Warum ich das seit nun grob acht Jahren mache? Damit ihr das nicht machen müsst! Und weil es mir wichtig ist, dass die Programme auf allen Endgeräten dasselbe für die Nutzer tun, fokussiere ich mich auf Apple-Geräte. 
 
-Neben meiner Tätigkeit als iOS-Entwickler tüftle ich aber gerne an verschiedenste anderen Technologien herum, die meistens was mit diesem "Internet" zu tun haben.
+Neben meiner Tätigkeit als iOS-Entwickler tüftel ich aber gerne an verschiedenste anderen Technologien herum, die meistens was mit diesem "Internet" zu tun haben.
 
 Meine iOS-spezifischen Kenntnisse fließen auch in den Podcast [Audiodump](https://audiodump.de) ein -- ich versuche dort, mal mehr, mal weniger verzweifelt, so manchen komplizierten Sachverhalt möglichst einfach zu erläutern.
 
@@ -17,20 +17,27 @@ Meine iOS-spezifischen Kenntnisse fließen auch in den Podcast [Audiodump](https
 
 Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="database"></span> eines Projekts gesehen, aber nur wenige haben diese Erfahrung überlebt.
 
-## Meine Motivation hinter der Software-Entwicklung
-
-<div class="uk-grid-divider" uk-grid>
+<div class="" uk-grid>
     <div class="uk-width-expand@m">
+    <h3>Meine Motivation hinter der Software-Entwicklung</h3>
     <ul>
+        <li>a</li>
+        <li>b</li>
         <!-- <li>Arc42</li>
         <li>Softwerkskammer</li> 
         <li>testbarkeit</li>
         <li>pop</li>
-        <li>viper</li>-->
+        <li>viper</li> -->
     </ul>
     </div>
     <div class="uk-width-1-3@m">
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    <h3>Randnotizen</h3>
+    <ul>
+        <li>Scrum funktioniert</li>
+        <li>Arc42 generiert Mehrwert</li>
+        <li>SAFe funktioniert</li>
+        <li>Composition over Inheritance</li>
+    </ul>
     </div>
 </div>
 

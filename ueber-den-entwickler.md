@@ -138,6 +138,7 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
             <span class="uk-text-muted">iOS Software-Engineer, 2017 - 2018</span>
             <div align="left">
             <ul>
+            <li>Integration neuer Features in die App des Start-Ups.</li>
                 <li>Implementierung CI/CD-Pipeline für die App des Start-Ups.</li>
                 <li>Einführung von OKR in das Unternehmen.</li>
                 <li>Koordination des iOS-Entwicklerteam in Ludwigsburg (DE) und Cluj-Napoca (RO).</li>

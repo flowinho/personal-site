@@ -6,7 +6,7 @@ uikit-icon: "git-branch"
 
 Jepp, ich programmiere diese Apps für euer iPhone <span uk-icon="phone"></span>. Apps, das sind kleine Programme mit großer Logik. Warum ich das seit grob 2013 mache? Damit ihr das nicht machen müsst! Und weil es mir wichtig ist, dass die Programme auf allen Endgeräten dasselbe für die Nutzer tun, fokussiere ich mich auf Apple-Geräte. 
 
-Neben meiner Tätigkeit als iOS-Entwickler tüftel ich auch gerne an verschiedenste anderen Technologien herum, die meistens was mit diesem ominösen "Internet" zu tun haben.
+Neben meiner Tätigkeit als iOS-Entwickler tüftel ich auch gerne an verschiedenste anderen Technologien herum, die meistens was mit diesem ominösen "Internet" zu tun haben, ein Beispiele dafür ist [diese Website](/ueber-diese-seite/).
 
 Meine iOS-spezifischen Kenntnisse fließen in den Podcast [Audiodump](https://audiodump.de) ein -- ich versuche dort, mal mehr, mal weniger verzweifelt, so manchen komplizierten Sachverhalt möglichst einfach zu erläutern.
 

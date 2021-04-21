@@ -79,7 +79,7 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
     <div class="uk-width-expand@m">
         <p>
             <ul>
-                <li>Erstellt mit <a href="https://jekyllrb.org">Jekyll</a> und <a href="https://getuikit.com">UIKit</a>.</li>
+                <li>Erstellt mit <a href="https://jekyllrb.com">Jekyll</a> und <a href="https://getuikit.com">UIKit</a>.</li>
                 <li>Diese statische Website wird bei jedem Push, aber mindestens jede Nacht durch eine <a href="https://github.com/features/actions">GitHub Action</a> gebaut und deployed.</li>
                 <li>Gehostet wird die Seite auf <a href="https://github.com">GitHub</a>, spezifischer <a href="https://pages.github.com/">GitHub Pages</a>.</li>
             </ul>

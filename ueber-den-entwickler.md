@@ -43,7 +43,7 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
                 <li>Mitglied in der Gilde "Continous Integration".</li>
                 <li>Mitarbeit in SAFe Teams zwischen 50 und 120+ Teammitgliedern.</li>
                 <li>Mitarbeit in Themengebieten der Geschäftsbereiche CS/PA-UR, CS/EBS, EB, CS/XCP-ENG.</li>
-                <li>Schnittstelle App-Entwicklung <> UX</li>
+                <li>Schnittstelle App-Entwicklung<span uk-icon="triangle-left"></span><span uk-icon="triangle-right"></span>UX.</li>
                 <li>Weitere Inhalte folgen nach Freigabe.</li>
             </ul>
             </div>
@@ -69,7 +69,7 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
                 <li>Einführung von OKR in das Unternehmen.</li>
                 <li>Koordination des iOS-Entwicklerteam in Ludwigsburg (DE) und Cluj-Napoca (RO).</li>
                 <li>Anpassung der iOS-Softwarearchitektur um Wartbarkeit, Testbarkeit und Zuverlässigkeit zu erhöhen.</li>
-                <li>Schnittstelle App-Entwicklung <> UX</li>
+                <li>Schnittstelle App-Entwicklung<span uk-icon="triangle-left"></span><span uk-icon="triangle-right"></span>UX.</li>
             </ul>
             </div>
             <span class="uk-badge">swift</span>

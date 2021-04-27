@@ -23,7 +23,7 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
     <div class="uk-width-expand@m">
     <h3>Meine Motivation hinter der Software-Entwicklung</h3>
     <ul>
-        <li>a</li>
+        <li>Programmieren, also die Tätigkeit Code zu erzeugen, ist der Output des Software-Konzepts, der Architektur der Software, und der festgelegten Paradigmen und Code Conventions.</li>
         <li>b</li>
         <!-- <li>Arc42</li>
         <li>Softwerkskammer</li> 

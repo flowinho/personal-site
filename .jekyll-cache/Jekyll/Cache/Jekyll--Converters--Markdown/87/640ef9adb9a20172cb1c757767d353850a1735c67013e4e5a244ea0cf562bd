@@ -1,10 +1,4 @@
----
-layout: page
-title: "Downloads"
-uikit-icon: "cloud-download"
----
-
-<table class="uk-table uk-table-small uk-table-justify">
+I"Í<table class="uk-table uk-table-small uk-table-justify">
     <caption>Dateien</caption>
     <thead>
         <tr>
@@ -23,3 +17,4 @@ uikit-icon: "cloud-download"
         </tr>
     </tbody>
 </table>
+:ET

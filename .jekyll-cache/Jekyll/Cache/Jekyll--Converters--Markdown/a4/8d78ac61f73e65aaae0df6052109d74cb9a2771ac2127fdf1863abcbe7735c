@@ -1,0 +1,18 @@
+I"°<table class="uk-table">
+    <caption>Dateien</caption>
+    <thead>
+        <tr>
+            <th>Dateityp</th>
+            <th>Kurzbeschreibung</th>
+            <th>Link</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>PGP Public Key</td>
+            <td>Table Data</td>
+            <td><a href="/downloads/gpg-public-key-Files-for-Flowinho-(C47B8A38).asc">dasda</a></td>
+        </tr>
+    </tbody>
+</table>
+:ET

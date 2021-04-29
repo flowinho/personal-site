@@ -195,18 +195,6 @@ pre > code { border: 0; padding-right: 0; padding-left: 0; }
 .svg-icon { width: 16px; height: 16px; display: inline-block; fill: currentColor; padding: 5px 3px 2px 5px; vertical-align: text-bottom; }
 
 /** Tables */
-table { margin-bottom: 30px; width: 100%; text-align: left; color: #3f3f3f; border-collapse: collapse; border: 1px solid #e8e8e8; }
-
-table tr:nth-child(even) { background-color: #f7f7f7; }
-
-table th, table td { padding: 10px 15px; }
-
-table th { background-color: #f0f0f0; border: 1px solid #e0e0e0; }
-
-table td { border: 1px solid #e8e8e8; }
-
-@media screen and (max-width: 800px) { table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; -ms-overflow-style: -ms-autohiding-scrollbar; } }
-
 /** Site header */
 .site-header { border-top: 2px solid #424242; min-height: 55.95px; line-height: 54px; position: relative; }
 

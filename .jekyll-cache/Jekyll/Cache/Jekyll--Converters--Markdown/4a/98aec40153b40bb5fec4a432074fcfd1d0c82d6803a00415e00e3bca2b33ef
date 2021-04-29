@@ -1,0 +1,30 @@
+I"|<table class="uk-table">
+    <caption>Dateien</caption>
+    <thead>
+        <tr>
+            <th>Dateityp</th>
+            <th>Kurzbeschreibung</th>
+            <th>Link</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <td>Table Footer</td>
+            <td>Table Footer</td>
+            <td>Table Footer</td>
+        </tr>
+    </tfoot>
+    <tbody>
+        <tr>
+            <td>Table Data</td>
+            <td>Table Data</td>
+            <td>Table Data</td>
+        </tr>
+        <tr>
+            <td>Table Data</td>
+            <td>Table Data</td>
+            <td>Table Data</td>
+        </tr>
+    </tbody>
+</table>
+:ET

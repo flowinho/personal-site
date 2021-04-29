@@ -18,6 +18,9 @@ Meine iOS-spezifischen Kenntnisse fließen in den Podcast [Audiodump](https://au
 </div>
 
 Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="database"></span> eines Projekts gesehen, aber nur wenige haben diese Erfahrung überlebt.
+<br /><br /><br /><br />
+> Programmierer lösen gerne die Probleme, die Sie gerne hätten -- nicht zwangsläufig die Probleme, die Sie wirklich haben.
+*Unbekannter Author, leider allzu wahr.*
 
 <div class="" uk-grid>
     <div class="uk-width-expand@m">
@@ -25,6 +28,8 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
     <ul>
         <li>Programmieren, also die Tätigkeit Code zu erzeugen, ist der Output des Software-Konzepts, der Architektur der Software, und der festgelegten Paradigmen und Code Conventions.</li>
         <li>Wir coden für Menschen - nicht Maschinen. Source Code muss menschenlesbar sein, um wartbar und erweiterbar zu sein. Es sollte immer im Hinterkopf bleiben, dass der Entwickler der diesen Code in ein paar Monaten anschauen muss evtl. man selbst ist. Lesbarer Code ist guter Code - Funktionalität lässt sich nur dann optimieren, wenn der Quellcode an sich zugänglich ist.</li>
+        <li>Es gibt keinen fehlerfreien Code. Fehler zu akzeptieren und zu beseitigen ist Teil des Alltags. Es muss professionelles Verständnis sein, dass der Hinweis auf fehlerhafte Implementierungen kein fehlender Respekt ist, sondern der gemeinsame Drive, besser zu werden.</li>
+        <li>Objektorientierung ist ein in manchen Fällen überholtes Modell, hat aber ihre Daseinsberechtigung. Sie sollte aber nicht willkürlich eingesetzt werden, "weil man das halt so macht", oder gar nicht anders kennt.</li>
         <!-- <li>Arc42</li>
         <li>Softwerkskammer</li> 
         <li>testbarkeit</li>
@@ -40,6 +45,7 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
         <li>SAFe funktioniert</li>
         <li>Composition over Inheritance</li>
         <li>Sicherheit ohne Transparenz, ohne Open Source, ist eine Lüge</li>
+        <li>Abstraktion > Konkretisierung</li>
     </ul>
     </div>
 </div>
@@ -193,7 +199,7 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
 ## Für Fans von Listen
 
 <div class="uk-grid-divider" uk-grid>
-    <div class="uk-width-1-3@m">
+    <div class="uk-width-1-4@m">
     <h4>Programmiersprachen</h4>
     <ul>
         <li>Swift</li>
@@ -206,7 +212,7 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
         <li>Shellscripts</li>
     </ul>
     </div>
-    <div class="uk-width-1-3@m">
+    <div class="uk-width-1-4@m">
     <h4>Tools</h4>
     <ul>
         <li>Apple Xcode</li>
@@ -223,13 +229,28 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
         <li>GIT</li>
     </ul>
     </div>
-    <div class="uk-width-1-3@m">
+    <div class="uk-width-1-4@m">
     <h4>Corporate</h4>
     <ul>
         <li>SAFe & Scrum</li>
         <li>Atlassian Bitbucket</li>
         <li>Atlassian Jira</li>
         <li>Atlassian Confluence</li>
+        <li>GitHub Enterprise</li>
+    </ul>
+    </div>
+    <div class="uk-width-1-4@m">
+    <h4>Administration</h4>
+    <ul>
+        <li>Nextcloud</li>
+        <li>MS AppCenter</li>
+        <li>MS Azure DevOps</li>
+        <ul>
+            <li>Teams</li>
+            <li>Projekte</li>
+            <li>Pipelines</li>
+            <li>SCM Policies</li>
+        </ul>
     </ul>
     </div>
 </div>

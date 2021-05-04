@@ -21,5 +21,11 @@ uikit-icon: "cloud-download"
             <td>Ein PGP Public Key zur Verschlüsselung von Dateien die an mich gesandt werden sollen. Im Regelfall von mir selbst genutzt, zur Verfügung gestellt um einfachen Zugriff darauf zu ermöglichen.</td>
             <td><a href="/downloads/gpg-public-key-Files-for-Flowinho-(C47B8A38).asc">Download</a></td>
         </tr>
+        <tr>
+            <td><span uk-icon="unlock"></span></td>
+            <td>.asc</td>
+            <td>Ein PGP Public Key zur Verschlüsselung von Emails die an mich gesandt werden sollen. Im Regelfall von mir selbst genutzt, zur Verfügung gestellt um einfachen Zugriff darauf zu ermöglichen.</td>
+            <td><a href="/downloads/gpg-public-key-contact-at-flowinho-(925854D4).asc">Download</a></td>
+        </tr>
     </tbody>
 </table>

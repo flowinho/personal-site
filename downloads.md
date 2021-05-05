@@ -24,7 +24,7 @@ uikit-icon: "cloud-download"
         <tr>
             <td><span uk-icon="unlock"></span></td>
             <td>.asc</td>
-            <td>Ein PGP Public Key zur Verschlüsselung von <emph>Emails</emph> die an mich gesandt werden sollen. Im Regelfall von mir selbst genutzt, zur Verfügung gestellt um einfachen Zugriff darauf zu ermöglichen. Dieser Key wird auch genutzt um meine Commits auf GitHub zu signieren.</td>
+            <td>Ein PGP Public Key zur Verschlüsselung von <emph>Emails</emph> die an mich gesandt werden sollen. Im Regelfall von mir selbst genutzt, zur Verfügung gestellt um einfachen Zugriff darauf zu ermöglichen. Dieser Key wird auch genutzt um meine Commits auf <a href="https://github.com/flowinho/">GitHub</a> zu signieren.</td>
             <td><a href="/downloads/gpg-public-key-contact-at-flowinho-(925854D4).asc">Download</a></td>
         </tr>
     </tbody>

@@ -249,3 +249,7 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
     </ul>
     </div>
 </div>
+
+Am 05.05.2021 habe ich meine bestehenden StackOverflow-Accounts eingestampft und einen neuen, korrekten Account erstellt.
+
+<a href="https://stackoverflow.com/users/15840803/flowinho"><img src="https://stackoverflow.com/users/flair/15840803.png" width="208" height="58" alt="profile for Flowinho at Stack Overflow, Q&amp;A for professional and enthusiast programmers" title="profile for Flowinho at Stack Overflow, Q&amp;A for professional and enthusiast programmers"></a>

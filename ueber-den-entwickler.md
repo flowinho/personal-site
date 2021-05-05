@@ -30,11 +30,6 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
         <li>Wir coden für Menschen - nicht Maschinen. Source Code muss menschenlesbar sein, um wartbar und erweiterbar zu sein. Es sollte immer im Hinterkopf bleiben, dass der Entwickler der diesen Code in ein paar Monaten anschauen muss evtl. man selbst ist. Lesbarer Code ist guter Code - Funktionalität lässt sich nur dann optimieren, wenn der Quellcode an sich zugänglich ist.</li>
         <li>Es gibt keinen fehlerfreien Code. Fehler zu akzeptieren und zu beseitigen ist Teil des Alltags. Es muss professionelles Verständnis sein, dass der Hinweis auf fehlerhafte Implementierungen kein fehlender Respekt ist, sondern der gemeinsame Drive, besser zu werden.</li>
         <li>Objektorientierung ist ein in manchen Fällen überholtes Modell, hat aber ihre Daseinsberechtigung. Sie sollte aber nicht willkürlich eingesetzt werden, "weil man das halt so macht", oder gar nicht anders kennt.</li>
-        <!-- <li>Arc42</li>
-        <li>Softwerkskammer</li> 
-        <li>testbarkeit</li>
-        <li>pop</li>
-        <li>viper</li> -->
     </ul>
     </div>
     <div class="uk-width-1-3@m">

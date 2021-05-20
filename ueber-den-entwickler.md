@@ -74,7 +74,7 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
     </div>
 </div>
 
-## Nebenprojekt: flowinho.com -- Meine persönliche Website
+## Nebenprojekt: derflo.io -- Meine persönliche Website
 
 <div class="" uk-grid>
     <div class="uk-width-expand@m">

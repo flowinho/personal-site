@@ -113,8 +113,13 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
             <span class="uk-text-muted">iOS Software-Engineer, 2018 - Heute</span>
             <div align="left">
             <ul>
-                <li>Analyse, technisches Konzept und Umsetzung von Apps im Themenfeld von Corporate Mobility, eBike und autonomem Fahren.</li>
-                
+                <li>Analyse, technisches Konzept und Umsetzung von Apps in den Themenfeldern:</li>
+                <ul>
+                    <li>Corporate Mobility</li>
+                    <li>eBike</li>
+                    <li>Automated Valet Parking</li>
+                    <li>Charging Infrastructure</li>
+                </ul>
                 <li>Implementierung CI/CD-Pipelines mehrere Apps mit MS Azure DevOps und MS AppCenter. </li>
                 <li>Mitglied in der Gilde "Continous Integration".</li>
                 <li>Mitarbeit in SAFe Teams zwischen 50 und 120+ Teammitgliedern.</li>

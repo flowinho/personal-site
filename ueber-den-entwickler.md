@@ -114,6 +114,7 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
             <div align="left">
             <ul>
                 <li>Analyse, technisches Konzept und Umsetzung von Apps im Themenfeld von Corporate Mobility, eBike und autonomem Fahren.</li>
+                
                 <li>Implementierung CI/CD-Pipelines mehrere Apps mit MS Azure DevOps und MS AppCenter. </li>
                 <li>Mitglied in der Gilde "Continous Integration".</li>
                 <li>Mitarbeit in SAFe Teams zwischen 50 und 120+ Teammitgliedern.</li>

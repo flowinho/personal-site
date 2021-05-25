@@ -8,7 +8,7 @@ Ich freue mich über jedes respektvolle Kontaktgesuch. Wenn ihr euren Frust abla
 
 ## Instant Messaging
 
-Instant Messaging ist bei mir nicht allzu "instant" zu verstehen. Da ich die meiste Zeit in der Arbeit oder bei meinen Mädchen bin, lese ich eure Nachrichten zu eienm geeigneten Moment. Erwartet keine Antwort in den nächsten 1-4 Stunden, auch wenn ihr anderes gewöhnt seid. Insbesondere meine Töchter gehen vor, wenn es um das Thema Aufmerksamkeit geht. 
+Instant Messaging ist bei mir nicht allzu "instant" zu verstehen. Da ich die meiste Zeit in der Arbeit oder bei meinen Mädchen bin, lese ich eure Nachrichten zu einem geeigneten Moment. Erwartet keine Antwort in den nächsten 1-4 Stunden, auch wenn ihr anderes gewöhnt seid. Insbesondere meine Töchter gehen vor, wenn es um das Thema Aufmerksamkeit geht. 
 
 <table class="uk-table uk-table-small uk-table-justify">
     <caption>Verfügbare Messenger</caption>

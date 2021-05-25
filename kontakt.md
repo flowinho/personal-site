@@ -21,7 +21,7 @@ Instant Messaging ist bei mir nicht allzu "instant" zu verstehen. Da ich die mei
     <tbody>
         <tr>
             <td>Threema</td>
-            <td>`37NHNFEF`</td>
+            <td>37NHNFEF</td>
         </tr>
         <tr>
             <td>Signal</td>

@@ -18,11 +18,7 @@ Meine iOS-spezifischen Kenntnisse fließen in den Podcast [Audiodump](https://au
 </div>
 
 Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="database"></span> eines Projekts gesehen, aber nur wenige haben diese Erfahrung überlebt.
-<br /><br /><br /><br />
-> Programmierer lösen gerne die Probleme, die Sie gerne hätten -- nicht zwangsläufig die Probleme, die Sie wirklich haben.
-*Unbekannter Author, leider allzu wahr.*
-
----
+<br /><br />
 
 <div class="" uk-grid>
     <div class="uk-width-expand@m">
@@ -46,6 +42,10 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
     </ul>
     </div>
 </div>
+<br />
+Oder um es anderes auszudrücken:
+> Programmierer lösen gerne die Probleme, die Sie gerne hätten -- nicht zwangsläufig die Probleme, die Sie wirklich haben.
+*Unbekannter Author, leider allzu wahr.*
 
 <h2 class="uk-heading-line"><span>Nebenprojekt: Ladefuchs -- Einfach schlau laden</span></h2>
 

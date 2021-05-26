@@ -2,6 +2,7 @@
 layout: page
 title: "Über den Entwickler"
 uikit-icon: "git-branch"
+permalink: /ueber-den-entwickler/
 ---
 
 ![](/assets/entwickler/office.jpg)

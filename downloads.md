@@ -2,6 +2,7 @@
 layout: page
 title: "Downloads"
 uikit-icon: "cloud-download"
+permalink: /downloads/
 ---
 
 <table class="uk-table uk-table-small uk-table-justify uk-table-divider">

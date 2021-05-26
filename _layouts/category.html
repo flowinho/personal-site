@@ -1,0 +1,33 @@
+---
+layout: default
+---
+<div class="categories">
+    <h1 class="h1 category-title">
+      {{ page.category-name }}
+    </h1>
+    {{ content }}
+
+    <ul class="post-list">
+        {%- for post in site.categories[page.category-name] -%}
+        <li>
+          
+         <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+          {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}<br />
+          <span class="post-meta">{{ post.date | date: date_format }}
+            {% if post.categories.size > 0 %}
+                in <span uk-icon="folder"></span>&nbsp;{{ post.categories | sort | join: " " }}
+                  {% endif %}
+                  <span class="post-meta post-list-tags">
+                    {% if post.tags.size > 0 %}
+                    <br />
+                    <span uk-icon="tag"></span>&nbsp;{{ post.tags | sort | join: " " }}
+                          {% endif %}
+                  </span>
+            </span>
+          {%- if site.show_excerpts -%}
+            {{ post.excerpt }}
+          {%- endif -%}
+        </li>
+        {%- endfor -%}
+      </ul>
+</div>

@@ -1,1 +1,379 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-05-26T20:27:41+02:00</updated><id>/feed.xml</id><title type="html">der flo</title><subtitle>Gewidmet meinen wundervollen Töchtern.</subtitle></feed>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-05-26T21:20:00+02:00</updated><id>/feed.xml</id><title type="html">der flo</title><subtitle>Gewidmet meinen wundervollen Töchtern.</subtitle><entry><title type="html">How-to: Nightly Builds für Jekyll Blogs mit GitHub Actions umsetzen</title><link href="/nightly-builds-mit-jekyll-und-github-actions.html" rel="alternate" type="text/html" title="How-to: Nightly Builds für Jekyll Blogs mit GitHub Actions umsetzen" /><published>2021-03-21T00:00:00+01:00</published><updated>2021-03-21T00:00:00+01:00</updated><id>/nightly-builds-mit-jekyll-und-github-actions</id><content type="html" xml:base="/nightly-builds-mit-jekyll-und-github-actions.html">&lt;p&gt;Dieser Post ist eine Art selbst-validierendes Experiment. Geschrieben am 20.03.2021, aber &lt;em&gt;datiert&lt;/em&gt; auf den 21.03.2021. Das bedeutet er wird nur im Blog sichtbar, 
+wenn heute Nacht, 00:00 GMT+1 die entsprechende GitHub Action aktiv wird und diesen Blog baut. Hoffen wir dass es klappt! 🤞🏻😊&lt;/p&gt;
+
+&lt;h2 id=&quot;warum-nightly-builds-für-einen-blog&quot;&gt;Warum Nightly Builds für einen Blog?&lt;/h2&gt;
+
+&lt;p&gt;Die Antwort ist sehr simpel: um Beiträge planen zu können. Jekyll Blogs sind statische Webseiten, die in aller Regel durch einen Githook auf das “Push” Event auf einen Branch, normalerweise &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;master&lt;/code&gt;, gebaut und deployed werden. Statische Webseiten sind deshalb so toll, weil sie über keinerlei Datenbanken oder sonstiges Backends verfügen, die die Auslieferung oder Anzeige der Seite bremsen könnten.&lt;/p&gt;
+
+&lt;p&gt;Doch statische Webseiten hab auch Nachteile. So lassen sich beispielsweise ohne Continuous Integration bzw. Nightly Builds keine Beiträge einplanen. Denn selbst wenn ein Post, wie dieser hier, ein zukünftiges Datum trägt, wird die statische Seite nur bei jedem Push gebaut. Wer also nicht jede Nacht manuell einen push durchführen möchte, braucht eine Pipeline, die idealerweise Nachts um 00:00 Uhr oder 03:00 Uhr läuft.&lt;/p&gt;
+
+&lt;p&gt;Des weiteren eignen sich Jekyll Builds über GitHub Actions besonders gut für GitHub-Pages, da auf diese Weise die von Microsoft definierten Blacklist von Jekyll-Plugins und Ruby-Gems umgehen werden kann.&lt;/p&gt;
+
+&lt;p&gt;Dieser Post wird eine solche Pipeline für einen Jekyll Blog mittels GitHub Actions umsetzen, das Prinzip lässt sich aber auf beliebige Integrations-Services ausweiten.&lt;/p&gt;
+
+&lt;h2 id=&quot;github-actions--jekyll--️&quot;&gt;GitHub Actions + Jekyll = ❤️&lt;/h2&gt;
+
+&lt;p&gt;GitHub Actions funktioniert sehr straigtforward mittels einer &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.yml&lt;/code&gt;-Datei. Wer bereits Berührung mit alternativen Build-Systemen hatte wird diese Form der Konfiguration kennen. Wir starten also in dem wir im Ordner &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.github/workflows/&lt;/code&gt; eine neue Datei für unsere Action anlegen, beispielsweise &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;github-pages.yml&lt;/code&gt;. Die .yml-Datei für diesen Blog kann &lt;a href=&quot;https://github.com/flowinho/my-blog/blob/master/.github/workflows/github-pages.yml&quot;&gt;hier&lt;/a&gt; eingesehen werden.&lt;/p&gt;
+
+&lt;p&gt;Hier nun der kommentierte Inhalt von &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;github-pages.yml&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;GitHub Actions Nightly Build&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Das Keyword `on` definiert das Event welches die Action startet.&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;                     &lt;span class=&quot;c1&quot;&gt;# Sobald ein neuer Commit auf einen beliebigen Branch gepushed wurde.&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;schedule&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;                 &lt;span class=&quot;c1&quot;&gt;# Build mittels cron-Syntax einplanen.&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;cron&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;*&quot;&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;# Morgens, 06:01 Uhr UTC&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Das Keyword `jobs` definiert die auszuführenden Schritte.&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;jobs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;jekyll&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;runs-on&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ubuntu-16.04&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;# Zielsystem, ein Docker-Container.&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;actions/checkout@v2&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Eine Basis-Action, die es erlaubt Code aus dem Repository &lt;/span&gt;
+                                &lt;span class=&quot;c1&quot;&gt;# in dem die Action definiert wurde auszuchecken.&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Cached den Container um die Buildzeit drastisch zu verkürzen. Erste Build ca 3min, danach ~40s.&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;actions/cache@v2&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;vendor/bundle&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;${{ runner.os }}-gems-${{ hashFiles(&apos;**/Gemfile&apos;) }}&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;restore-keys&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;|&lt;/span&gt;
+          &lt;span class=&quot;s&quot;&gt;${{ runner.os }}-gems-&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Der eigentliche Jekyll Build&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;s&quot;&gt;helaili/jekyll-action@v2&lt;/span&gt;       &lt;span class=&quot;c1&quot;&gt;# Eine GitHub-Action, gewartet von einem Mitglied des Jekyll-Teams.&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;                                 &lt;span class=&quot;c1&quot;&gt;# Das AccessToken um den Build auszuführen.&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;token&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;${{ secrets.GITHUB_TOKEN }}&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;target_branch&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;gh-pages&apos;&lt;/span&gt;           &lt;span class=&quot;c1&quot;&gt;# Diese Branchspezifikation ist notwendig, um den bestehenden Branch zu überschreiben.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Kleines Schmankerl: GitHub Actions zeigt die Auflösung der eingetragenen Cron-Syntax als Popup an.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/posts/2021-03-21-github-actions-cron-popover.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Nach dem Datei erstellt und befüllt wurde sollten wir sie über “Start Commit” im Webinterface oder einen &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git push&lt;/code&gt; ins Repository speichern. Dieser Vorgang führt auch gleich zu einer initialen Ausführung der Action.&lt;/p&gt;
+
+&lt;p&gt;Wer die Actions die diesen Blog bauen in Aktion sehen möchte, kann sie jederzeit gerne &lt;a href=&quot;https://github.com/flowinho/my-blog/actions/runs/672710303&quot;&gt;hier&lt;/a&gt; betrachten.&lt;/p&gt;
+
+&lt;p&gt;Zurücklehnen und genießen!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/posts/2021-03-21-github-action-jekyll.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Nun muss noch ein evtl. bestehendes GitHub-Pages Environment vom Repository entfernt werden, damit die Action genutzt wird, und nicht das default Environment.&lt;/p&gt;
+
+&lt;p&gt;Und wenn alles geklappt hat,  taucht dieser Post morgen in meinem devDiary auf! 🖖🏻&lt;/p&gt;</content><author><name></name></author><category term="derEntwickler" /><category term=".yml" /><summary type="html">Dieser Post ist eine Art selbst-validierendes Experiment. Geschrieben am 20.03.2021, aber datiert auf den 21.03.2021. Das bedeutet er wird nur im Blog sichtbar, wenn heute Nacht, 00:00 GMT+1 die entsprechende GitHub Action aktiv wird und diesen Blog baut. Hoffen wir dass es klappt! 🤞🏻😊</summary></entry><entry><title type="html">Lazy Loading für Bilder zu einem Jekyll blog hinzufügen</title><link href="/lazy-loading-images-in-jekyll.html" rel="alternate" type="text/html" title="Lazy Loading für Bilder zu einem Jekyll blog hinzufügen" /><published>2021-03-20T00:00:00+01:00</published><updated>2021-03-20T00:00:00+01:00</updated><id>/lazy-loading-images-in-jekyll</id><content type="html" xml:base="/lazy-loading-images-in-jekyll.html">&lt;p&gt;Es folgt ein 5.44 MB grosses Bild.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/posts/2021-03-20-%20david-troeger-9XzyEzPAHMI-unsplash.jpg&quot; alt=&quot;&quot; class=&quot;lazyload&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Photo by &lt;a href=&quot;https://unsplash.com/@jetlag?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&quot;&gt;David Troeger&lt;/a&gt; on &lt;a href=&quot;/t/wallpapers?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&quot;&gt;Unsplash&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Aber läd das Foto auch wirklich erst &lt;em&gt;nach&lt;/em&gt; der eigentlichen Seite und ihrem Content? Ein Blick in den Network-Tab der Firefox Dev-Tools verrät die Antwort: Ja! Die Webseite wird geladen und angezeigt &lt;em&gt;bevor&lt;/em&gt; das Bild selbst abgefragt wird.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/posts/2021-03-20-browser-network-performance.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Möglich wird diese Herangehensweise durch die Javascript-Library &lt;a href=&quot;https://github.com/aFarkas/lazysizes/blob/gh-pages/README.md&quot;&gt;LazySizes&lt;/a&gt;. Alle &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;img&amp;gt;&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;iframe&amp;gt;&lt;/code&gt; oder &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;script&amp;gt;&lt;/code&gt; Elemente die mit der Klasse &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lazyload&lt;/code&gt; gekennzeichnet werden implementieren lazy loading. Es geht kaum einfacher!&lt;/p&gt;
+
+&lt;p&gt;Aber wie lässt sich diese Herangehensweise in Jekyll nutzen, wenn der Buildhost GitHub Pages ist? Glücklicherweise bietet uns Liquid die Möglichkeit, Markdown-Elemente mit css-Klassen zu versehen. Das obige Bild beispielsweise nutzt folgenden Code:&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;![](/assets/posts/2021-03-20-%20david-troeger-9XzyEzPAHMI-unsplash.jpg){:class=&quot;lazyload&quot;}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Die spezifische, optionale Angabe der Klasse ist von mir sehr erwünscht, da ich nicht jedes einzelne Bild auf diese Weise laden möchte, sondern nur sehr große Dateien.&lt;/p&gt;</content><author><name></name></author><category term="derEntwickler" /><category term=".html" /><category term=".js" /><summary type="html">Es folgt ein 5.44 MB grosses Bild.</summary></entry><entry><title type="html">How-to: Alle Blogposts mit einem bestimmten Schlagwort auflisten</title><link href="/auflistung-aller-posts-mit-einem-tag.html" rel="alternate" type="text/html" title="How-to: Alle Blogposts mit einem bestimmten Schlagwort auflisten" /><published>2021-01-28T00:00:00+01:00</published><updated>2021-01-28T00:00:00+01:00</updated><id>/auflistung-aller-posts-mit-einem-tag</id><content type="html" xml:base="/auflistung-aller-posts-mit-einem-tag.html">&lt;p&gt;Diese Aufgabe lässt sich in Liquid mit Hilfe von ein paar Schleifen und if-else-statements lösen.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Falls die Seite posts beinhaltet&lt;/li&gt;
+  &lt;li&gt;durchlaufe alle Posts&lt;/li&gt;
+  &lt;li&gt;falls ein Post Schlagworte beinhaltet&lt;/li&gt;
+  &lt;li&gt;durch alle Schlagworte dieses Posts&lt;/li&gt;
+  &lt;li&gt;wenn auf eines der Schlagwörter zB. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.swift&lt;/code&gt; zutrifft&lt;/li&gt;
+  &lt;li&gt;stelle ein HTML mit Liquid dar.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-liquid highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{%-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;site.posts&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-%}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{%-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-%}&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{%-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;tag&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;post.tags&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-%}&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;{%-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;tag&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;.swift&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-%}&lt;/span&gt;
+                // Render HTML
+            &lt;span class=&quot;p&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;endif&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%}&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{%-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;endfor&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-%}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{%-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;endif&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-%}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{%-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;endfor&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-%}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="derEntwickler" /><category term=".html" /><category term=".liquid" /><summary type="html">Diese Aufgabe lässt sich in Liquid mit Hilfe von ein paar Schleifen und if-else-statements lösen.</summary></entry><entry><title type="html">How-to: Prims.js innerhalb eines Jekyll blogs nutzen</title><link href="/how-prismjs-in-jekyll-nutzen.html" rel="alternate" type="text/html" title="How-to: Prims.js innerhalb eines Jekyll blogs nutzen" /><published>2021-01-28T00:00:00+01:00</published><updated>2021-01-28T00:00:00+01:00</updated><id>/how-prismjs-in-jekyll-nutzen</id><content type="html" xml:base="/how-prismjs-in-jekyll-nutzen.html">&lt;p&gt;Ein sehr kurzes How-To welches kurz erläutern soll, wie man &lt;a href=&quot;https://prismjs.com&quot;&gt;prismjs&lt;/a&gt; in einen Blog integriert der auf Jekyll basiert.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Konfiguriere dein Paket und lade es herunter.&lt;/li&gt;
+  &lt;li&gt;Kopiere die Dateien in deinen Jekyll blog.&lt;/li&gt;
+  &lt;li&gt;Importiere das Stylesheet und Javascript im &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;head&amp;gt;&lt;/code&gt; Element deiner Website.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Ein Beispiel:&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;charset=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;utf-8&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;http-equiv=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;X-UA-Compatible&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;IE=edge&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;viewport&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;width=device-width, initial-scale=1&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/assets/main.css&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/prism/prism.css&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/prism/prism.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Optional: Einstellung der Schriftgröße in prism.css.&lt;/p&gt;
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;code&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;language-&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;],&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;pre&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;language-&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;black&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;text-shadow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1px&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;white&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;font-family&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Consolas&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Monaco&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&apos;Andale Mono&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&apos;Ubuntu Mono&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;monospace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;font-size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.9em&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;err&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;war&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;1em&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;text-align&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;white-space&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pre&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;word-spacing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;normal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;word-break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;normal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;word-wrap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;normal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;line-height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+	&lt;span class=&quot;nl&quot;&gt;-moz-tab-size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;-o-tab-size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;tab-size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+	&lt;span class=&quot;nl&quot;&gt;-webkit-hyphens&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;-moz-hyphens&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;-ms-hyphens&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;hyphens&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="derEntwickler" /><category term=".html" /><category term=".css" /><summary type="html">Ein sehr kurzes How-To welches kurz erläutern soll, wie man prismjs in einen Blog integriert der auf Jekyll basiert.</summary></entry><entry><title type="html">How-to: Darstellung von Tags in Jekyll posts</title><link href="/how-to-darstellung-von-tags-in-jekyll.html" rel="alternate" type="text/html" title="How-to: Darstellung von Tags in Jekyll posts" /><published>2021-01-28T00:00:00+01:00</published><updated>2021-01-28T00:00:00+01:00</updated><id>/how-to-darstellung-von-tags-in-jekyll</id><content type="html" xml:base="/how-to-darstellung-von-tags-in-jekyll.html">&lt;p&gt;Ah, endlich etwas eye-candy! Als erstes sollten wir, wenn nicht bereits geschehen, eine Kopie des &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;posts.html&lt;/code&gt; Layouts unserer aktuellen Jekyll Theme anlegen, in dem wir diese aus dem Minima-Ordner nach &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_layout/post.md&lt;/code&gt; kopieren.&lt;/p&gt;
+
+&lt;p&gt;Jetzt suchen wir uns die Stelle innerhalb des Templates in dem die Tags angezeigt werden sollen.&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;header&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-header&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-title p-name&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;itemprop=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;name headline&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;How-to: Darstellung von Tags in Jekyll posts&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-meta&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;time&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;dt-published&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;datetime=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;2021-01-28T00:00:00+01:00&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;itemprop=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;datePublished&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Jan 28, 2021
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/time&amp;gt;&lt;/span&gt;//
+      // Vielleicht hier??!
+      //
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/header&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Schritt 1&lt;/strong&gt;: Die Tags sollen nur sichtbar sein, wenn wirklich Tags vergeben. Das ist recht einfach umzusetzen durch einen Zugriff auf die liquid-collection &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page.tags&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-liquid highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%}&lt;/span&gt;
+  // do something
+&lt;span class=&quot;p&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;endif&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Schritt 2&lt;/strong&gt;: Plural – Wir sollten ein “s” hinzufügen, falls mehr als ein Tag gefunden wurde.&lt;/p&gt;
+
+&lt;div class=&quot;language-liquid highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Tag&lt;span class=&quot;p&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%}&lt;/span&gt;s&lt;span class=&quot;p&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;endif&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%}&lt;/span&gt;:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Schritt 3&lt;/strong&gt;: Alle Tags mit Hilfe der &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;filter&lt;/code&gt; Funktionen von Liquid auflisten:&lt;/p&gt;
+
+&lt;div class=&quot;language-liquid highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;, &quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Alles zusammen:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-liquid highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%}&lt;/span&gt;
+  Tag&lt;span class=&quot;p&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%}&lt;/span&gt;s&lt;span class=&quot;p&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;endif&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%}&lt;/span&gt;: &lt;span class=&quot;p&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;, &quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;endif&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Das volle Snippet sieht am Ende so aus:&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;p&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-meta&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;time&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;dt-published&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;datetime=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;2021-01-28T00:00:00+01:00&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;itemprop=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;datePublished&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    {%- assign date_format = site.minima.date_format | default: &quot;%b %-d, %Y&quot; -%}
+    {{ page.date | date: date_format }}
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/time&amp;gt;&lt;/span&gt;
+    {%- if page.author -%}
+    • &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;itemprop=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;author&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;itemscope&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;itemtype=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schema.org/Person&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;p-author h-card&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;itemprop=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;{{ page.author }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+    {%- endif -%}
+    {% if page.tags.size &amp;gt; 0 %}
+        - Tag{% if page.tags.size &amp;gt; 1 %}s{% endif %}: {{ page.tags | sort | join: &quot;, &quot; }}
+    {% endif %}
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="derEntwickler" /><category term=".scss" /><category term=".css" /><category term=".html" /><category term=".liquid" /><summary type="html">Ah, endlich etwas eye-candy! Als erstes sollten wir, wenn nicht bereits geschehen, eine Kopie des posts.html Layouts unserer aktuellen Jekyll Theme anlegen, in dem wir diese aus dem Minima-Ordner nach _layout/post.md kopieren.</summary></entry><entry><title type="html">How-to: Einbinden einer eigenen Schriftart in das Jekyll Standard-Thema Minima</title><link href="/how-to-einbindung-custom-font-jekyll-minima.html" rel="alternate" type="text/html" title="How-to: Einbinden einer eigenen Schriftart in das Jekyll Standard-Thema Minima" /><published>2021-01-28T00:00:00+01:00</published><updated>2021-01-28T00:00:00+01:00</updated><id>/how-to-einbindung-custom-font-jekyll-minima</id><content type="html" xml:base="/how-to-einbindung-custom-font-jekyll-minima.html">&lt;p&gt;Das Thema Minima welches Jekyll als Grunddesign dient ist sehr schön, allerdings bin ich ein großer Fan der Open-Source Schrift &lt;a href=&quot;https://sourcefoundry.org/hack/&quot;&gt;Hack&lt;/a&gt;. Ich möchte dass dieser Blog in dieser Schriftart erstrahlt, vielleicht nicht alles, zumindest aber die Code-Snippets.&lt;/p&gt;
+
+&lt;p&gt;Aufgrund mangelnder Erfahrung mit scss hat das Ganze etwas länger gedauert als erwartet…..&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Lade Hack auf deinen Computer und extrahiere die Dateien in das Verzeichnis in dem sich dein Jekyll-Blog befindet.&lt;/li&gt;
+  &lt;li&gt;Platziere die heruntergeladenen &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;*.ttf&lt;/code&gt; Dateien in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;deinVerzeichnis&amp;gt;/assets/hack/&lt;/code&gt;. Falls &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/assets&lt;/code&gt; nicht existiert, erstelle ihn.&lt;/li&gt;
+  &lt;li&gt;Erstelle eine &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.scss&lt;/code&gt; Datei die den Namen der einzubindenden Schriftart trägt innerhalb von &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_sass&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Importiere &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hack.scss&lt;/code&gt; in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_sass/minima.scss&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Fertig.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-scss highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;@import&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;hack&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;minima/base&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;minima/layout&quot;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Inhalt von &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hack.scss&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-scss highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;@font-face&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;font-family&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;Hack&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;local&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bttf_font&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;sx&quot;&gt;url(&apos;hack/Hack-Regular.ttf&apos;)&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;opentype&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;font-weight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;font-style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;normal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+
+&lt;span class=&quot;k&quot;&gt;@font-face&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;font-family&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;Hack-Bold&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;local&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bttf_font&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;sx&quot;&gt;url(&apos;hack/Hack-Bold.ttf&apos;)&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;opentype&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;font-weight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;700&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;font-style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;normal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;@font-face&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;font-family&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;Hack-Italic&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;local&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bttf_font&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;sx&quot;&gt;url(&apos;hack/Hack-Italic.ttf&apos;)&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;opentype&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;font-weight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;font-style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;italic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;@font-face&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;font-family&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;Hack-BoldItalic&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;local&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bttf_font&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;sx&quot;&gt;url(&apos;hack/Hack-BoldItalic.ttf&apos;)&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;opentype&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;font-weight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;700&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;font-style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;italic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Kleinere Anpassungen an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;prismjs.css&lt;/code&gt; um die Schriftart in Snippets zu verkleinern:&lt;/p&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;code&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;language-&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;],&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;pre&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;language-&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;err&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;omitted&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;font-family&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&apos;Hack&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Consolas&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Monaco&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&apos;Andale Mono&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&apos;Ubuntu Mono&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;monospace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;font-size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.9em&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;err&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;omitted&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="derEntwickler" /><category term=".scss" /><category term=".css" /><summary type="html">Das Thema Minima welches Jekyll als Grunddesign dient ist sehr schön, allerdings bin ich ein großer Fan der Open-Source Schrift Hack. Ich möchte dass dieser Blog in dieser Schriftart erstrahlt, vielleicht nicht alles, zumindest aber die Code-Snippets.</summary></entry><entry><title type="html">Meine prism.js Konfiguration für diese Seite</title><link href="/meine-primjs-konfiguration.html" rel="alternate" type="text/html" title="Meine prism.js Konfiguration für diese Seite" /><published>2021-01-28T00:00:00+01:00</published><updated>2021-01-28T00:00:00+01:00</updated><id>/meine-primjs-konfiguration</id><content type="html" xml:base="/meine-primjs-konfiguration.html">&lt;p&gt;Hier ist eine Liste mit den in diese Webseite eingebundenen Sprachen, hauptsächlich um mich selbst daran zu erinnern 😏.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;Sprache&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Größe&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Markup + HTML + XML + SVG + MathML + SSML + Atom + RSS&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2.15KB&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;CSS&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1.38KB&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;C-like&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0.69KB&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;JavaScript&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3.52KB&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Bash + Shell&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;5.69KB&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;C&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1.6KB&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;C#&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;5.78KB&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Git&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0.23KB&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;HTTP Public-Key-Pins&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0.26KB&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Icon&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0.91KB&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;.ignore + .gitignore + .hgignore + .npmignore&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0.33KB&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;JSON + Web App Manifest&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0.44KB&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;JSON5&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0.39KB&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;LaTeX + TeX + ConTeXt&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1.01KB&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Makefile&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0.86KB&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Markdown&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;4.64KB&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;nginx&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;5.64KB&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Objective-C&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0.69KB&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Python&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1.97KB&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Regex&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1.24KB&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Ruby&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2.12KB&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Sass (Sass)&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1.01KB&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Sass (Scss)&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1.31KB&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Shell session&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0.78KB&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Swift&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1.72KB&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Wiki markup&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1.14KB&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;Plugins&lt;/strong&gt;: No plugins.
+&lt;strong&gt;Theme&lt;/strong&gt;: default&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Total filesize: 56.77KB (96% JavaScript + 4% CSS)&lt;/strong&gt;&lt;/p&gt;</content><author><name></name></author><category term="derEntwickler" /><category term=".js" /><summary type="html">Hier ist eine Liste mit den in diese Webseite eingebundenen Sprachen, hauptsächlich um mich selbst daran zu erinnern 😏.</summary></entry></feed>

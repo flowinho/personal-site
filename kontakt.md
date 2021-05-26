@@ -27,6 +27,10 @@ Instant Messaging ist bei mir nicht allzu "instant" zu verstehen. Da ich die mei
             <td>Signal</td>
             <td>Meine Handnummer ist nicht öffentlich. Fragt mich über Threema.</td>
         </tr>
+        <tr>
+            <td>IRC</td>
+            <td>Eine sehr gute Möglichkeit mich zu erreichen stellt das IRC-Protokoll dar. Ihr findet mich unter `flowinho` auf [Libera Chat](https://libera.chat).</td>
+        </tr>
     </tbody>
 </table>
 

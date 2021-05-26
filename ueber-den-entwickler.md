@@ -47,9 +47,7 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
     </div>
 </div>
 
----
-
-## Nebenprojekt: Ladefuchs -- Einfach schlau laden.
+<h2 class="uk-heading-line"><span>Nebenprojekt: Ladefuchs -- Einfach schlau laden</span></h2>
 
 <div class="" uk-grid>
     <div class="uk-width-1-3@m" uk-lightbox="animation: slide">
@@ -78,10 +76,7 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
     </div>
 </div>
 
-
----
-
-## Nebenprojekt: derflo.io -- Meine persönliche Website
+<h2 class="uk-heading-line"><span>Nebenprojekt: derflo.io -- Meine persönliche Website</span></h2>
 
 <div class="" uk-grid>
     <div class="uk-width-expand@m">
@@ -107,9 +102,7 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
         
 </div>
 
----
-
-## Nebenprojekt: Virtual Private Server
+<h2 class="uk-heading-line"><span>Nebenprojekt: Virtual Private Server</span></h2>
 
 <div class="" uk-grid>
     <div class="uk-width-1-4@m" uk-lightbox="animation: slide">
@@ -155,9 +148,7 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
     </div>
 </div>
 
----
-
-## Elevator CV
+<h2 class="uk-heading-line"><span>Elevator CV</span></h2>
 
 <span class="uk-text-muted">Die unten aufgelisteten Themen und Technologien sind unvollständig. Weitere Details dürfen aus Compliance-Gründen nicht genannt werden.</span>
 

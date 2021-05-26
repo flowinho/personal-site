@@ -145,6 +145,11 @@ ul, ol { margin-left: 30px; }
 
 li > ul, li > ol { margin-bottom: 0; }
 
+/** Colors */
+.green { color: darkcyan; }
+
+.red { color: darkred; }
+
 /** Headings */
 h1, h2, h3, h4, h5, h6 { font-weight: 400; }
 

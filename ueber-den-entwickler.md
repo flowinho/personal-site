@@ -22,6 +22,8 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
 > Programmierer lösen gerne die Probleme, die Sie gerne hätten -- nicht zwangsläufig die Probleme, die Sie wirklich haben.
 *Unbekannter Author, leider allzu wahr.*
 
+---
+
 <div class="" uk-grid>
     <div class="uk-width-expand@m">
     <h3>Meine Motivation hinter der Software-Entwicklung</h3>
@@ -44,6 +46,8 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
     </ul>
     </div>
 </div>
+
+---
 
 ## Nebenprojekt: Ladefuchs -- Einfach schlau laden.
 
@@ -74,6 +78,9 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
     </div>
 </div>
 
+
+---
+
 ## Nebenprojekt: derflo.io -- Meine persönliche Website
 
 <div class="" uk-grid>
@@ -100,25 +107,55 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
         
 </div>
 
+---
+
 ## Nebenprojekt: Virtual Private Server
 
 <div class="" uk-grid>
     <div class="uk-width-1-4@m" uk-lightbox="animation: slide">
-        <a class="uk-inline" href="/assets/entwickler/vps.PNG" data-caption="TheLounge auf Ubuntu 20.04">
+        <a class="uk-inline" href="/assets/entwickler/vps.PNG" data-caption="htop auf dem VPS">
             <img src="/assets/entwickler/vps.PNG" alt="">
         </a>
     </div>
     <div class="uk-width-expand@m">
-    <p>adasdsada</p>
+    <br />
+    <p>Seit Anfang des Jahres 2020 betreibe ich beim Hoster <a href="https://contabo.de">Contabo</a> meinen eigenen kleinen Server zu privaten Zwecken. Einen eigenen Server zu Betreiben ist eine Herausforderung, der ich mich gerne stelle, insbesondere im Security-Bereich.<br /><br /></p>
+    <div class="" uk-grid>
+        <div class="uk-width-expand@m">
+            Dieser Server stellt einen Lernbereich für mich dar, denn Nutzen und Lernen lassen sich hier optimal verbinden, zum Beispiel:
+            <br /><br />
+            <ul>
+                <li>Absicherung der Remote Shell des VPS, u.a. über sshd_config und <a href="https://www.fail2ban.org/wiki/index.php/Main_Page">fail2ban</a>.</li>
+                <li>Konfiguration von DNS-Zonen um den VPS über eine Domain erreichbar zu machen.</li>
+                <li>Betrieb des Reverse-Proxy <a href="https://www.nginx.com/">nginx</a> um lokale Services abzusichern.</li>
+                <li>Konfiguration von <a href="https://letsencrypt.org/de/">certbot (Let's Encrypt)</a> und nginx um Webservices mit HTTPS abzusichern.</li>
+                <li>Konfiguration und Betrieb von Containern über <a href="https://www.docker.com/">docker</a> und <a href="https://docs.docker.com/compose/">docker-compose</a>.</li>
+                <li>Betrieb des modernen IRC-Clients und Bouncers <a href="https://github.com/thelounge/thelounge">The Lounge</a>.</li>
+            </ul>
+        </div>
+        <div class="uk-width-1-4@m">
+            <h3>Eckdaten</h3>
+            <ul>
+                <li>4 vCPU</li>
+                <li>8 GB RAM</li>
+                <li>200 GB SSD</li>
+            </ul>
+        </div>
+    </div>    
+    
+    <br />
 
     <span class="uk-badge">ubuntu</span>
     <span class="uk-badge">ufw</span>
     <span class="uk-badge">OpenSSH</span>
     <span class="uk-badge">fail2ban</span>
     <span class="uk-badge">nginx</span>
+    <span class="uk-badge">docker</span>
     <span class="uk-badge">lets encrypt</span>
     </div>
 </div>
+
+---
 
 ## Elevator CV
 

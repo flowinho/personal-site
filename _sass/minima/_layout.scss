@@ -23,6 +23,7 @@
   letter-spacing: -1px;
   margin-bottom: 0;
   float: left;
+  font-family: $header-font-family;
 
   @include media-query($on-palm) {
     padding-right: 45px;

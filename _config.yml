@@ -10,7 +10,6 @@ permalink: /:title:output_ext
 
 # Minima settings
 header_pages:
-  - blog.md
   - ueber-den-papa.md
   - ueber-den-entwickler.md
   - ueber-den-fotograf.md

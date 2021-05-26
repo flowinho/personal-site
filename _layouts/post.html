@@ -24,7 +24,11 @@ layout: default
             <span class="p-author h-card" itemprop="name">{{ author }}</span></span>
             {%- if forloop.last == false %}, {% endif -%}
         {% endfor %}
-      {%- endif -%}</p>
+      {%- endif -%}
+      {% if page.categories.size > 0%}
+      in Kategorie <span uk-icon="folder"></span>&nbsp;{{page.categories | sort | join: " "}}
+      {% endif%}
+    </p>
   </header>
 {% endif %}
   <div class="post-content e-content" itemprop="articleBody">

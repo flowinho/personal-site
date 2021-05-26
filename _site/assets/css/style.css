@@ -172,7 +172,7 @@ blockquote > :last-child { margin-bottom: 0; }
 blockquote i, blockquote em { font-style: normal; }
 
 /** Code formatting */
-pre, code { font-family: "Menlo", "Inconsolata", "Consolas", "Roboto Mono", "Ubuntu Mono", "Liberation Mono", "Courier New", monospace; font-size: 0.9375em; border: 1px solid #e8e8e8; border-radius: 3px; background-color: #eeeeff; }
+pre, code { font-family: "Hack", "Menlo", "Inconsolata", "Consolas", "Roboto Mono", "Ubuntu Mono", "Liberation Mono", "Courier New", monospace; font-size: 0.9375em; border: 1px solid #e8e8e8; border-radius: 3px; background-color: #eeeeff; }
 
 code { padding: 1px 5px; }
 
@@ -323,5 +323,13 @@ pre > code { border: 0; padding-right: 0; padding-left: 0; }
 @font-face { font-family: 'SpaceGrotesk-Light'; src: local(bttf_font), url("/assets/space-grotesk/SpaceGrotesk-Light.otf") format("opentype"); font-weight: 400; font-style: italic; }
 
 @font-face { font-family: 'SpaceGrotesk-Medium'; src: local(bttf_font), url("/assets/space-grotesk/SpaceGrotesk-Medium.otf") format("opentype"); font-weight: 700; font-style: italic; }
+
+@font-face { font-family: 'Hack NF'; src: local(bttf_font), url("/assets/hack/NF-Hack-Regular.ttf") format("opentype"); font-weight: 400; font-style: normal; }
+
+@font-face { font-family: 'Hack-Bold NF '; src: local(bttf_font), url("/assets/hack/NF-Hack-Bold.ttf") format("opentype"); font-weight: 700; font-style: normal; }
+
+@font-face { font-family: 'Hack-Italic NF'; src: local(bttf_font), url("/assets/hack/NF-Hack-Italic.ttf") format("opentype"); font-weight: 400; font-style: italic; }
+
+@font-face { font-family: 'Hack-BoldItalic NF'; src: local(bttf_font), url("/assets/hack/NF-Hack-BoldItalic.ttf") format("opentype"); font-weight: 700; font-style: italic; }
 
 /*# sourceMappingURL=style.css.map */

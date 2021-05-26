@@ -7,7 +7,7 @@ permalink: /kontakt/
 
 Ich freue mich über jedes respektvolle Kontaktgesuch. Wenn ihr euren Frust abladen wollt, dürft ihr das gerne woanders machen. Wer mich immer noch kontaktieren will, hier sind die besten Möglichkeiten mich zu erreichen:
 
-<h2><span uk-icon="bolt"></span> Instant Messaging / Realtime Chat</h2>
+<h2 class="uk-heading-line"><span><span uk-icon="bolt"></span> Instant Messaging / Realtime Chat</span></h2>
 
 <div class="" uk-grid>
     <div class="uk-width-expand@m">
@@ -34,6 +34,10 @@ Ich freue mich über jedes respektvolle Kontaktgesuch. Wenn ihr euren Frust abla
                     <td>IRC</td>
                     <td>Eine sehr gute Möglichkeit mich zu erreichen stellt das IRC-Protokoll dar. Ihr findet mich unter <em>flowinho</em> auf <a href="https://libera.chat">Libera.Chat</a>.</td>
                 </tr>
+                <tr>
+                    <td>Slack</td>
+                    <td>Sehr unregelmäßig, meistens alle zwei Wochen, bin im Slack unseres Podcasts <a href="https://audiodump.de">Audiodump</a> online.</td>
+                </tr>
             </tbody>
         </table>
     </div>
@@ -45,8 +49,7 @@ Ich freue mich über jedes respektvolle Kontaktgesuch. Wenn ihr euren Frust abla
     </div>
 </div>
 
-
-<h2><span uk-icon="mail"></span>  E-Mail</h2>
+<h2 class="uk-heading-line"><span><span uk-icon="mail"></span>  E-Mail</span></h2>
 
 <div class="" uk-grid>
     <div class="uk-width-1-4@m" uk-lightbox="animation: slide">

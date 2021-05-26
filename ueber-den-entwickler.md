@@ -100,7 +100,25 @@ Ganz selten haben mich meine Kolleg:innen auf der Backend-Seite <span uk-icon="d
         
 </div>
 
+## Nebenprojekt: Virtual Private Server
 
+<div class="" uk-grid>
+    <div class="uk-width-1-4@m" uk-lightbox="animation: slide">
+        <a class="uk-inline" href="/assets/entwickler/vps.PNG" data-caption="TheLounge auf Ubuntu 20.04">
+            <img src="/assets/entwickler/vps.PNG" alt="">
+        </a>
+    </div>
+    <div class="uk-width-expand@m">
+    <p>adasdsada</p>
+
+    <span class="uk-badge">ubuntu</span>
+    <span class="uk-badge">ufw</span>
+    <span class="uk-badge">OpenSSH</span>
+    <span class="uk-badge">fail2ban</span>
+    <span class="uk-badge">nginx</span>
+    <span class="uk-badge">lets encrypt</span>
+    </div>
+</div>
 
 ## Elevator CV
 

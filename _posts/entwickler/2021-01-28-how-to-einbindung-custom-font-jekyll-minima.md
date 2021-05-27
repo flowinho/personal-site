@@ -1,7 +1,7 @@
 ---
 title: "How-to: Einbinden einer eigenen Schriftart in das Jekyll Standard-Thema Minima"
 layout: post
-tags: .scss .css
+tags: scss css
 categories: derEntwickler
 ---
 

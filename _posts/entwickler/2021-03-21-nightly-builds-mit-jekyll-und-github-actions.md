@@ -1,7 +1,7 @@
 ---
 title: "How-to: Nightly Builds für Jekyll Blogs mit GitHub Actions umsetzen"
 layout: post
-tags: .yml
+tags: yml
 categories: derEntwickler
 ---
 

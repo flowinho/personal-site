@@ -1,7 +1,7 @@
 ---
 title: "How-to: Darstellung von Tags in Jekyll posts"
 layout: post
-tags: .scss .css .html .liquid
+tags: scss css html liquid
 categories: derEntwickler
 ---
 

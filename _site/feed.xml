@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-05-26T23:48:13+02:00</updated><id>/feed.xml</id><title type="html">der flo</title><subtitle>Gewidmet meinen wundervollen Töchtern.</subtitle><entry><title type="html">How-to: Nightly Builds für Jekyll Blogs mit GitHub Actions umsetzen</title><link href="/2021/03/21/nightly-builds-mit-jekyll-und-github-actions.html" rel="alternate" type="text/html" title="How-to: Nightly Builds für Jekyll Blogs mit GitHub Actions umsetzen" /><published>2021-03-21T00:00:00+01:00</published><updated>2021-03-21T00:00:00+01:00</updated><id>/2021/03/21/nightly-builds-mit-jekyll-und-github-actions</id><content type="html" xml:base="/2021/03/21/nightly-builds-mit-jekyll-und-github-actions.html">&lt;p&gt;Dieser Post ist eine Art selbst-validierendes Experiment. Geschrieben am 20.03.2021, aber &lt;em&gt;datiert&lt;/em&gt; auf den 21.03.2021. Das bedeutet er wird nur im Blog sichtbar, 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-05-27T09:59:50+02:00</updated><id>/feed.xml</id><title type="html">der flo</title><subtitle>Gewidmet meinen wundervollen Töchtern.</subtitle><entry><title type="html">How-to: Nightly Builds für Jekyll Blogs mit GitHub Actions umsetzen</title><link href="/2021/03/21/nightly-builds-mit-jekyll-und-github-actions.html" rel="alternate" type="text/html" title="How-to: Nightly Builds für Jekyll Blogs mit GitHub Actions umsetzen" /><published>2021-03-21T00:00:00+01:00</published><updated>2021-03-21T00:00:00+01:00</updated><id>/2021/03/21/nightly-builds-mit-jekyll-und-github-actions</id><content type="html" xml:base="/2021/03/21/nightly-builds-mit-jekyll-und-github-actions.html">&lt;p&gt;Dieser Post ist eine Art selbst-validierendes Experiment. Geschrieben am 20.03.2021, aber &lt;em&gt;datiert&lt;/em&gt; auf den 21.03.2021. Das bedeutet er wird nur im Blog sichtbar, 
 wenn heute Nacht, 00:00 GMT+1 die entsprechende GitHub Action aktiv wird und diesen Blog baut. Hoffen wir dass es klappt! 🤞🏻😊&lt;/p&gt;
 
 &lt;h2 id=&quot;warum-nightly-builds-für-einen-blog&quot;&gt;Warum Nightly Builds für einen Blog?&lt;/h2&gt;
@@ -62,24 +62,76 @@ jobs:
 
 &lt;p&gt;Nun muss noch ein evtl. bestehendes GitHub-Pages Environment vom Repository entfernt werden, damit die Action genutzt wird, und nicht das default Environment.&lt;/p&gt;
 
-&lt;p&gt;Und wenn alles geklappt hat,  taucht dieser Post morgen in meinem devDiary auf! 🖖🏻&lt;/p&gt;</content><author><name></name></author><category term="derEntwickler" /><category term=".yml" /><summary type="html">Dieser Post ist eine Art selbst-validierendes Experiment. Geschrieben am 20.03.2021, aber datiert auf den 21.03.2021. Das bedeutet er wird nur im Blog sichtbar, wenn heute Nacht, 00:00 GMT+1 die entsprechende GitHub Action aktiv wird und diesen Blog baut. Hoffen wir dass es klappt! 🤞🏻😊</summary></entry><entry><title type="html">Lazy Loading für Bilder zu einem Jekyll blog hinzufügen</title><link href="/2021/03/20/lazy-loading-images-in-jekyll.html" rel="alternate" type="text/html" title="Lazy Loading für Bilder zu einem Jekyll blog hinzufügen" /><published>2021-03-20T00:00:00+01:00</published><updated>2021-03-20T00:00:00+01:00</updated><id>/2021/03/20/lazy-loading-images-in-jekyll</id><content type="html" xml:base="/2021/03/20/lazy-loading-images-in-jekyll.html">&lt;p&gt;Es folgt ein 5.44 MB grosses Bild.&lt;/p&gt;
+&lt;p&gt;Und wenn alles geklappt hat,  taucht dieser Post morgen in meinem devDiary auf! 🖖🏻&lt;/p&gt;</content><author><name></name></author><category term="derEntwickler" /><category term="yml" /><summary type="html">Dieser Post ist eine Art selbst-validierendes Experiment. Geschrieben am 20.03.2021, aber datiert auf den 21.03.2021. Das bedeutet er wird nur im Blog sichtbar, wenn heute Nacht, 00:00 GMT+1 die entsprechende GitHub Action aktiv wird und diesen Blog baut. Hoffen wir dass es klappt! 🤞🏻😊</summary></entry><entry><title type="html">GTD, Kanban, Scrum — Alle starten mit derselben Grundidee</title><link href="/2021/03/07/gtd-kanban-scrum-alle-dieselbe-idee.html" rel="alternate" type="text/html" title="GTD, Kanban, Scrum — Alle starten mit derselben Grundidee" /><published>2021-03-07T00:00:00+01:00</published><updated>2021-03-07T00:00:00+01:00</updated><id>/2021/03/07/gtd-kanban-scrum-alle-dieselbe-idee</id><content type="html" xml:base="/2021/03/07/gtd-kanban-scrum-alle-dieselbe-idee.html">&lt;p&gt;Der heutige Dschungel an digitalen Inhalten überfällt uns manchmal völlig unvorbereitet. Witzige, aber nutzlose Videos und ernste Fragen werden per Messenger geschickt, Emails kommen im Minutentakt, und unser Instagram-Feed erzeugt Lust darauf ein neues Rezept auszuprobieren. Selbst nach Feierabend trudeln auf unseren privaten Smartphones weiter Mails ein: Versandbestätigungen, Rechnungen und all die Newsletter, von denen wir uns nicht abmelden, sondern lieber täglich auf „Löschen“ tippen. Die meisten dieser Inhalte erreichen uns mit derselben Priorität, unsortiert und teilweise fast schon chaotisch und in ihrer Menge manchmal regelrecht überfordernd.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/posts/2021-03-20-%20david-troeger-9XzyEzPAHMI-unsplash.jpg&quot; alt=&quot;&quot; class=&quot;lazyload&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Doch was davon ist relevant? Auf welche Dinge sollten wir reagieren? Welche Mail ist nützlich für später, und wann entsteht echter Handlungsbedarf? Wie beurteilt man all das überhaupt?&lt;/p&gt;
 
-&lt;p&gt;Photo by &lt;a href=&quot;https://unsplash.com/@jetlag?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&quot;&gt;David Troeger&lt;/a&gt; on &lt;a href=&quot;/t/wallpapers?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&quot;&gt;Unsplash&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Die Beurteilung, Kategorisierung und Einplanung von tatsächlichen Aufgaben werden in den verschiedenen Systemen unterschiedlich angegangen. Es gibt starre Systeme, es gibt flexible Systeme und es gibt Herangehensweise die nur ein Rahmenkonstrukt vorgeben und dem Nutzer ermöglichen sollen seine eigene Organisationsstruktur zu finden und zu kultivieren.&lt;/p&gt;
 
-&lt;p&gt;Aber läd das Foto auch wirklich erst &lt;em&gt;nach&lt;/em&gt; der eigentlichen Seite und ihrem Content? Ein Blick in den Network-Tab der Firefox Dev-Tools verrät die Antwort: Ja! Die Webseite wird geladen und angezeigt &lt;em&gt;bevor&lt;/em&gt; das Bild selbst abgefragt wird.&lt;/p&gt;
+&lt;p&gt;Aber einen sehr prägnanten Aspekt haben die meisten Organisationssysteme gemeinsam, nämlich den Versuch die Flut an Eindrücken, Anfragen und Inhalten zu bändigen. Dies geschieht über eine zentrale Ablage für all diese Dinge: die oft sogenannte „Inbox“.
+Die Inbox — eine Kiste für alle Gedanken, Aufgaben und potentiellen Vorhaben&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/posts/2021-03-20-browser-network-performance.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Das Prinzip „Inbox“ gründet auf der Annahme, dass wir alle ständig Ideen, Einfälle oder Erinnerungen haben, auf die reagiert werden sollte — nur eben nie zum gerade jetzt passenden Zeitpunkt. Hier ein paar beispielhafte Gedankengänge und ein beispielhafter, unpassender Zeitpunkt:&lt;/p&gt;
 
-&lt;p&gt;Möglich wird diese Herangehensweise durch die Javascript-Library &lt;a href=&quot;https://github.com/aFarkas/lazysizes/blob/gh-pages/README.md&quot;&gt;LazySizes&lt;/a&gt;. Alle &lt;code&gt;&amp;lt;img&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;iframe&amp;gt;&lt;/code&gt; oder &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; Elemente die mit der Klasse &lt;code&gt;lazyload&lt;/code&gt; gekennzeichnet werden implementieren lazy loading. Es geht kaum einfacher!&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;„Ich sollte morgen dringend meine Ärztin anrufen und nach meinem schmerzenden Ohren schauen lassen“ — Während dem Geschirrspülen.&lt;/li&gt;
+  &lt;li&gt;„Es wäre echt toll, dieses Jahr einen Zelturlaub zu machen.“ — Während einem Spaziergang.&lt;/li&gt;
+  &lt;li&gt;„Ich sollte noch diese Woche meine alten BlueRays auf eBay verkaufen.“ — Während dem Filmabend mit dem Partner.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;Aber wie lässt sich diese Herangehensweise in Jekyll nutzen, wenn der Buildhost GitHub Pages ist? Glücklicherweise bietet uns Liquid die Möglichkeit, Markdown-Elemente mit css-Klassen zu versehen. Das obige Bild beispielsweise nutzt folgenden Code:&lt;/p&gt;
+&lt;p&gt;Diese Liste lässt sich ewig fortführen, und den meisten werden derartige Situationen völlig bekannt vorkommen. Doch wohin mit diesen Gedanken? Auf Notizzettel? Auch hier gibt es mehrere Annahmen bezüglich des Umgangs von Menschen mit „spontanen Einfällen“:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;![](/assets/posts/2021-03-20-%20david-troeger-9XzyEzPAHMI-unsplash.jpg){:class=&quot;lazyload&quot;}
-&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+  &lt;li&gt;Die meisten Menschen „merken“ sich diese Einfälle, um genau diese ein paar Minuten später wieder vergessen zu haben.&lt;/li&gt;
+  &lt;li&gt;Manche Menschen „notieren“ sich diese Einfälle, meistens auf oder in was auch immer gerade herumliegt. Bereits Kinder greifen diese Methode in der Schule auf, indem sie wichtige Dinge beispielsweise auf ihrer Handfläche notieren.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;Die spezifische, optionale Angabe der Klasse ist von mir sehr erwünscht, da ich nicht jedes einzelne Bild auf diese Weise laden möchte, sondern nur sehr große Dateien.&lt;/p&gt;</content><author><name></name></author><category term="derEntwickler" /><category term=".html" /><category term=".js" /><summary type="html">Es folgt ein 5.44 MB grosses Bild.</summary></entry><entry><title type="html">How-to: Alle Blogposts mit einem bestimmten Schlagwort auflisten</title><link href="/2021/01/28/auflistung-aller-posts-mit-einem-tag.html" rel="alternate" type="text/html" title="How-to: Alle Blogposts mit einem bestimmten Schlagwort auflisten" /><published>2021-01-28T00:00:00+01:00</published><updated>2021-01-28T00:00:00+01:00</updated><id>/2021/01/28/auflistung-aller-posts-mit-einem-tag</id><content type="html" xml:base="/2021/01/28/auflistung-aller-posts-mit-einem-tag.html">&lt;p&gt;Diese Aufgabe lässt sich in Liquid mit Hilfe von ein paar Schleifen und if-else-statements lösen.&lt;/p&gt;
+&lt;p&gt;Die meisten dieser Gedanken lassen sich kategorisieren, beispielsweise in:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Dinge die man irgendwann mal erledigen / erleben möchte.&lt;/li&gt;
+  &lt;li&gt;Dinge die zu einem bestimmten Zeitpunkt erledigt sein sollten.&lt;/li&gt;
+  &lt;li&gt;Informationen die für eine bestimmte Tätigkeit entweder zeitnah oder irgendwann einmal relevant sein könnten.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Ihnen allen liegt die zentrale Aussage zugrunde, dass diese Gedanken zwar relevant sind, aber oft nicht in den aktuellen Moment gehören, nicht zur aktuellen Tätigkeit passen, oder einfach nur ablenken können. Daraus resultiert die Notwendigkeit diese Gedanken und Einfälle in einem Werkzeug abzulegen, dem man vertraut und dass einem ermöglicht, diese Gedanken zu einem späteren Zeitpunkt noch einmal anzuschauen und sie passend zur eigenen Selbstorganisationsmethode, noch einmal kritisch zu betrachten.&lt;/p&gt;
+
+&lt;p&gt;Wie genau sich diese Gedanken dann aber genau organisieren, formatieren und einsortieren lassen — damit beschäftigen sich die verschiedensten Produktivitäts-Gurus seit Jahrzehnten. Meistens resultieren diese Recherchen und Überlegungen in der Geburt eines oder mehrerer Selbst-Organisationssysteme, wie beispielsweise „Personal Kanban“, „Time Blocking“, „G.T.D“ oder das „Time Sector System“, die wir an dieser Stelle aber nicht näher beleuchten wollen.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Ist dieser Gedanke überhaupt noch relevant? Was genau ist das? Kann ich mit „Garage entrümpeln“ überhaupt anfangen? Oder brauche ich nicht vorher einen Anhänger?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Genau diese Herangehensweise der „Wiedervorlage“ ermöglicht es, die eigenen Einfälle nicht nur als wertvoll zu betrachten, sondern sie auch aus Situationen, in denen sie aktuell keinen Mehrwert generieren, herauszulösen und sich dabei sicher zu sein dass sie für einen späteren, passenderen Zeitpunkt nicht vergessen werden.&lt;/p&gt;
+
+&lt;p&gt;Dieses Prinzip ist die „Inbox“.&lt;/p&gt;
+
+&lt;p&gt;Aber wie geht man mit „digitalen Gedanken“ um? Also Dingen, die uns andere Menschen per Messenger oder Email in unser Leben werfen und entwedersagen: „Erledig das!“ oder „Lies / schau das! Wichtig! Witzig! Süß! Verrückt!“&lt;/p&gt;
+
+&lt;p&gt;Auch diese können in einer Inbox abgelegt und später einmal betrachtet werden. Manchmal ist es genau richtig, gerade diese Inhalte nicht sofort zu konsumieren bzw. auchnicht sofort auf jede Email zu reagieren, sondern eben erst später, zu einem geeigneteren Zeitpunkt, noch einmal reflektiert sagen zu können: Ist das jetzt wirklich relevant? Will ich hierfür meine Zeit verwenden?&lt;/p&gt;
+
+&lt;p&gt;Eine abschließende, persönliche Anmerkung: Durch die heutige Kommunikation über Messenger wie Signal, Wire und leider auch Telegram &amp;amp; WhatsApp ist es Standard geworden dass Menschen sich kurzweilige Inhalte hin und her schicken mit der Erwartung das Gegenüber betrachtet und bewertet diese Inhalte. Adam Alter beschreibt in seinem Buch Irresistible dieses Verhalten mit „der Suche nach sofortiger Belohnung“ (engl. „the search for instant gratification“). Der Hauptgedanke dabei ist, dass die Sucht nach digitalen Medien das Verhalten hervorbringt sich gegenseitig Eindrücke zu schicken, um dafür Lob und Anerkennung zu ernten (engl. „social proof“). Prinzipiell heftet diesem Verhalten nichts verwerfliches an, schließlich wollen auch Links zu potentiellen Sicherheitslücken in Routern, wichtigen Nachrichten oder ähnlichem ausgetauscht werden. Ohne das eine oder andere Katzenvideo wäre die Welt auch um einiges grauer. Dennoch birgt das anhaltende Betrachten solcher kurzweiliger Inhalte große Risiken, die Adam Alter in seinem Buch wissenschaftlich erforscht und ergründet:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Das Entstehen einer Sucht nach digitalen Inhalten, inklusive Entzugserscheinungen.&lt;/li&gt;
+  &lt;li&gt;Der langfristige Abbau der Konzentrationsfähigkeit.&lt;/li&gt;
+  &lt;li&gt;Die Förderungen von unsozialem Verhalten.&lt;/li&gt;
+  &lt;li&gt;Und weitere Beobachtungen, die ich potentiellen Lesern nicht vorwegnehmen möchte.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Wer aufmerksam die Medien betrachtet, wird feststellen, dass überhöhter Medienkonsum ein großes Problem unserer heutigen Gesellschaft ist. Mit diesem neuen Bewusstsein fällt es uns vielleicht leichter, TikTok einmal geschlossen zu lassen und zu schreiben: „Schau ich mir später an.“&lt;/p&gt;</content><author><name></name></author><category term="derPodcaster" /><category term="gtd" /><category term="inbox" /><category term="produktivität" /><category term="kanban" /><summary type="html">Der heutige Dschungel an digitalen Inhalten überfällt uns manchmal völlig unvorbereitet. Witzige, aber nutzlose Videos und ernste Fragen werden per Messenger geschickt, Emails kommen im Minutentakt, und unser Instagram-Feed erzeugt Lust darauf ein neues Rezept auszuprobieren. Selbst nach Feierabend trudeln auf unseren privaten Smartphones weiter Mails ein: Versandbestätigungen, Rechnungen und all die Newsletter, von denen wir uns nicht abmelden, sondern lieber täglich auf „Löschen“ tippen. Die meisten dieser Inhalte erreichen uns mit derselben Priorität, unsortiert und teilweise fast schon chaotisch und in ihrer Menge manchmal regelrecht überfordernd.</summary></entry><entry><title type="html">Fünf Gründe weshalb ich so schlecht bin in LOL Wild Rift</title><link href="/2021/01/31/fuenf-grunde-warum-ich-schlecht-bin-in-wild-rift.html" rel="alternate" type="text/html" title="Fünf Gründe weshalb ich so schlecht bin in LOL Wild Rift" /><published>2021-01-31T00:00:00+01:00</published><updated>2021-01-31T00:00:00+01:00</updated><id>/2021/01/31/fuenf-grunde-warum-ich-schlecht-bin-in-wild-rift</id><content type="html" xml:base="/2021/01/31/fuenf-grunde-warum-ich-schlecht-bin-in-wild-rift.html">&lt;p&gt;Viele von uns wollen besser werden in irgendeinem Spiel. Für manche von uns heißt dieses Spiel League of Legends: Wild Rift. Auch ich will besser werden. Denn ich spiele schlecht. Aktuell hohes Silber, eher niedriges Gold.&lt;/p&gt;
+
+&lt;p&gt;Wie kommt das?&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Ich spiele ohne Skins. Jeder weiß, dass League of Legends: Wild Rift reines Pay-to-Win ist und ich ohne Skins nicht weit genug kommen kann. Insofern steht mir mein Geiz im Weg.&lt;/li&gt;
+  &lt;li&gt;Ich helfe meinem Teammates. Dumme Idee. League of Legends war, ist, und bleibt, ein Einzelspielerspiel.&lt;/li&gt;
+  &lt;li&gt;Ich achte auf die Mini-Map. Würde ich nicht dauernd auf diese verfluchte Karte schauen und nach dem gegnerischen Jungler Ausschau halten wäre ich nicht so vom eigentlichen Spielgeschehen abgelenkt.&lt;/li&gt;
+  &lt;li&gt;Ich spiele auf Objectives — nicht Kills. Viele freundliche Mitspieler haben mich bereits des Öfteren darauf hingewiesen, aber es will einfach nicht in meinen Kopf: Gegner töten ist wichtiger als das Spiel zu gewinnen.&lt;/li&gt;
+  &lt;li&gt;Ich chatte zu wenig. Oft habe ich das Gefühl ich könnte viele Spiele noch rumreißen in dem ich das Team motiviere, Streits schlichte und meine Teammates Frage wie ihr Tag heute so war.&lt;/li&gt;
+  &lt;li&gt;Bonusgrund: Meine Champions sind nicht sexy genug. Ein schwerer Fehler. Hätten die Figuren die ich spiele größere Brüste (ernsthaft, Zed, was soll das?!) würde ich mich in meiner Männlichkeit beflügelt fühlen und deshalb besser zocken.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Ich hoffe ich kann diese Aspekte verbessern, sonst sieht es wirklich schlecht aus mit meinen Season-Rewards….&lt;/p&gt;</content><author><name></name></author><category term="derPodcaster" /><category term="games" /><category term="iphone" /><category term="league" /><category term="of" /><category term="legends" /><summary type="html">Viele von uns wollen besser werden in irgendeinem Spiel. Für manche von uns heißt dieses Spiel League of Legends: Wild Rift. Auch ich will besser werden. Denn ich spiele schlecht. Aktuell hohes Silber, eher niedriges Gold.</summary></entry><entry><title type="html">How-to: Alle Blogposts mit einem bestimmten Schlagwort auflisten</title><link href="/2021/01/28/auflistung-aller-posts-mit-einem-tag.html" rel="alternate" type="text/html" title="How-to: Alle Blogposts mit einem bestimmten Schlagwort auflisten" /><published>2021-01-28T00:00:00+01:00</published><updated>2021-01-28T00:00:00+01:00</updated><id>/2021/01/28/auflistung-aller-posts-mit-einem-tag</id><content type="html" xml:base="/2021/01/28/auflistung-aller-posts-mit-einem-tag.html">&lt;p&gt;Diese Aufgabe lässt sich in Liquid mit Hilfe von ein paar Schleifen und if-else-statements lösen.&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;Falls die Seite posts beinhaltet&lt;/li&gt;
@@ -99,7 +151,7 @@ jobs:
         {%- endfor -%}
     {%- endif -%}
 {%- endfor -%}
-&lt;/code&gt;&lt;/pre&gt;</content><author><name></name></author><category term="derEntwickler" /><category term=".html" /><category term=".liquid" /><summary type="html">Diese Aufgabe lässt sich in Liquid mit Hilfe von ein paar Schleifen und if-else-statements lösen.</summary></entry><entry><title type="html">How-to: Prims.js innerhalb eines Jekyll blogs nutzen</title><link href="/2021/01/28/how-prismjs-in-jekyll-nutzen.html" rel="alternate" type="text/html" title="How-to: Prims.js innerhalb eines Jekyll blogs nutzen" /><published>2021-01-28T00:00:00+01:00</published><updated>2021-01-28T00:00:00+01:00</updated><id>/2021/01/28/how-prismjs-in-jekyll-nutzen</id><content type="html" xml:base="/2021/01/28/how-prismjs-in-jekyll-nutzen.html">&lt;p&gt;Ein sehr kurzes How-To welches kurz erläutern soll, wie man &lt;a href=&quot;https://prismjs.com&quot;&gt;prismjs&lt;/a&gt; in einen Blog integriert der auf Jekyll basiert.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;</content><author><name></name></author><category term="derEntwickler" /><category term="html" /><category term="liquid" /><summary type="html">Diese Aufgabe lässt sich in Liquid mit Hilfe von ein paar Schleifen und if-else-statements lösen.</summary></entry><entry><title type="html">How-to: Prims.js innerhalb eines Jekyll blogs nutzen</title><link href="/2021/01/28/how-prismjs-in-jekyll-nutzen.html" rel="alternate" type="text/html" title="How-to: Prims.js innerhalb eines Jekyll blogs nutzen" /><published>2021-01-28T00:00:00+01:00</published><updated>2021-01-28T00:00:00+01:00</updated><id>/2021/01/28/how-prismjs-in-jekyll-nutzen</id><content type="html" xml:base="/2021/01/28/how-prismjs-in-jekyll-nutzen.html">&lt;p&gt;Ein sehr kurzes How-To welches kurz erläutern soll, wie man &lt;a href=&quot;https://prismjs.com&quot;&gt;prismjs&lt;/a&gt; in einen Blog integriert der auf Jekyll basiert.&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;Konfiguriere dein Paket und lade es herunter.&lt;/li&gt;
@@ -144,60 +196,7 @@ pre[class*=&quot;language-&quot;] {
 	-ms-hyphens: none;
 	hyphens: none;
 }
-&lt;/code&gt;&lt;/pre&gt;</content><author><name></name></author><category term="derEntwickler" /><category term=".html" /><category term=".css" /><summary type="html">Ein sehr kurzes How-To welches kurz erläutern soll, wie man prismjs in einen Blog integriert der auf Jekyll basiert.</summary></entry><entry><title type="html">How-to: Darstellung von Tags in Jekyll posts</title><link href="/2021/01/28/how-to-darstellung-von-tags-in-jekyll.html" rel="alternate" type="text/html" title="How-to: Darstellung von Tags in Jekyll posts" /><published>2021-01-28T00:00:00+01:00</published><updated>2021-01-28T00:00:00+01:00</updated><id>/2021/01/28/how-to-darstellung-von-tags-in-jekyll</id><content type="html" xml:base="/2021/01/28/how-to-darstellung-von-tags-in-jekyll.html">&lt;p&gt;Ah, endlich etwas eye-candy! Als erstes sollten wir, wenn nicht bereits geschehen, eine Kopie des &lt;code&gt;posts.html&lt;/code&gt; Layouts unserer aktuellen Jekyll Theme anlegen, in dem wir diese aus dem Minima-Ordner nach &lt;code&gt;_layout/post.md&lt;/code&gt; kopieren.&lt;/p&gt;
-
-&lt;p&gt;Jetzt suchen wir uns die Stelle innerhalb des Templates in dem die Tags angezeigt werden sollen.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;header class=&quot;post-header&quot;&amp;gt;
-    &amp;lt;h1 class=&quot;post-title p-name&quot; itemprop=&quot;name headline&quot;&amp;gt;How-to: Darstellung von Tags in Jekyll posts&amp;lt;/h1&amp;gt;
-    &amp;lt;p class=&quot;post-meta&quot;&amp;gt;
-      &amp;lt;time class=&quot;dt-published&quot; datetime=&quot;2021-01-28T00:00:00+01:00&quot; itemprop=&quot;datePublished&quot;&amp;gt;Jan 28, 2021
-      &amp;lt;/time&amp;gt;//
-      // Vielleicht hier??!
-      //
-    &amp;lt;/p&amp;gt;
-  &amp;lt;/header&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;Schritt 1&lt;/strong&gt;: Die Tags sollen nur sichtbar sein, wenn wirklich Tags vergeben. Das ist recht einfach umzusetzen durch einen Zugriff auf die liquid-collection &lt;code&gt;page.tags&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-liquid&quot;&gt;{% if page.tags.size &amp;gt; 0 %}
-  // do something
-{% endif %}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;Schritt 2&lt;/strong&gt;: Plural – Wir sollten ein “s” hinzufügen, falls mehr als ein Tag gefunden wurde.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-liquid&quot;&gt;Tag{% if page.tags.size &amp;gt; 1 %}s{% endif %}:
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;Schritt 3&lt;/strong&gt;: Alle Tags mit Hilfe der &lt;code&gt;filter&lt;/code&gt; Funktionen von Liquid auflisten:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-liquid&quot;&gt;{{ page.tags | sort | join: &quot;, &quot; }}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;Alles zusammen:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-liquid&quot;&gt;{% if page.tags.size &amp;gt; 0 %}
-  Tag{% if page.tags.size &amp;gt; 1 %}s{% endif %}: {{ page.tags | sort | join: &quot;, &quot; }}
-{% endif %}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Das volle Snippet sieht am Ende so aus:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;p class=&quot;post-meta&quot;&amp;gt;
-    &amp;lt;time class=&quot;dt-published&quot; datetime=&quot;2021-01-28T00:00:00+01:00&quot; itemprop=&quot;datePublished&quot;&amp;gt;
-    {%- assign date_format = site.minima.date_format | default: &quot;%b %-d, %Y&quot; -%}
-    {{ page.date | date: date_format }}
-    &amp;lt;/time&amp;gt;
-    {%- if page.author -%}
-    • &amp;lt;span itemprop=&quot;author&quot; itemscope itemtype=&quot;http://schema.org/Person&quot;&amp;gt;&amp;lt;span class=&quot;p-author h-card&quot; itemprop=&quot;name&quot;&amp;gt;{{ page.author }}&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;
-    {%- endif -%}
-    {% if page.tags.size &amp;gt; 0 %}
-        - Tag{% if page.tags.size &amp;gt; 1 %}s{% endif %}: {{ page.tags | sort | join: &quot;, &quot; }}
-    {% endif %}
-&amp;lt;/p&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;</content><author><name></name></author><category term="derEntwickler" /><category term=".scss" /><category term=".css" /><category term=".html" /><category term=".liquid" /><summary type="html">Ah, endlich etwas eye-candy! Als erstes sollten wir, wenn nicht bereits geschehen, eine Kopie des posts.html Layouts unserer aktuellen Jekyll Theme anlegen, in dem wir diese aus dem Minima-Ordner nach _layout/post.md kopieren.</summary></entry><entry><title type="html">How-to: Einbinden einer eigenen Schriftart in das Jekyll Standard-Thema Minima</title><link href="/2021/01/28/how-to-einbindung-custom-font-jekyll-minima.html" rel="alternate" type="text/html" title="How-to: Einbinden einer eigenen Schriftart in das Jekyll Standard-Thema Minima" /><published>2021-01-28T00:00:00+01:00</published><updated>2021-01-28T00:00:00+01:00</updated><id>/2021/01/28/how-to-einbindung-custom-font-jekyll-minima</id><content type="html" xml:base="/2021/01/28/how-to-einbindung-custom-font-jekyll-minima.html">&lt;p&gt;Das Thema Minima welches Jekyll als Grunddesign dient ist sehr schön, allerdings bin ich ein großer Fan der Open-Source Schrift &lt;a href=&quot;https://sourcefoundry.org/hack/&quot;&gt;Hack&lt;/a&gt;. Ich möchte dass dieser Blog in dieser Schriftart erstrahlt, vielleicht nicht alles, zumindest aber die Code-Snippets.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;</content><author><name></name></author><category term="derEntwickler" /><category term="html" /><category term="css" /><summary type="html">Ein sehr kurzes How-To welches kurz erläutern soll, wie man prismjs in einen Blog integriert der auf Jekyll basiert.</summary></entry><entry><title type="html">How-to: Einbinden einer eigenen Schriftart in das Jekyll Standard-Thema Minima</title><link href="/2021/01/28/how-to-einbindung-custom-font-jekyll-minima.html" rel="alternate" type="text/html" title="How-to: Einbinden einer eigenen Schriftart in das Jekyll Standard-Thema Minima" /><published>2021-01-28T00:00:00+01:00</published><updated>2021-01-28T00:00:00+01:00</updated><id>/2021/01/28/how-to-einbindung-custom-font-jekyll-minima</id><content type="html" xml:base="/2021/01/28/how-to-einbindung-custom-font-jekyll-minima.html">&lt;p&gt;Das Thema Minima welches Jekyll als Grunddesign dient ist sehr schön, allerdings bin ich ein großer Fan der Open-Source Schrift &lt;a href=&quot;https://sourcefoundry.org/hack/&quot;&gt;Hack&lt;/a&gt;. Ich möchte dass dieser Blog in dieser Schriftart erstrahlt, vielleicht nicht alles, zumindest aber die Code-Snippets.&lt;/p&gt;
 
 &lt;p&gt;Aufgrund mangelnder Erfahrung mit scss hat das Ganze etwas länger gedauert als erwartet…..&lt;/p&gt;
 
@@ -256,127 +255,60 @@ pre[class*=&quot;language-&quot;] {
 	font-size: 0.9em;
 	// omitted
 }
-&lt;/code&gt;&lt;/pre&gt;</content><author><name></name></author><category term="derEntwickler" /><category term=".scss" /><category term=".css" /><summary type="html">Das Thema Minima welches Jekyll als Grunddesign dient ist sehr schön, allerdings bin ich ein großer Fan der Open-Source Schrift Hack. Ich möchte dass dieser Blog in dieser Schriftart erstrahlt, vielleicht nicht alles, zumindest aber die Code-Snippets.</summary></entry><entry><title type="html">Meine prism.js Konfiguration für diese Seite</title><link href="/2021/01/28/meine-primjs-konfiguration.html" rel="alternate" type="text/html" title="Meine prism.js Konfiguration für diese Seite" /><published>2021-01-28T00:00:00+01:00</published><updated>2021-01-28T00:00:00+01:00</updated><id>/2021/01/28/meine-primjs-konfiguration</id><content type="html" xml:base="/2021/01/28/meine-primjs-konfiguration.html">&lt;p&gt;Hier ist eine Liste mit den in diese Webseite eingebundenen Sprachen, hauptsächlich um mich selbst daran zu erinnern 😏.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;</content><author><name></name></author><category term="derEntwickler" /><category term="scss" /><category term="css" /><summary type="html">Das Thema Minima welches Jekyll als Grunddesign dient ist sehr schön, allerdings bin ich ein großer Fan der Open-Source Schrift Hack. Ich möchte dass dieser Blog in dieser Schriftart erstrahlt, vielleicht nicht alles, zumindest aber die Code-Snippets.</summary></entry><entry><title type="html">How-to: Darstellung von Tags in Jekyll posts</title><link href="/2021/01/28/how-to-darstellung-von-tags-in-jekyll.html" rel="alternate" type="text/html" title="How-to: Darstellung von Tags in Jekyll posts" /><published>2021-01-28T00:00:00+01:00</published><updated>2021-01-28T00:00:00+01:00</updated><id>/2021/01/28/how-to-darstellung-von-tags-in-jekyll</id><content type="html" xml:base="/2021/01/28/how-to-darstellung-von-tags-in-jekyll.html">&lt;p&gt;Ah, endlich etwas eye-candy! Als erstes sollten wir, wenn nicht bereits geschehen, eine Kopie des &lt;code&gt;posts.html&lt;/code&gt; Layouts unserer aktuellen Jekyll Theme anlegen, in dem wir diese aus dem Minima-Ordner nach &lt;code&gt;_layout/post.md&lt;/code&gt; kopieren.&lt;/p&gt;
 
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Sprache&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;Größe&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Markup + HTML + XML + SVG + MathML + SSML + Atom + RSS&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;2.15KB&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;CSS&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;1.38KB&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;C-like&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;0.69KB&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;JavaScript&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;3.52KB&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Bash + Shell&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;5.69KB&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;C&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;1.6KB&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;C#&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;5.78KB&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Git&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;0.23KB&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;HTTP Public-Key-Pins&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;0.26KB&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Icon&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;0.91KB&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;.ignore + .gitignore + .hgignore + .npmignore&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;0.33KB&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;JSON + Web App Manifest&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;0.44KB&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;JSON5&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;0.39KB&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;LaTeX + TeX + ConTeXt&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;1.01KB&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Makefile&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;0.86KB&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Markdown&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;4.64KB&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;nginx&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;5.64KB&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Objective-C&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;0.69KB&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Python&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;1.97KB&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Regex&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;1.24KB&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Ruby&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;2.12KB&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Sass (Sass)&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;1.01KB&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Sass (Scss)&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;1.31KB&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Shell session&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;0.78KB&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Swift&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;1.72KB&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Wiki markup&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;1.14KB&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
+&lt;p&gt;Jetzt suchen wir uns die Stelle innerhalb des Templates in dem die Tags angezeigt werden sollen.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Plugins&lt;/strong&gt;: No plugins.
-&lt;strong&gt;Theme&lt;/strong&gt;: default&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;header class=&quot;post-header&quot;&amp;gt;
+    &amp;lt;h1 class=&quot;post-title p-name&quot; itemprop=&quot;name headline&quot;&amp;gt;How-to: Darstellung von Tags in Jekyll posts&amp;lt;/h1&amp;gt;
+    &amp;lt;p class=&quot;post-meta&quot;&amp;gt;
+      &amp;lt;time class=&quot;dt-published&quot; datetime=&quot;2021-01-28T00:00:00+01:00&quot; itemprop=&quot;datePublished&quot;&amp;gt;Jan 28, 2021
+      &amp;lt;/time&amp;gt;//
+      // Vielleicht hier??!
+      //
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/header&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;strong&gt;Total filesize: 56.77KB (96% JavaScript + 4% CSS)&lt;/strong&gt;&lt;/p&gt;</content><author><name></name></author><category term="derEntwickler" /><category term=".js" /><summary type="html">Hier ist eine Liste mit den in diese Webseite eingebundenen Sprachen, hauptsächlich um mich selbst daran zu erinnern 😏.</summary></entry><entry><title type="html">Vorbild sein: Sollten wir mit unseren Sprach-Assistenten freundlicher umgehen?</title><link href="/2021/01/06/sollten-wir-mit-sprachassistenten-freundlicher-sein.html" rel="alternate" type="text/html" title="Vorbild sein: Sollten wir mit unseren Sprach-Assistenten freundlicher umgehen?" /><published>2021-01-06T00:00:00+01:00</published><updated>2021-01-06T00:00:00+01:00</updated><id>/2021/01/06/sollten-wir-mit-sprachassistenten-freundlicher-sein</id><content type="html" xml:base="/2021/01/06/sollten-wir-mit-sprachassistenten-freundlicher-sein.html">&lt;p&gt;Vater sein bedeutet, Vorbild zu sein. Sicherlich ist das manchmal nicht einfach, öfter als gewünscht spiegelt das Verhalten der Kinder die Wahrheit: dass eben nicht alles gelingen kann.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Schritt 1&lt;/strong&gt;: Die Tags sollen nur sichtbar sein, wenn wirklich Tags vergeben. Das ist recht einfach umzusetzen durch einen Zugriff auf die liquid-collection &lt;code&gt;page.tags&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-liquid&quot;&gt;{% if page.tags.size &amp;gt; 0 %}
+  // do something
+{% endif %}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Schritt 2&lt;/strong&gt;: Plural – Wir sollten ein “s” hinzufügen, falls mehr als ein Tag gefunden wurde.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-liquid&quot;&gt;Tag{% if page.tags.size &amp;gt; 1 %}s{% endif %}:
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Schritt 3&lt;/strong&gt;: Alle Tags mit Hilfe der &lt;code&gt;filter&lt;/code&gt; Funktionen von Liquid auflisten:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-liquid&quot;&gt;{{ page.tags | sort | join: &quot;, &quot; }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Alles zusammen:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-liquid&quot;&gt;{% if page.tags.size &amp;gt; 0 %}
+  Tag{% if page.tags.size &amp;gt; 1 %}s{% endif %}: {{ page.tags | sort | join: &quot;, &quot; }}
+{% endif %}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Das volle Snippet sieht am Ende so aus:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;p class=&quot;post-meta&quot;&amp;gt;
+    &amp;lt;time class=&quot;dt-published&quot; datetime=&quot;2021-01-28T00:00:00+01:00&quot; itemprop=&quot;datePublished&quot;&amp;gt;
+    {%- assign date_format = site.minima.date_format | default: &quot;%b %-d, %Y&quot; -%}
+    {{ page.date | date: date_format }}
+    &amp;lt;/time&amp;gt;
+    {%- if page.author -%}
+    • &amp;lt;span itemprop=&quot;author&quot; itemscope itemtype=&quot;http://schema.org/Person&quot;&amp;gt;&amp;lt;span class=&quot;p-author h-card&quot; itemprop=&quot;name&quot;&amp;gt;{{ page.author }}&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;
+    {%- endif -%}
+    {% if page.tags.size &amp;gt; 0 %}
+        - Tag{% if page.tags.size &amp;gt; 1 %}s{% endif %}: {{ page.tags | sort | join: &quot;, &quot; }}
+    {% endif %}
+&amp;lt;/p&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;</content><author><name></name></author><category term="derEntwickler" /><category term="scss" /><category term="css" /><category term="html" /><category term="liquid" /><summary type="html">Ah, endlich etwas eye-candy! Als erstes sollten wir, wenn nicht bereits geschehen, eine Kopie des posts.html Layouts unserer aktuellen Jekyll Theme anlegen, in dem wir diese aus dem Minima-Ordner nach _layout/post.md kopieren.</summary></entry><entry><title type="html">Vorbild sein: Sollten wir mit unseren Sprach-Assistenten freundlicher umgehen?</title><link href="/2021/01/06/sollten-wir-mit-sprachassistenten-freundlicher-sein.html" rel="alternate" type="text/html" title="Vorbild sein: Sollten wir mit unseren Sprach-Assistenten freundlicher umgehen?" /><published>2021-01-06T00:00:00+01:00</published><updated>2021-01-06T00:00:00+01:00</updated><id>/2021/01/06/sollten-wir-mit-sprachassistenten-freundlicher-sein</id><content type="html" xml:base="/2021/01/06/sollten-wir-mit-sprachassistenten-freundlicher-sein.html">&lt;p&gt;Vater sein bedeutet, Vorbild zu sein. Sicherlich ist das manchmal nicht einfach, öfter als gewünscht spiegelt das Verhalten der Kinder die Wahrheit: dass eben nicht alles gelingen kann.&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Dass Erziehung durch die Vorbildfunktion nicht immer so einfach ist, wie es klingen mag.&lt;/li&gt;

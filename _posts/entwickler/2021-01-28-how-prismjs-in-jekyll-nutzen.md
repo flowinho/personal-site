@@ -1,7 +1,7 @@
 ---
 title: "How-to: Prims.js innerhalb eines Jekyll blogs nutzen"
 layout: post
-tags: .html .css
+tags: html css
 categories: derEntwickler
 ---
 

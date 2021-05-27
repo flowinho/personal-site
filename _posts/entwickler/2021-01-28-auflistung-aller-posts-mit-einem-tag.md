@@ -1,7 +1,7 @@
 ---
 title: "How-to: Alle Blogposts mit einem bestimmten Schlagwort auflisten"
 layout: post
-tags: .html .liquid
+tags: html liquid
 categories: derEntwickler
 ---
 

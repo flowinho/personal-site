@@ -148,8 +148,13 @@ a {
  * Blockquotes
  */
 blockquote {
-  color: $brand-color;
-  border-left: 4px solid $border-color-01;
+  color: #1756a9;
+  margin-top: 32px;
+  margin-left: auto;
+  margin-bottom: 32px;
+  margin-right: auto;
+  max-width: 90%;
+  border-left: 4px solid #1756a9;
   padding-left: $spacing-unit / 2;
   @include relative-font-size(1.125);
   font-style: italic;
@@ -162,8 +167,6 @@ blockquote {
     font-style: normal;
   }
 }
-
-
 
 /**
  * Code formatting

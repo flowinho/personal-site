@@ -35,6 +35,10 @@ Ich freue mich über jedes respektvolle Kontaktgesuch. Wenn ihr euren Frust abla
                     <td>Eine sehr gute Möglichkeit mich zu erreichen stellt das IRC-Protokoll dar. Ihr findet mich unter <em>flowinho</em> auf <a href="https://libera.chat">Libera.Chat</a>.</td>
                 </tr>
                 <tr>
+                    <td>Element / Matrix</td>
+                    <td>Ihr findet mich unter <em>flowinho</em> auf dem Identity-Server matrix.org.</td>
+                </tr>
+                <tr>
                     <td>Slack</td>
                     <td>Sehr unregelmäßig, meistens alle zwei Wochen, bin im Slack unseres Podcasts <a href="https://audiodump.de">Audiodump</a> online.</td>
                 </tr>

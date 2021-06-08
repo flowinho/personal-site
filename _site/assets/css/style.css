@@ -135,6 +135,8 @@ main { display: block; /* Default value of `display` of `main` element is 'inlin
 /** Images */
 img { max-width: 100%; vertical-align: middle; }
 
+.img-portfolio { padding-left: 12px; padding-right: 12px; padding-top: 12px; padding-bottom: 12px; }
+
 /** Figures */
 figure > img { display: block; }
 
@@ -146,6 +148,8 @@ ul, ol { margin-left: 30px; }
 li > ul, li > ol { margin-bottom: 0; }
 
 /** Colors */
+.gold { color: gold; }
+
 .green { color: darkcyan; }
 
 .red { color: darkred; }
@@ -185,9 +189,9 @@ pre > code { border: 0; padding-right: 0; padding-left: 0; }
 .highlighter-rouge .highlight { background: #eeeeff; }
 
 /** Wrapper */
-.wrapper { max-width: calc(1200px - (30px)); margin-right: auto; margin-left: auto; padding-right: 15px; padding-left: 15px; }
+.wrapper { max-width: calc(1300px - (30px)); margin-right: auto; margin-left: auto; padding-right: 15px; padding-left: 15px; }
 
-@media screen and (min-width: 800px) { .wrapper { max-width: calc(1200px - (30px * 2)); padding-right: 30px; padding-left: 30px; } }
+@media screen and (min-width: 800px) { .wrapper { max-width: calc(1300px - (30px * 2)); padding-right: 30px; padding-left: 30px; } }
 
 /** Clearfix */
 .wrapper:after { content: ""; display: table; clear: both; }

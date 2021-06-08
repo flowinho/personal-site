@@ -18,3 +18,24 @@
   font-weight: 400;
   font-style: italic;
 }
+
+@font-face {
+  font-family: 'RobotoSlab-Regular';
+  src: local(bttf_font), url('/assets/roboto/RobotoSlab-Regular.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+} 
+
+@font-face {
+  font-family: 'RobotoSlab-Bold';
+  src: local(bttf_font), url('/assets/roboto/RobotoSlab-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'RobotoSlab-Light';
+  src: local(bttf_font), url('/assets/roboto/RobotoSlab-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}

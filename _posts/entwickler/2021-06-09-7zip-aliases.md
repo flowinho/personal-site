@@ -8,7 +8,7 @@ categories: derEntwickler
 7Zip ist ein Open-Source Archivierungsprogramm, das sich durch lange Existenz, Open-Source und Plattformunabhängigkeit auszeichnet.
 7Zip ist eines der langlebigsten Archivierungsprogramme und zeichnet sich durch [kontinuierliche Weiterentwicklung seit 1999](https://www.7-zip.org/history.txt) aus.
 
-> Wer nur Zip kennt, kann sich das folgendermaßen vorstellen: ZIP ist wie das Outlook der Archivierungsprogramme. Die meisten Menschen nutzen es, weil das halt jeder macht.
+> Wer nur Zip kennt, kann sich das folgendermaßen vorstellen: ZIP ist wie das Outlook der Archivierungsprogramme. Die meisten Menschen nutzen es, "weil das halt jeder macht".
 
 ## Installation unter macOS
 

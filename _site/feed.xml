@@ -1,4 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-06-08T19:49:48+02:00</updated><id>/feed.xml</id><title type="html">der flo</title><subtitle>Gewidmet meinen wundervollen Töchtern.</subtitle><entry><title type="html">How-to: Nightly Builds für Jekyll Blogs mit GitHub Actions umsetzen</title><link href="/2021/03/21/nightly-builds-mit-jekyll-und-github-actions.html" rel="alternate" type="text/html" title="How-to: Nightly Builds für Jekyll Blogs mit GitHub Actions umsetzen" /><published>2021-03-21T00:00:00+01:00</published><updated>2021-03-21T00:00:00+01:00</updated><id>/2021/03/21/nightly-builds-mit-jekyll-und-github-actions</id><content type="html" xml:base="/2021/03/21/nightly-builds-mit-jekyll-und-github-actions.html">&lt;p&gt;Dieser Post ist eine Art selbst-validierendes Experiment. Geschrieben am 20.03.2021, aber &lt;em&gt;datiert&lt;/em&gt; auf den 21.03.2021. Das bedeutet er wird nur im Blog sichtbar, 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-06-09T10:54:48+02:00</updated><id>/feed.xml</id><title type="html">der flo</title><subtitle>Gewidmet meinen wundervollen Töchtern.</subtitle><entry><title type="html">Audiodump 98: World Wide Dinowitz Conference</title><link href="/2021/06/09/audiodump-98.html" rel="alternate" type="text/html" title="Audiodump 98: World Wide Dinowitz Conference" /><published>2021-06-09T00:00:00+02:00</published><updated>2021-06-09T00:00:00+02:00</updated><id>/2021/06/09/audiodump-98</id><content type="html" xml:base="/2021/06/09/audiodump-98.html">&lt;p&gt;Ihr könnt die Folge direkt in Apple Podcasts anhören, oder auf unserer Website: &lt;a href=&quot;https://audiodump.de/2021/06/09/ad098-world-wide-dinowitz-conference/&quot;&gt;World Wide Dinowitz Conference&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://audiodump.de/2021/06/09/ad098-world-wide-dinowitz-conference/&quot;&gt;
+    &lt;img src=&quot;/assets/apple/DE_Apple_Podcasts_Listen_Badge_RGB.svg&quot; /&gt;
+&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="derPodcaster" /><category term="wwdc" /><category term="apple" /><category term="ios" /><category term="ipadOS" /><category term="macOS" /><summary type="html">Ihr könnt die Folge direkt in Apple Podcasts anhören, oder auf unserer Website: World Wide Dinowitz Conference.</summary></entry><entry><title type="html">How-to: Nightly Builds für Jekyll Blogs mit GitHub Actions umsetzen</title><link href="/2021/03/21/nightly-builds-mit-jekyll-und-github-actions.html" rel="alternate" type="text/html" title="How-to: Nightly Builds für Jekyll Blogs mit GitHub Actions umsetzen" /><published>2021-03-21T00:00:00+01:00</published><updated>2021-03-21T00:00:00+01:00</updated><id>/2021/03/21/nightly-builds-mit-jekyll-und-github-actions</id><content type="html" xml:base="/2021/03/21/nightly-builds-mit-jekyll-und-github-actions.html">&lt;p&gt;Dieser Post ist eine Art selbst-validierendes Experiment. Geschrieben am 20.03.2021, aber &lt;em&gt;datiert&lt;/em&gt; auf den 21.03.2021. Das bedeutet er wird nur im Blog sichtbar, 
 wenn heute Nacht, 00:00 GMT+1 die entsprechende GitHub Action aktiv wird und diesen Blog baut. Hoffen wir dass es klappt! 🤞🏻😊&lt;/p&gt;
 
 &lt;h2 id=&quot;warum-nightly-builds-für-einen-blog&quot;&gt;Warum Nightly Builds für einen Blog?&lt;/h2&gt;
@@ -131,60 +135,72 @@ Die Inbox — eine Kiste für alle Gedanken, Aufgaben und potentiellen Vorhaben&
   &lt;li&gt;Bonusgrund: Meine Champions sind nicht sexy genug. Ein schwerer Fehler. Hätten die Figuren die ich spiele größere Brüste (ernsthaft, Zed, was soll das?!) würde ich mich in meiner Männlichkeit beflügelt fühlen und deshalb besser zocken.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Ich hoffe ich kann diese Aspekte verbessern, sonst sieht es wirklich schlecht aus mit meinen Season-Rewards….&lt;/p&gt;</content><author><name></name></author><category term="derPodcaster" /><category term="games" /><category term="iphone" /><category term="league" /><category term="of" /><category term="legends" /><summary type="html">Viele von uns wollen besser werden in irgendeinem Spiel. Für manche von uns heißt dieses Spiel League of Legends: Wild Rift. Auch ich will besser werden. Denn ich spiele schlecht. Aktuell hohes Silber, eher niedriges Gold.</summary></entry><entry><title type="html">How-to: Darstellung von Tags in Jekyll posts</title><link href="/2021/01/28/how-to-darstellung-von-tags-in-jekyll.html" rel="alternate" type="text/html" title="How-to: Darstellung von Tags in Jekyll posts" /><published>2021-01-28T00:00:00+01:00</published><updated>2021-01-28T00:00:00+01:00</updated><id>/2021/01/28/how-to-darstellung-von-tags-in-jekyll</id><content type="html" xml:base="/2021/01/28/how-to-darstellung-von-tags-in-jekyll.html">&lt;p&gt;Ah, endlich etwas eye-candy! Als erstes sollten wir, wenn nicht bereits geschehen, eine Kopie des &lt;code&gt;posts.html&lt;/code&gt; Layouts unserer aktuellen Jekyll Theme anlegen, in dem wir diese aus dem Minima-Ordner nach &lt;code&gt;_layout/post.md&lt;/code&gt; kopieren.&lt;/p&gt;
+&lt;p&gt;Ich hoffe ich kann diese Aspekte verbessern, sonst sieht es wirklich schlecht aus mit meinen Season-Rewards….&lt;/p&gt;</content><author><name></name></author><category term="derPodcaster" /><category term="games" /><category term="iphone" /><category term="league" /><category term="of" /><category term="legends" /><summary type="html">Viele von uns wollen besser werden in irgendeinem Spiel. Für manche von uns heißt dieses Spiel League of Legends: Wild Rift. Auch ich will besser werden. Denn ich spiele schlecht. Aktuell hohes Silber, eher niedriges Gold.</summary></entry><entry><title type="html">How-to: Alle Blogposts mit einem bestimmten Schlagwort auflisten</title><link href="/2021/01/28/auflistung-aller-posts-mit-einem-tag.html" rel="alternate" type="text/html" title="How-to: Alle Blogposts mit einem bestimmten Schlagwort auflisten" /><published>2021-01-28T00:00:00+01:00</published><updated>2021-01-28T00:00:00+01:00</updated><id>/2021/01/28/auflistung-aller-posts-mit-einem-tag</id><content type="html" xml:base="/2021/01/28/auflistung-aller-posts-mit-einem-tag.html">&lt;p&gt;Diese Aufgabe lässt sich in Liquid mit Hilfe von ein paar Schleifen und if-else-statements lösen.&lt;/p&gt;
 
-&lt;p&gt;Jetzt suchen wir uns die Stelle innerhalb des Templates in dem die Tags angezeigt werden sollen.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Falls die Seite posts beinhaltet&lt;/li&gt;
+  &lt;li&gt;durchlaufe alle Posts&lt;/li&gt;
+  &lt;li&gt;falls ein Post Schlagworte beinhaltet&lt;/li&gt;
+  &lt;li&gt;durch alle Schlagworte dieses Posts&lt;/li&gt;
+  &lt;li&gt;wenn auf eines der Schlagwörter zB. &lt;code&gt;.swift&lt;/code&gt; zutrifft&lt;/li&gt;
+  &lt;li&gt;stelle ein HTML mit Liquid dar.&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;header class=&quot;post-header&quot;&amp;gt;
-    &amp;lt;h1 class=&quot;post-title p-name&quot; itemprop=&quot;name headline&quot;&amp;gt;How-to: Darstellung von Tags in Jekyll posts&amp;lt;/h1&amp;gt;
-    &amp;lt;p class=&quot;post-meta&quot;&amp;gt;
-      &amp;lt;time class=&quot;dt-published&quot; datetime=&quot;2021-01-28T00:00:00+01:00&quot; itemprop=&quot;datePublished&quot;&amp;gt;Jan 28, 2021
-      &amp;lt;/time&amp;gt;//
-      // Vielleicht hier??!
-      //
-    &amp;lt;/p&amp;gt;
-  &amp;lt;/header&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;Schritt 1&lt;/strong&gt;: Die Tags sollen nur sichtbar sein, wenn wirklich Tags vergeben. Das ist recht einfach umzusetzen durch einen Zugriff auf die liquid-collection &lt;code&gt;page.tags&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-liquid&quot;&gt;{% if page.tags.size &amp;gt; 0 %}
-  // do something
-{% endif %}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;Schritt 2&lt;/strong&gt;: Plural – Wir sollten ein “s” hinzufügen, falls mehr als ein Tag gefunden wurde.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-liquid&quot;&gt;Tag{% if page.tags.size &amp;gt; 1 %}s{% endif %}:
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;Schritt 3&lt;/strong&gt;: Alle Tags mit Hilfe der &lt;code&gt;filter&lt;/code&gt; Funktionen von Liquid auflisten:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-liquid&quot;&gt;{{ page.tags | sort | join: &quot;, &quot; }}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;Alles zusammen:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-liquid&quot;&gt;{% if page.tags.size &amp;gt; 0 %}
-  Tag{% if page.tags.size &amp;gt; 1 %}s{% endif %}: {{ page.tags | sort | join: &quot;, &quot; }}
-{% endif %}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Das volle Snippet sieht am Ende so aus:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;p class=&quot;post-meta&quot;&amp;gt;
-    &amp;lt;time class=&quot;dt-published&quot; datetime=&quot;2021-01-28T00:00:00+01:00&quot; itemprop=&quot;datePublished&quot;&amp;gt;
-    {%- assign date_format = site.minima.date_format | default: &quot;%b %-d, %Y&quot; -%}
-    {{ page.date | date: date_format }}
-    &amp;lt;/time&amp;gt;
-    {%- if page.author -%}
-    • &amp;lt;span itemprop=&quot;author&quot; itemscope itemtype=&quot;http://schema.org/Person&quot;&amp;gt;&amp;lt;span class=&quot;p-author h-card&quot; itemprop=&quot;name&quot;&amp;gt;{{ page.author }}&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;
+&lt;pre&gt;&lt;code class=&quot;language-liquid&quot;&gt;{%- for post in site.posts -%}
+    {%- if post.tags.size &amp;gt; 0 -%}
+        {%- for tag in post.tags -%}
+            {%- if tag == &quot;.swift&quot; -%}
+                // Render HTML
+            {% endif %}
+        {%- endfor -%}
     {%- endif -%}
-    {% if page.tags.size &amp;gt; 0 %}
-        - Tag{% if page.tags.size &amp;gt; 1 %}s{% endif %}: {{ page.tags | sort | join: &quot;, &quot; }}
-    {% endif %}
-&amp;lt;/p&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;</content><author><name></name></author><category term="derEntwickler" /><category term="scss" /><category term="css" /><category term="html" /><category term="liquid" /><summary type="html">Ah, endlich etwas eye-candy! Als erstes sollten wir, wenn nicht bereits geschehen, eine Kopie des posts.html Layouts unserer aktuellen Jekyll Theme anlegen, in dem wir diese aus dem Minima-Ordner nach _layout/post.md kopieren.</summary></entry><entry><title type="html">How-to: Einbinden einer eigenen Schriftart in das Jekyll Standard-Thema Minima</title><link href="/2021/01/28/how-to-einbindung-custom-font-jekyll-minima.html" rel="alternate" type="text/html" title="How-to: Einbinden einer eigenen Schriftart in das Jekyll Standard-Thema Minima" /><published>2021-01-28T00:00:00+01:00</published><updated>2021-01-28T00:00:00+01:00</updated><id>/2021/01/28/how-to-einbindung-custom-font-jekyll-minima</id><content type="html" xml:base="/2021/01/28/how-to-einbindung-custom-font-jekyll-minima.html">&lt;p&gt;Das Thema Minima welches Jekyll als Grunddesign dient ist sehr schön, allerdings bin ich ein großer Fan der Open-Source Schrift &lt;a href=&quot;https://sourcefoundry.org/hack/&quot;&gt;Hack&lt;/a&gt;. Ich möchte dass dieser Blog in dieser Schriftart erstrahlt, vielleicht nicht alles, zumindest aber die Code-Snippets.&lt;/p&gt;
+{%- endfor -%}
+&lt;/code&gt;&lt;/pre&gt;</content><author><name></name></author><category term="derEntwickler" /><category term="html" /><category term="liquid" /><summary type="html">Diese Aufgabe lässt sich in Liquid mit Hilfe von ein paar Schleifen und if-else-statements lösen.</summary></entry><entry><title type="html">How-to: Prims.js innerhalb eines Jekyll blogs nutzen</title><link href="/2021/01/28/how-prismjs-in-jekyll-nutzen.html" rel="alternate" type="text/html" title="How-to: Prims.js innerhalb eines Jekyll blogs nutzen" /><published>2021-01-28T00:00:00+01:00</published><updated>2021-01-28T00:00:00+01:00</updated><id>/2021/01/28/how-prismjs-in-jekyll-nutzen</id><content type="html" xml:base="/2021/01/28/how-prismjs-in-jekyll-nutzen.html">&lt;p&gt;Ein sehr kurzes How-To welches kurz erläutern soll, wie man &lt;a href=&quot;https://prismjs.com&quot;&gt;prismjs&lt;/a&gt; in einen Blog integriert der auf Jekyll basiert.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Konfiguriere dein Paket und lade es herunter.&lt;/li&gt;
+  &lt;li&gt;Kopiere die Dateien in deinen Jekyll blog.&lt;/li&gt;
+  &lt;li&gt;Importiere das Stylesheet und Javascript im &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; Element deiner Website.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Ein Beispiel:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;head&amp;gt;
+    &amp;lt;meta charset=&quot;utf-8&quot;&amp;gt;
+    &amp;lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&amp;gt;
+    &amp;lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&amp;gt;
+    &amp;lt;link rel=&quot;stylesheet&quot; href=&quot;/assets/main.css&quot;&amp;gt;
+    &amp;lt;link rel=&quot;stylesheet&quot; href=&quot;/prism/prism.css&quot;&amp;gt;
+    &amp;lt;script src=&quot;/prism/prism.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
+  &amp;lt;/head&amp;gt;
+  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Optional: Einstellung der Schriftgröße in prism.css.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;code[class*=&quot;language-&quot;],
+pre[class*=&quot;language-&quot;] {
+	color: black;
+	background: none;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, &apos;Andale Mono&apos;, &apos;Ubuntu Mono&apos;, monospace;
+	font-size: 0.9em;   // war 1em
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+&lt;/code&gt;&lt;/pre&gt;</content><author><name></name></author><category term="derEntwickler" /><category term="html" /><category term="css" /><summary type="html">Ein sehr kurzes How-To welches kurz erläutern soll, wie man prismjs in einen Blog integriert der auf Jekyll basiert.</summary></entry><entry><title type="html">How-to: Einbinden einer eigenen Schriftart in das Jekyll Standard-Thema Minima</title><link href="/2021/01/28/how-to-einbindung-custom-font-jekyll-minima.html" rel="alternate" type="text/html" title="How-to: Einbinden einer eigenen Schriftart in das Jekyll Standard-Thema Minima" /><published>2021-01-28T00:00:00+01:00</published><updated>2021-01-28T00:00:00+01:00</updated><id>/2021/01/28/how-to-einbindung-custom-font-jekyll-minima</id><content type="html" xml:base="/2021/01/28/how-to-einbindung-custom-font-jekyll-minima.html">&lt;p&gt;Das Thema Minima welches Jekyll als Grunddesign dient ist sehr schön, allerdings bin ich ein großer Fan der Open-Source Schrift &lt;a href=&quot;https://sourcefoundry.org/hack/&quot;&gt;Hack&lt;/a&gt;. Ich möchte dass dieser Blog in dieser Schriftart erstrahlt, vielleicht nicht alles, zumindest aber die Code-Snippets.&lt;/p&gt;
 
 &lt;p&gt;Aufgrund mangelnder Erfahrung mit scss hat das Ganze etwas länger gedauert als erwartet…..&lt;/p&gt;
 
@@ -243,72 +259,60 @@ pre[class*=&quot;language-&quot;] {
 	font-size: 0.9em;
 	// omitted
 }
-&lt;/code&gt;&lt;/pre&gt;</content><author><name></name></author><category term="derEntwickler" /><category term="scss" /><category term="css" /><summary type="html">Das Thema Minima welches Jekyll als Grunddesign dient ist sehr schön, allerdings bin ich ein großer Fan der Open-Source Schrift Hack. Ich möchte dass dieser Blog in dieser Schriftart erstrahlt, vielleicht nicht alles, zumindest aber die Code-Snippets.</summary></entry><entry><title type="html">How-to: Prims.js innerhalb eines Jekyll blogs nutzen</title><link href="/2021/01/28/how-prismjs-in-jekyll-nutzen.html" rel="alternate" type="text/html" title="How-to: Prims.js innerhalb eines Jekyll blogs nutzen" /><published>2021-01-28T00:00:00+01:00</published><updated>2021-01-28T00:00:00+01:00</updated><id>/2021/01/28/how-prismjs-in-jekyll-nutzen</id><content type="html" xml:base="/2021/01/28/how-prismjs-in-jekyll-nutzen.html">&lt;p&gt;Ein sehr kurzes How-To welches kurz erläutern soll, wie man &lt;a href=&quot;https://prismjs.com&quot;&gt;prismjs&lt;/a&gt; in einen Blog integriert der auf Jekyll basiert.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;</content><author><name></name></author><category term="derEntwickler" /><category term="scss" /><category term="css" /><summary type="html">Das Thema Minima welches Jekyll als Grunddesign dient ist sehr schön, allerdings bin ich ein großer Fan der Open-Source Schrift Hack. Ich möchte dass dieser Blog in dieser Schriftart erstrahlt, vielleicht nicht alles, zumindest aber die Code-Snippets.</summary></entry><entry><title type="html">How-to: Darstellung von Tags in Jekyll posts</title><link href="/2021/01/28/how-to-darstellung-von-tags-in-jekyll.html" rel="alternate" type="text/html" title="How-to: Darstellung von Tags in Jekyll posts" /><published>2021-01-28T00:00:00+01:00</published><updated>2021-01-28T00:00:00+01:00</updated><id>/2021/01/28/how-to-darstellung-von-tags-in-jekyll</id><content type="html" xml:base="/2021/01/28/how-to-darstellung-von-tags-in-jekyll.html">&lt;p&gt;Ah, endlich etwas eye-candy! Als erstes sollten wir, wenn nicht bereits geschehen, eine Kopie des &lt;code&gt;posts.html&lt;/code&gt; Layouts unserer aktuellen Jekyll Theme anlegen, in dem wir diese aus dem Minima-Ordner nach &lt;code&gt;_layout/post.md&lt;/code&gt; kopieren.&lt;/p&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;Konfiguriere dein Paket und lade es herunter.&lt;/li&gt;
-  &lt;li&gt;Kopiere die Dateien in deinen Jekyll blog.&lt;/li&gt;
-  &lt;li&gt;Importiere das Stylesheet und Javascript im &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; Element deiner Website.&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;Jetzt suchen wir uns die Stelle innerhalb des Templates in dem die Tags angezeigt werden sollen.&lt;/p&gt;
 
-&lt;p&gt;Ein Beispiel:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;head&amp;gt;
-    &amp;lt;meta charset=&quot;utf-8&quot;&amp;gt;
-    &amp;lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&amp;gt;
-    &amp;lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&amp;gt;
-    &amp;lt;link rel=&quot;stylesheet&quot; href=&quot;/assets/main.css&quot;&amp;gt;
-    &amp;lt;link rel=&quot;stylesheet&quot; href=&quot;/prism/prism.css&quot;&amp;gt;
-    &amp;lt;script src=&quot;/prism/prism.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
-  &amp;lt;/head&amp;gt;
-  
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;header class=&quot;post-header&quot;&amp;gt;
+    &amp;lt;h1 class=&quot;post-title p-name&quot; itemprop=&quot;name headline&quot;&amp;gt;How-to: Darstellung von Tags in Jekyll posts&amp;lt;/h1&amp;gt;
+    &amp;lt;p class=&quot;post-meta&quot;&amp;gt;
+      &amp;lt;time class=&quot;dt-published&quot; datetime=&quot;2021-01-28T00:00:00+01:00&quot; itemprop=&quot;datePublished&quot;&amp;gt;Jan 28, 2021
+      &amp;lt;/time&amp;gt;//
+      // Vielleicht hier??!
+      //
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/header&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Optional: Einstellung der Schriftgröße in prism.css.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;code[class*=&quot;language-&quot;],
-pre[class*=&quot;language-&quot;] {
-	color: black;
-	background: none;
-	text-shadow: 0 1px white;
-	font-family: Consolas, Monaco, &apos;Andale Mono&apos;, &apos;Ubuntu Mono&apos;, monospace;
-	font-size: 0.9em;   // war 1em
-	text-align: left;
-	white-space: pre;
-	word-spacing: normal;
-	word-break: normal;
-	word-wrap: normal;
-	line-height: 1.5;
+&lt;p&gt;&lt;strong&gt;Schritt 1&lt;/strong&gt;: Die Tags sollen nur sichtbar sein, wenn wirklich Tags vergeben. Das ist recht einfach umzusetzen durch einen Zugriff auf die liquid-collection &lt;code&gt;page.tags&lt;/code&gt;.&lt;/p&gt;
 
-	-moz-tab-size: 4;
-	-o-tab-size: 4;
-	tab-size: 4;
+&lt;pre&gt;&lt;code class=&quot;language-liquid&quot;&gt;{% if page.tags.size &amp;gt; 0 %}
+  // do something
+{% endif %}
+&lt;/code&gt;&lt;/pre&gt;
 
-	-webkit-hyphens: none;
-	-moz-hyphens: none;
-	-ms-hyphens: none;
-	hyphens: none;
-}
-&lt;/code&gt;&lt;/pre&gt;</content><author><name></name></author><category term="derEntwickler" /><category term="html" /><category term="css" /><summary type="html">Ein sehr kurzes How-To welches kurz erläutern soll, wie man prismjs in einen Blog integriert der auf Jekyll basiert.</summary></entry><entry><title type="html">How-to: Alle Blogposts mit einem bestimmten Schlagwort auflisten</title><link href="/2021/01/28/auflistung-aller-posts-mit-einem-tag.html" rel="alternate" type="text/html" title="How-to: Alle Blogposts mit einem bestimmten Schlagwort auflisten" /><published>2021-01-28T00:00:00+01:00</published><updated>2021-01-28T00:00:00+01:00</updated><id>/2021/01/28/auflistung-aller-posts-mit-einem-tag</id><content type="html" xml:base="/2021/01/28/auflistung-aller-posts-mit-einem-tag.html">&lt;p&gt;Diese Aufgabe lässt sich in Liquid mit Hilfe von ein paar Schleifen und if-else-statements lösen.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Schritt 2&lt;/strong&gt;: Plural – Wir sollten ein “s” hinzufügen, falls mehr als ein Tag gefunden wurde.&lt;/p&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;Falls die Seite posts beinhaltet&lt;/li&gt;
-  &lt;li&gt;durchlaufe alle Posts&lt;/li&gt;
-  &lt;li&gt;falls ein Post Schlagworte beinhaltet&lt;/li&gt;
-  &lt;li&gt;durch alle Schlagworte dieses Posts&lt;/li&gt;
-  &lt;li&gt;wenn auf eines der Schlagwörter zB. &lt;code&gt;.swift&lt;/code&gt; zutrifft&lt;/li&gt;
-  &lt;li&gt;stelle ein HTML mit Liquid dar.&lt;/li&gt;
-&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&quot;language-liquid&quot;&gt;Tag{% if page.tags.size &amp;gt; 1 %}s{% endif %}:
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-liquid&quot;&gt;{%- for post in site.posts -%}
-    {%- if post.tags.size &amp;gt; 0 -%}
-        {%- for tag in post.tags -%}
-            {%- if tag == &quot;.swift&quot; -%}
-                // Render HTML
-            {% endif %}
-        {%- endfor -%}
+&lt;p&gt;&lt;strong&gt;Schritt 3&lt;/strong&gt;: Alle Tags mit Hilfe der &lt;code&gt;filter&lt;/code&gt; Funktionen von Liquid auflisten:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-liquid&quot;&gt;{{ page.tags | sort | join: &quot;, &quot; }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Alles zusammen:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-liquid&quot;&gt;{% if page.tags.size &amp;gt; 0 %}
+  Tag{% if page.tags.size &amp;gt; 1 %}s{% endif %}: {{ page.tags | sort | join: &quot;, &quot; }}
+{% endif %}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Das volle Snippet sieht am Ende so aus:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;p class=&quot;post-meta&quot;&amp;gt;
+    &amp;lt;time class=&quot;dt-published&quot; datetime=&quot;2021-01-28T00:00:00+01:00&quot; itemprop=&quot;datePublished&quot;&amp;gt;
+    {%- assign date_format = site.minima.date_format | default: &quot;%b %-d, %Y&quot; -%}
+    {{ page.date | date: date_format }}
+    &amp;lt;/time&amp;gt;
+    {%- if page.author -%}
+    • &amp;lt;span itemprop=&quot;author&quot; itemscope itemtype=&quot;http://schema.org/Person&quot;&amp;gt;&amp;lt;span class=&quot;p-author h-card&quot; itemprop=&quot;name&quot;&amp;gt;{{ page.author }}&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;
     {%- endif -%}
-{%- endfor -%}
-&lt;/code&gt;&lt;/pre&gt;</content><author><name></name></author><category term="derEntwickler" /><category term="html" /><category term="liquid" /><summary type="html">Diese Aufgabe lässt sich in Liquid mit Hilfe von ein paar Schleifen und if-else-statements lösen.</summary></entry><entry><title type="html">Meine Einschätzung: WhatsApp-Statement zum europäischen Datenschutz</title><link href="/2021/01/08/meine-einschaetzung-zu-whatsapp.html" rel="alternate" type="text/html" title="Meine Einschätzung: WhatsApp-Statement zum europäischen Datenschutz" /><published>2021-01-08T00:00:00+01:00</published><updated>2021-01-08T00:00:00+01:00</updated><id>/2021/01/08/meine-einschaetzung-zu-whatsapp</id><content type="html" xml:base="/2021/01/08/meine-einschaetzung-zu-whatsapp.html">&lt;p&gt;Berichte zur Teilung von WhatsApp-Nutzerdaten mit den Unternehmen der Facebook-Gruppe tauchen gerade massenhaft im Netz auf, das Thema bietet Anlass zu vielen Diskussionen. Dass vor allem Europäern dieses Vorgehen aufstößt, erreicht nun auch WhatsApp, bzw. dessen Angestellte.&lt;/p&gt;
+    {% if page.tags.size &amp;gt; 0 %}
+        - Tag{% if page.tags.size &amp;gt; 1 %}s{% endif %}: {{ page.tags | sort | join: &quot;, &quot; }}
+    {% endif %}
+&amp;lt;/p&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;</content><author><name></name></author><category term="derEntwickler" /><category term="scss" /><category term="css" /><category term="html" /><category term="liquid" /><summary type="html">Ah, endlich etwas eye-candy! Als erstes sollten wir, wenn nicht bereits geschehen, eine Kopie des posts.html Layouts unserer aktuellen Jekyll Theme anlegen, in dem wir diese aus dem Minima-Ordner nach _layout/post.md kopieren.</summary></entry><entry><title type="html">Meine Einschätzung: WhatsApp-Statement zum europäischen Datenschutz</title><link href="/2021/01/08/meine-einschaetzung-zu-whatsapp.html" rel="alternate" type="text/html" title="Meine Einschätzung: WhatsApp-Statement zum europäischen Datenschutz" /><published>2021-01-08T00:00:00+01:00</published><updated>2021-01-08T00:00:00+01:00</updated><id>/2021/01/08/meine-einschaetzung-zu-whatsapp</id><content type="html" xml:base="/2021/01/08/meine-einschaetzung-zu-whatsapp.html">&lt;p&gt;Berichte zur Teilung von WhatsApp-Nutzerdaten mit den Unternehmen der Facebook-Gruppe tauchen gerade massenhaft im Netz auf, das Thema bietet Anlass zu vielen Diskussionen. Dass vor allem Europäern dieses Vorgehen aufstößt, erreicht nun auch WhatsApp, bzw. dessen Angestellte.&lt;/p&gt;
 
 &lt;p&gt;Am 07. Januar 2021 twittert WhatsApp-Mitarbeiterin Niamh Sweeney folgende Inhalte:&lt;/p&gt;
 
@@ -362,100 +366,4 @@ pre[class*=&quot;language-&quot;] {
 
 &lt;p&gt;Der Sprachgebrauch ist allerdings entscheidend. Der Wunsch meinen Kindern den Mehrwert von Höflichkeit zu vermitteln, wird unterwandert, wenn ich meine Ausdrucksweise nicht anpasse. Selbstverständlich ist Siri nur eine Maschine. Aber wie bei jeder Technologie, die Menschen imitiert, muss ich mir auch hier die Frage stellen: Wie nehmen meine Kinder diese Technologie wahr?&lt;/p&gt;
 
-&lt;p&gt;Ich für meinen Teil werde die kommende Zeit versuchen, höflicher zu Siri zu sein. Und vielleicht regt dieser Artikel auch andere Eltern etwas dazu an, über ihren bewussten Umgang mit menschen-ähnlicher Technologie in Anwesenheit der Kinder noch einmal nachzudenken.&lt;/p&gt;</content><author><name></name></author><category term="derPapa" /><category term="erziehung" /><category term="kinder" /><category term="siri" /><category term="technologie" /><category term="vorbild" /><summary type="html">Vater sein bedeutet, Vorbild zu sein. Sicherlich ist das manchmal nicht einfach, öfter als gewünscht spiegelt das Verhalten der Kinder die Wahrheit: dass eben nicht alles gelingen kann.</summary></entry><entry><title type="html">Meine Backup-Strategie für WordPress-Websiten</title><link href="/2020/12/23/backup-fuer-wordpress.html" rel="alternate" type="text/html" title="Meine Backup-Strategie für WordPress-Websiten" /><published>2020-12-23T00:00:00+01:00</published><updated>2020-12-23T00:00:00+01:00</updated><id>/2020/12/23/backup-fuer-wordpress</id><content type="html" xml:base="/2020/12/23/backup-fuer-wordpress.html">&lt;p&gt;Was ist der erste Schritt zu einer neuen Website, nachdem man sich für ein CMS (Content-Management-System) entschieden hat? Dieses installieren. In manchem Falle WordPress 5.&lt;/p&gt;
-
-&lt;p&gt;Was ist der zweite Schritt zu einer neuen Website, nachdem man das CMS installiert hat? Ein Backup einrichten.&lt;/p&gt;
-
-&lt;p&gt;Backup. Backup.&lt;/p&gt;
-
-&lt;p&gt;Backup.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Ein Backup ist kein Backup — und zwei Backups sind ein Backup.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Was Prof. Dr. Ertel damals wiedergab, ist einer der Kernweisheiten der Informationstechnologie und sollte für jedes System gelten, mit dem man in Berührung kommt, egal ob komplexes System welches eine professionelle Anwendung findet oder privates Laptop. Genau deshalb gilt dieses Credo selbstverständlich auch für Websites.&lt;/p&gt;
-
-&lt;p&gt;Idealerweise arbeitet dieses Backup automatisiert, denn manuell ausgeführte Backups werden erfahrungsgemäß nicht regelmäßig genug ausgeführt.&lt;/p&gt;
-
-&lt;p&gt;Zusätzlich zur Automatisierung ist erstrebenswert das Backup auf ein Speichermedium genauer gesagt einen Speicherort zu legen, der unter der eigenen Kontrolle und auch dem Datenschutzrecht des eigenen Landes unterliegt. &lt;strong&gt;Dieser Speicherort sollte ebenfalls über automatische Backups gesichert sein.&lt;/strong&gt; Denn wie wir alle wissen: Ein Backup ist kein Backup.&lt;/p&gt;
-
-&lt;p&gt;Manche Seite nutzt WordPress, welches mir ermöglicht das meiner Erfahrung nach gute Plug-in XCloner zu nutzen. Details dazu findet ihr auf der Plug-in-Seite: &lt;a href=&quot;https://de.wordpress.org/plugins/xcloner-backup-and-restore/&quot;&gt;https://de.wordpress.org/plugins/xcloner-backup-and-restore/&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Warum ich XCloner mag und gerne empfehle:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Die Benutzerführung ist sehr einfach gehalten und damit sehr zugänglich.&lt;/li&gt;
-  &lt;li&gt;Es unterstützt WebDAV, und ist damit mit Nextcloud-Instanzen kompatibel.&lt;/li&gt;
-  &lt;li&gt;Es bietet die Möglichkeit Verzeichnisse oder einzelne Dateien vom Backup-Vorgang auszuschließen. Das ist wichtig, um sehr kleine Backups zu erzeugen, welche sich wesentlich besser archivieren lassen, da diese Archive nur das Minimum an relevanten Daten beinhalten.&lt;/li&gt;
-  &lt;li&gt;Es bekommt recht schnell Updates, um kompatibel mit aktuellen WordPress-Versionen zu bleiben.&lt;/li&gt;
-  &lt;li&gt;XCloner kann, falls gewünscht, über den Status des letzten Backups per E-Mail informieren. Das ist besonders relevant für Nutzer die mehrere WordPress-Instanzen betreiben oder betreuen.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;konfiguration-von-nextcloud&quot;&gt;Konfiguration von Nextcloud&lt;/h2&gt;
-
-&lt;p&gt;Es ist wichtig für diese Backup-Vorgänge einen eigenen User in der Nextcloud Administrationsoberfläche anzulegen.&lt;/p&gt;
-
-&lt;p&gt;Warum?&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Ein User-Account sollte nicht von automatisierter Software gefüllt werden, da Fehlfunktionen möglicherweise großen Einfluss auf diesen Account haben. Es ist eine etablierte Herangehensweise für automatisierte Aufgaben sogenannte „technische Nutzer“ anzulegen, um den Einfluss auf produktiv genutzte User-Accounts nicht negativ zu beeinträchtigen.&lt;/li&gt;
-  &lt;li&gt;Wird ein technischer Nutzer statt ein echter Nutzer verwendet, lassen sich dessen Zugriffsrechte besser regeln.&lt;/li&gt;
-  &lt;li&gt;Der Nutzer wird nicht mit automatisierten Backups „zugemüllt“. Wer will das schon?&lt;/li&gt;
-  &lt;li&gt;Sowohl bei WordPress als auch bei XCloner handelt es sich um „Fremd-Software“ die selbst schadhaft sein kann, oder durch Sicherheitslücken angreifbar werden könnte. Durch das Anlegen eines technischen Nutzers wird die Gefahr einer Kompromittierung der Nextcloud durch WordPress oder XCloner reduziert.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Idealerweise wird das Speicherkontingent des technischen Nutzers eingeschränkt, bei mir wäre das 1 Gigabyte.&lt;/p&gt;
-
-&lt;p&gt;Nachdem der technische Nutzer angelegt wurde, wird die WebDAV-URL dieses Nutzers benötigt um XCloner korrekt konfigurieren zu können. Prinzipiell ist das Format der WebDAV-Url eines Nextcloud-Nutzers nach folgendem Schema definiert:&lt;/p&gt;
-
-&lt;p&gt;https://&lt;url-der-cloud&gt;/remote.php/dav/files/&lt;nutzername&gt;&lt;/nutzername&gt;&lt;/url-der-cloud&gt;&lt;/p&gt;
-
-&lt;p&gt;Alternativ kann die WebDAV-Url im Webinterface gefunden werden – dazu die Einstellungen der Nextcloud in der linken unteren Ecke einblenden.&lt;/p&gt;
-
-&lt;h2 id=&quot;konfiguration-von-xcloner&quot;&gt;Konfiguration von XCloner&lt;/h2&gt;
-
-&lt;p&gt;Nachdem Nextcloud nun konfiguriert ist als nächstes XCloner an der Reihe.
-Storage Locations&lt;/p&gt;
-
-&lt;p&gt;Im Reiter „Storage Locations“ bietet XCloner mehrere Optionen. Da sich dieser Artikel auf Nextcloud konzentriert ist der Bereich WebDAV relevant.&lt;/p&gt;
-
-&lt;p&gt;Eine Beispielkonfiguration für einen technischen Nutzer der Nextcloud-Instanz „https://meine.private-wolke.de“ könnte folgendermaßen aussehen:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;WebDAV Base URL: https://meine.private-wolke.de/remote.php/dav/files/wordpress/
-WebDAV Username: technischerNutzer
-WebDAV Target Path: 
-Cleanup by Age: 90
-Cleanup by Quantity: 10
-Cleanup by Capacity: 1024
-Keep backups taken on days:
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Nach einem Klick auf „Save“ sollte nicht vergessen werden die WebDAV Storage Location auch auf On zu stellen.&lt;/p&gt;
-
-&lt;p&gt;Im Bereich „Generate Backups“ kann man das Ganze dann testen&lt;/p&gt;
-
-&lt;h2 id=&quot;reiter-backup-options&quot;&gt;Reiter: Backup Options&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Eine Verschlüsselung des Backups ist nicht zwingend erforderlich, kann aber optional aktiviert werden. Da es sich beim Speicherort des Backups um eine selbst betriebene Nextcloud handelt kann davon ausgegangen werden dass sie vertrauenswürdig ist.&lt;/li&gt;
-  &lt;li&gt;Im Feld Send to remote storage: den zuvor konfigurierten Speicherort WebDAV wählen.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;reiter-database-options&quot;&gt;Reiter: Database Options&lt;/h2&gt;
-
-&lt;p&gt;Hier einfach alle Datenbanken auswählen die für ein Backup relevant und / oder interessant wären. Im Normalfall sollten hier alle Datenbanken gewählt werden.&lt;/p&gt;
-
-&lt;h2 id=&quot;reiter-files-options&quot;&gt;Reiter: Files Options&lt;/h2&gt;
-
-&lt;p&gt;Der Bereich Files Options böte die Möglichkeit Verzeichnisse und / oder Dateien explizit vom Backup auszuschließen.&lt;/p&gt;
-
-&lt;p&gt;Im Normalfall, also einer Standard-Installation sollte dies nicht notwendig sein.&lt;/p&gt;
-
-&lt;h2 id=&quot;reiter-schedule-backup&quot;&gt;Reiter: Schedule Backup&lt;/h2&gt;
-
-&lt;p&gt;Dieser Reiter bietet die Möglichkeit regelmäßige Backups in einem Zeitplan zu hinterlegen. Diese Vorgehensweise ist absolut zu empfehlen, da manuell ausgeführten Backups oft eine gewisse Regelmäßigkeit fehlt.&lt;/p&gt;
-
-&lt;p&gt;Idealerweise einmal wöchentlich.&lt;/p&gt;
-
-&lt;p&gt;Das war’s! Ich hoffe ich konnte euch mit diesem Artikel weiterhelfen und aufzeigen wie einfach es sein kann automatisierte Backups der eigenen WordPress-Seite umzusetzen.&lt;/p&gt;</content><author><name></name></author><category term="derEntwickler" /><category term="wordpress" /><category term="xcloner" /><category term="nextcloud" /><category term="webdav" /><summary type="html">Was ist der erste Schritt zu einer neuen Website, nachdem man sich für ein CMS (Content-Management-System) entschieden hat? Dieses installieren. In manchem Falle WordPress 5.</summary></entry></feed>
+&lt;p&gt;Ich für meinen Teil werde die kommende Zeit versuchen, höflicher zu Siri zu sein. Und vielleicht regt dieser Artikel auch andere Eltern etwas dazu an, über ihren bewussten Umgang mit menschen-ähnlicher Technologie in Anwesenheit der Kinder noch einmal nachzudenken.&lt;/p&gt;</content><author><name></name></author><category term="derPapa" /><category term="erziehung" /><category term="kinder" /><category term="siri" /><category term="technologie" /><category term="vorbild" /><summary type="html">Vater sein bedeutet, Vorbild zu sein. Sicherlich ist das manchmal nicht einfach, öfter als gewünscht spiegelt das Verhalten der Kinder die Wahrheit: dass eben nicht alles gelingen kann.</summary></entry></feed>

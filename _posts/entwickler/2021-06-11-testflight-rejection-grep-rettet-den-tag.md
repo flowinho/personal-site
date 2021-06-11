@@ -21,7 +21,7 @@ Normalerweise ist sowas kein Aufwand, wäre da nicht ein Problem: die App verwen
 
 Wo kam der Fehler also her? Eine Suche innerhalb des Projekts ergab keine Treffer, also war klar, dass sich UIWebView innerhalb einer der statischen Bibliotheken befinden muss. 
 
-Und hier kam `grep` zur Hilfe! Es ist in der Lage auch in binäre Datei zu durchsuchen.
+Und hier kam `grep` zur Hilfe! Es ist in der Lage auch binäre Dateien zu durchsuchen.
 
 ```bash
 grep -r UIWebView .

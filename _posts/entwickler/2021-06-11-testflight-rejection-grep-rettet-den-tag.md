@@ -11,15 +11,17 @@ Solche Apps sind immer interessant. das Besondere an dieser Submission?
 
 Die Code-Basis wurde, nach einem Rebranding, als neue, zusätzliche App in den Store übertragen.
 
-Doch dann der Schock: **Rejected. Reason: Deprecated API usage (UIWebView).**
+Doch dann der Schock: 
+
+**Rejected. Reason: Deprecated API usage (UIWebView).**
 
 UIWebView ist ein veraltetes Konstrukt, das seit iOS 12 nicht mehr verwendet werden sollte. Neue Apps dürfen diese Komponente nicht mehr nutzen.
 
-Normalerweise ist sowas kein Problen wäre da nicht ein Problem: die App verwendet überhaupt keine UIWebViews.
+Normalerweise ist sowas kein Aufwand, wäre da nicht ein Problem: die App verwendet überhaupt keine UIWebViews.
 
 Wo kam der Fehler also her? Eine Suche innerhalb des Projekts ergab keine Treffer, also war klar, dass sich UIWebView innerhalb einer der statischen Bibliotheken befinden muss. 
 
-Und hier kam `grep` zur Hilfe! 
+Und hier kam `grep` zur Hilfe! Es ist in der Lage auch in binäre Datei zu durchsuchen.
 
 ```bash
 grep -r UIWebView .

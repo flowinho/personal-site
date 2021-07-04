@@ -1,4 +1,154 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-06-26T16:23:27+02:00</updated><id>/feed.xml</id><title type="html">der flo</title><subtitle>Gewidmet meinen wundervollen Töchtern.</subtitle><entry><title type="html">TestFlight Rejection: Wie grep den Tag rettete</title><link href="/2021/06/11/testflight-rejection-grep-rettet-den-tag.html" rel="alternate" type="text/html" title="TestFlight Rejection: Wie grep den Tag rettete" /><published>2021-06-11T00:00:00+02:00</published><updated>2021-06-11T00:00:00+02:00</updated><id>/2021/06/11/testflight-rejection-grep-rettet-den-tag</id><content type="html" xml:base="/2021/06/11/testflight-rejection-grep-rettet-den-tag.html">&lt;p&gt;Heute hatte ich die schöne Gelegenheit einen TestFlight einer App zu betreuen, deren Code-Basis fast ein Jahrzehnt lang gewachsen war.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-06-27T11:28:43+02:00</updated><id>/feed.xml</id><title type="html">der flo</title><subtitle>Gewidmet meinen wundervollen Töchtern.</subtitle><entry><title type="html">Dependencies zukunftssicher in UIViewController weitergeben</title><link href="/2021/06/27/dependencies-zukunftssicher-in-uiviewcontroller-weitergeben.html" rel="alternate" type="text/html" title="Dependencies zukunftssicher in UIViewController weitergeben" /><published>2021-06-27T00:00:00+02:00</published><updated>2021-06-27T00:00:00+02:00</updated><id>/2021/06/27/dependencies-zukunftssicher-in-uiviewcontroller-weitergeben</id><content type="html" xml:base="/2021/06/27/dependencies-zukunftssicher-in-uiviewcontroller-weitergeben.html">&lt;p&gt;UIViewController ist eine der ersten Kern-Klassen denen ein iOS-Entwickler begegnet. Insbesondere wenn man mit der Entwicklung von iOS-Software beginnt, drängt sich dem Entwicker
+regelrecht auf, sich mit dieser Klasse auseinanderzusetzen. Ihre Einsatzmöglichkeiten sind vielfältig – aber genau hier liegt das Problem. UIViewController ist, nach modernem Verständnis, nicht mehr als eine Erweiterung der View - also der Anzeigeschicht. Leider neigen nach wie vor viele Entwickler dazu große Menge Business-Logic oder Interaktions-Logik wie zB. UITableViewDelegate in dieser Klasse abzulegen. Das altbekannte &lt;a href=&quot;https://www.hackingwithswift.com/articles/159/how-to-refactor-massive-view-controllers&quot;&gt;Massive-View-Controller-Syndrom&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Doch auch View-Controller brauchen Logik. Je nach Architektur greifen ViewController auf verschiedenste Implementierungen zu, sei es ein ViewModel innerhalb einer MVVM-Architektur&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;, oder der Presenter eines MVP&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; oder V.I.P.E.R.&lt;sup id=&quot;fnref:3&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt; Stack oder einfach nur der vom Nutzer in einer TableView ausgewählte Datensatz.&lt;/p&gt;
+
+&lt;p&gt;Unabhängig von der zugrunde liegenden Architektur brauchen ViewController also oftmals weitere Daten. Nur wie kommen die ViewController an diese Daten?&lt;/p&gt;
+
+&lt;p&gt;Im Laufe der letzten 7-8 Jahre sind mir viele verschiedene, teils sehr kreative, teils sehr durchdachte, und teils sehr fragwürdige Antworten für diese Fragestellungen begegnet. Fairerweise muss man sagen, das iOS SDK hat sich über die Jahre stark weiterentwickelt. Die Einführungen neuer APIs, die Einführung von Storyboards &amp;amp; Swift UI und nicht zuletzt die Entwicklung von SWIFT als neue Programmiersprache für das Apple Ökosystem, haben es uns Entwicklern über die Jahre einfacher gemacht. Aber nicht alle APIs und Sprachkomponenten sollten gedankenlos genutzt werden. &lt;em&gt;Insbesondere UIViewController, das zentrale Herzstück jedes App-Bildschirms und damit Kern der Nutzererfahrung, sollte mit Bedacht konstruiert werden.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Doch wie lassen sich Abhänigkeiten nun erfolgreich an UIViewController weitergeben?&lt;/p&gt;
+
+&lt;p&gt;Um dieses Thema näher zu verstehen würde ich gerne zuerst auf  ein gängiges Modell und seine etwaigen Nachteile eingehen.&lt;/p&gt;
+
+&lt;h2 id=&quot;prepare-for-segue&quot;&gt;Prepare for Segue&lt;/h2&gt;
+
+&lt;p&gt;Mit der Einführung von Storyboards in iOS7 und den damit einhergehenden Segues&lt;sup id=&quot;fnref:4&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt; begannen meine Kollegen und anfangs auch Ich, die neu eingeführte Methode &lt;code&gt;func prepare(for segue: UIStoryboardSegue, sender: Any?)&lt;/code&gt; zu nutzen. Die Grundidee ist denkbar einfach: iOS ruft diese Methode vor jedem Übergang zwischen zwei UIViewController auf, sofern sich diese in derselben Storyboard-Datei befinden und durch eine Segue miteinander verbunden sind. Dabei spielt es keine Rolle ob die Segue über &lt;code&gt;performSegue(...)&lt;/code&gt; angesteuert wird, oder durch Antippen eines UIButton durch den Nutzer.&lt;/p&gt;
+
+&lt;p&gt;Apple selbst &lt;a href=&quot;https://developer.apple.com/library/archive/featuredarticles/ViewControllerPGforiPhoneOS/UsingSegues.html&quot;&gt;lehrt diese Herangehensweise innerhalb seiner Einführung für Entwickler&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Ein Beispiel:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;public class MainVC: UIViewController {
+    ...
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)  {
+        // 1. Um welche Segue handelt es sich?
+        if segue.identifier == &quot;MainToSettingsVC&quot; {
+            // 2. Handelt es sich beim Ziel-ViewController der Segue um den erwarteten?
+            // Diese Prüfung ist auch notwendig um Zugriff auf die Funktionen und Properties der Ziel-Klasse zu erhalten.
+            if let destinationVC = segue.destination as? SettingsVC {
+                // 3. Zuweisung des Ziel-Datenmodells.
+                destinationVC.viewModel = self.viewModel
+            } else {
+                // Ziel-ViewController entspricht trotz vorhandenem Identifier nicht dem erwarteten Typs. Ein fatalError().
+            }
+        } else {
+            // Der vom Entwickler erwartete Identifier wurde nicht gefunden. Das kann mehrere Ursache haben,
+            // u.a. eine Änderung des Identifiers innerhalb der Storyboard-Datei.
+        }
+    }
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;nachteile-von-prepare-for-segue&quot;&gt;Nachteile von Prepare for Segue&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Alle UIViewController Interface-Builder Definitionen müssen sich in einem einzigen Storyboard befinden. Davon ist insbesondere bei mehr als einem Entwickler im Team grundlegend abzuraten, da sich Storyboard-Dateien aufgrund ihrer eigenwilligen, XML-artigen Struktur nur sehr schwer mergen lassen.&lt;/li&gt;
+  &lt;li&gt;UISegue ist ein Konstrukt dass noch nicht ganz ausgereift ist. Durch die harte Kopplung an UIStoryBoard und der erzwungenden Definition des Eingangs- und Ausgangs-ViewController kann hier nicht von einer allgemein gültigen Lösung gesprochen werden.&lt;/li&gt;
+  &lt;li&gt;UISegue ist nicht verfügbar, wenn Benutzeroberflächen mittels SwiftUI definiert werden.&lt;/li&gt;
+  &lt;li&gt;Diese Herangehensweise birgt die Gefahr, dass beide UIViewController stark aneinander gekoppelt werden, und von ihren jeweiligen Typen abhängig werden.&lt;/li&gt;
+  &lt;li&gt;Die Dependency wird &lt;em&gt;nach&lt;/em&gt; dem Aufruf von &lt;code&gt;viewDidLoad()&lt;/code&gt; weitergegeben.&lt;/li&gt;
+  &lt;li&gt;Die Verwendung String-basierter Identifier ist sehr volatil.&lt;/li&gt;
+  &lt;li&gt;Da &lt;code&gt;prepare(for segue: sender:)&lt;/code&gt; nicht mit zusätzlichen Parametern aufgerufen werden kann, ist der Entwickler gezwungen das weiterzuleitende Datenobjekt innerhalb einer Klassenvariable abzulegen – ein unnötiger Mehraufwand, und eine unnötige Fehlerquelle, da die Beeinflussung des Datensatzes möglich ist, was zu Fehlverhalten führen kann.&lt;/li&gt;
+  &lt;li&gt;Die Prüfung auf den &lt;code&gt;segue.identifier&lt;/code&gt; muss für jeden UIViewController durchgeführt werden, der auf diese Weise angesprochen wird. Sehr viel redundanter Code, der sich durch Auslagerung in Funktionen lesbarer machen lässt, das Ursprungsproblem der direkten Kopplung an die Storyboard-Files aber nicht ändern.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;testbarkeit-von-prepare-for-segue&quot;&gt;Testbarkeit von Prepare for Segue&lt;/h3&gt;
+
+&lt;p&gt;Unit-Tests für diese Art der Datenweitergabe zu schreiben ist machbar, aber durchaus schwer. Der Unit-Test für die Klasse &lt;code&gt;SettingsVC&lt;/code&gt; bräuchte Zugriff auf:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Die Klasse &lt;code&gt;MainVC&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Alle Abhängigkeiten von &lt;code&gt;MainVC&lt;/code&gt; und &lt;code&gt;SettingsVC&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Zugriff auf den Segue-Identifier.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Des Weiteren kann, wie bereits erwähnt, die Dependency erst weitergegeben, &lt;em&gt;nachdem&lt;/em&gt; die Kern-Funktion &lt;code&gt;viewDidLoad()&lt;/code&gt; des Ausgangs-ViewController aufgerufen wurde. Etwaige Logik innerhalb dieser ist somit bereits abgelaufen, &lt;em&gt;nachdem&lt;/em&gt; die Dependency übergeben wurde. Daraus resultiert: die Dependency muss eine &lt;em&gt;Optional&lt;/em&gt; sein.&lt;/p&gt;
+
+&lt;p&gt;Moment? Eine fundamental wichtige, für die Funktionalität wichtige Datenklasse als optional? Hier stutzt nicht nur der alte Hase, sondern auch bei Neuankömmlingen sollten hier die Alarmglocken läuten. Zusätzliche artet jeder Zugriff auf diese wichtige Datenstruktur nun zu einer “Unwrapping-Party” aus.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;public class SettingsVC: UIViewController {
+    var viewModel: SettingsViewModel?
+    ...
+    func updateOutlets(){
+        if let vm = viewModel {
+            ...
+        } else {
+            ...
+        }
+    }
+
+    func populateTableView(){
+        if let vm = viewModel {
+            ...
+        } else {
+            ...
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Eine unnötige Verkomplizierung, die kaum spürbaren Mehrwert generiert, aber durchaus mehr Code benötigt.&lt;/p&gt;
+
+&lt;h2 id=&quot;die-alternative-protocol-injection-in-einer-erweiterung-des-viewcontrollers&quot;&gt;Die Alternative: Protocol-injection, in einer Erweiterung des ViewControllers&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;// Die Verwendung eines Protokolls ermöglich die 
+public protocol SettingsVM {
+    var title: String { get set }
+    var text: String { get set }
+}
+
+extension SettingsVC {
+    // Die Verwendung von storyboard?=nil erlaubt es, diese Funktion auch ohne die Übergabe von UIStoryboard aufzurufen.
+    // Das ist wichtig für Klassen, die keinen Zugriff auf UIKit benötigen. Bspw. Unit-Tests, Router.
+    // Dennoch sollte der Parameter mit implementiert und geprüft werden, da sich die Eindeutigkeit der Funktion damit erhöht.
+    public static func instantiate(from storyboard: UIStoryboard?=nil, with viewModel: SettingsVM) -&amp;gt; SettingsVC? {
+        // Der Identifier wird in der dafür zuständigen Funktion abgelegt.
+        let identifier = &quot;SettingsVC&quot;
+        // Verwende das &quot;Haupt&quot;-Storyboard, falls keines per Parameter übergeben wurde.
+        var sb = storyboard == nil ? UIStoryboard(name: &quot;Profile&quot;, bundle: Bundle.main) : storyboard
+        // Prüfung auf instanziierbaren ViewController. Der Vorteil? Die App crasht nicht bei dieser Funktion, wird können also
+        // getrost auf eine unwrappable Optional prüfen.
+        guard let vc = sb.instantiateViewController(withIdentifier: identifier) as? SettingsVC else {
+            nil
+        }
+        // Zuweisung der Dependency.
+        vc.viewModel = viewModel
+        return vc
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;vorteile&quot;&gt;Vorteile&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;SettingsVC kennt seine Dependencies, verwaltet sie selbständig.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;testbarkeit-der-protocol-injection&quot;&gt;Testbarkeit der Protocol-Injection&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;test&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Model-View-Viewmodel, &lt;a href=&quot;https://de.wikipedia.org/wiki/Model_View_ViewModel&quot;&gt;https://de.wikipedia.org/wiki/Model_View_ViewModel&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Model-View-Presenter, &lt;a href=&quot;https://de.wikipedia.org/wiki/Model_View_Presenter&quot;&gt;https://de.wikipedia.org/wiki/Model_View_Presenter&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;View-Iterator-Presenter-Entity-Router, &lt;a href=&quot;https://de.wikipedia.org/wiki/VIPER_(Entwurfsmuster)&quot;&gt;https://de.wikipedia.org/wiki/VIPER_(Entwurfsmuster)&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:4&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Storyboard-Segues, Übergänge zwischen verschiedenen ViewControllern. &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name></name></author><category term="derEntwickler" /><category term="swift" /><category term="uikit" /><category term="uiviewcontroller" /><category term="dependency-injection" /><summary type="html">UIViewController ist eine der ersten Kern-Klassen denen ein iOS-Entwickler begegnet. Insbesondere wenn man mit der Entwicklung von iOS-Software beginnt, drängt sich dem Entwicker regelrecht auf, sich mit dieser Klasse auseinanderzusetzen. Ihre Einsatzmöglichkeiten sind vielfältig – aber genau hier liegt das Problem. UIViewController ist, nach modernem Verständnis, nicht mehr als eine Erweiterung der View - also der Anzeigeschicht. Leider neigen nach wie vor viele Entwickler dazu große Menge Business-Logic oder Interaktions-Logik wie zB. UITableViewDelegate in dieser Klasse abzulegen. Das altbekannte Massive-View-Controller-Syndrom.</summary></entry><entry><title type="html">TestFlight Rejection: Wie grep den Tag rettete</title><link href="/2021/06/11/testflight-rejection-grep-rettet-den-tag.html" rel="alternate" type="text/html" title="TestFlight Rejection: Wie grep den Tag rettete" /><published>2021-06-11T00:00:00+02:00</published><updated>2021-06-11T00:00:00+02:00</updated><id>/2021/06/11/testflight-rejection-grep-rettet-den-tag</id><content type="html" xml:base="/2021/06/11/testflight-rejection-grep-rettet-den-tag.html">&lt;p&gt;Heute hatte ich die schöne Gelegenheit einen TestFlight einer App zu betreuen, deren Code-Basis fast ein Jahrzehnt lang gewachsen war.&lt;/p&gt;
 
 &lt;p&gt;Solche Apps sind immer interessant. das Besondere an dieser Submission?&lt;/p&gt;
 
@@ -270,57 +420,4 @@ pre[class*=&quot;language-&quot;] {
 	-ms-hyphens: none;
 	hyphens: none;
 }
-&lt;/code&gt;&lt;/pre&gt;</content><author><name></name></author><category term="derEntwickler" /><category term="html" /><category term="css" /><summary type="html">Ein sehr kurzes How-To welches kurz erläutern soll, wie man prismjs in einen Blog integriert der auf Jekyll basiert.</summary></entry><entry><title type="html">How-to: Darstellung von Tags in Jekyll posts</title><link href="/2021/01/28/how-to-darstellung-von-tags-in-jekyll.html" rel="alternate" type="text/html" title="How-to: Darstellung von Tags in Jekyll posts" /><published>2021-01-28T00:00:00+01:00</published><updated>2021-01-28T00:00:00+01:00</updated><id>/2021/01/28/how-to-darstellung-von-tags-in-jekyll</id><content type="html" xml:base="/2021/01/28/how-to-darstellung-von-tags-in-jekyll.html">&lt;p&gt;Ah, endlich etwas eye-candy! Als erstes sollten wir, wenn nicht bereits geschehen, eine Kopie des &lt;code&gt;posts.html&lt;/code&gt; Layouts unserer aktuellen Jekyll Theme anlegen, in dem wir diese aus dem Minima-Ordner nach &lt;code&gt;_layout/post.md&lt;/code&gt; kopieren.&lt;/p&gt;
-
-&lt;p&gt;Jetzt suchen wir uns die Stelle innerhalb des Templates in dem die Tags angezeigt werden sollen.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;header class=&quot;post-header&quot;&amp;gt;
-    &amp;lt;h1 class=&quot;post-title p-name&quot; itemprop=&quot;name headline&quot;&amp;gt;How-to: Darstellung von Tags in Jekyll posts&amp;lt;/h1&amp;gt;
-    &amp;lt;p class=&quot;post-meta&quot;&amp;gt;
-      &amp;lt;time class=&quot;dt-published&quot; datetime=&quot;2021-01-28T00:00:00+01:00&quot; itemprop=&quot;datePublished&quot;&amp;gt;Jan 28, 2021
-      &amp;lt;/time&amp;gt;//
-      // Vielleicht hier??!
-      //
-    &amp;lt;/p&amp;gt;
-  &amp;lt;/header&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;Schritt 1&lt;/strong&gt;: Die Tags sollen nur sichtbar sein, wenn wirklich Tags vergeben. Das ist recht einfach umzusetzen durch einen Zugriff auf die liquid-collection &lt;code&gt;page.tags&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-liquid&quot;&gt;{% if page.tags.size &amp;gt; 0 %}
-  // do something
-{% endif %}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;Schritt 2&lt;/strong&gt;: Plural – Wir sollten ein “s” hinzufügen, falls mehr als ein Tag gefunden wurde.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-liquid&quot;&gt;Tag{% if page.tags.size &amp;gt; 1 %}s{% endif %}:
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;Schritt 3&lt;/strong&gt;: Alle Tags mit Hilfe der &lt;code&gt;filter&lt;/code&gt; Funktionen von Liquid auflisten:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-liquid&quot;&gt;{{ page.tags | sort | join: &quot;, &quot; }}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;Alles zusammen:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-liquid&quot;&gt;{% if page.tags.size &amp;gt; 0 %}
-  Tag{% if page.tags.size &amp;gt; 1 %}s{% endif %}: {{ page.tags | sort | join: &quot;, &quot; }}
-{% endif %}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Das volle Snippet sieht am Ende so aus:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;p class=&quot;post-meta&quot;&amp;gt;
-    &amp;lt;time class=&quot;dt-published&quot; datetime=&quot;2021-01-28T00:00:00+01:00&quot; itemprop=&quot;datePublished&quot;&amp;gt;
-    {%- assign date_format = site.minima.date_format | default: &quot;%b %-d, %Y&quot; -%}
-    {{ page.date | date: date_format }}
-    &amp;lt;/time&amp;gt;
-    {%- if page.author -%}
-    • &amp;lt;span itemprop=&quot;author&quot; itemscope itemtype=&quot;http://schema.org/Person&quot;&amp;gt;&amp;lt;span class=&quot;p-author h-card&quot; itemprop=&quot;name&quot;&amp;gt;{{ page.author }}&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;
-    {%- endif -%}
-    {% if page.tags.size &amp;gt; 0 %}
-        - Tag{% if page.tags.size &amp;gt; 1 %}s{% endif %}: {{ page.tags | sort | join: &quot;, &quot; }}
-    {% endif %}
-&amp;lt;/p&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;</content><author><name></name></author><category term="derEntwickler" /><category term="scss" /><category term="css" /><category term="html" /><category term="liquid" /><summary type="html">Ah, endlich etwas eye-candy! Als erstes sollten wir, wenn nicht bereits geschehen, eine Kopie des posts.html Layouts unserer aktuellen Jekyll Theme anlegen, in dem wir diese aus dem Minima-Ordner nach _layout/post.md kopieren.</summary></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;</content><author><name></name></author><category term="derEntwickler" /><category term="html" /><category term="css" /><summary type="html">Ein sehr kurzes How-To welches kurz erläutern soll, wie man prismjs in einen Blog integriert der auf Jekyll basiert.</summary></entry></feed>

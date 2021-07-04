@@ -1,4 +1,3 @@
-
 ---
 title: "Cold Storage: Dateien verschlüsseln und auf B2 archivieren"
 layout: post

@@ -45,7 +45,7 @@ Coder lässt sich dank dem [exzellenten Install-Script](https://raw.githubuserco
 curl -fsSL https://code-server.dev/install.sh | sh
 ```
 
-Coder bietet nach geglückter Installation an, die Software als Service zu registrieren und zu starten. Es ist empfehlenswert den Service zu starten, da dieser sonst nach Neustart des Servers von Hand per SSH gestartet werden muss. Nach erfolgreichem Start des Dienstes läuft der Coder-Server und lauscht auf `127.0.0.1:808`.
+Coder bietet nach geglückter Installation an, die Software als Service zu registrieren und zu starten. Es ist empfehlenswert den Service zu starten, da dieser sonst nach Neustart des Servers von Hand per SSH gestartet werden muss. Nach erfolgreichem Start des Dienstes läuft der Coder-Server und lauscht auf `127.0.0.1:8080`.
 
 
 ### HTPasswd konfigurieren um das Verzeichnis zu schützen
@@ -85,6 +85,7 @@ server {
 
     # ... Jede Menge Inhalt
 }
+```
 
 Als nächstes prüfen wir die NGINX-Konfiguration auf (Tipp-)Fehler und starten NGINX neu um die neuen Einstellungen zu übernehmen:
 

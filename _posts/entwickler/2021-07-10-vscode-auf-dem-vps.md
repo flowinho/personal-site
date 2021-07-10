@@ -5,13 +5,11 @@ tags: vscode vps coder-server ubuntu
 categories: derEntwickler
 ---
 
-Vor bier bis fünf Jahren, mit dem ersten iPad Pro, kam bei mir der Wunsch auf, mobil zu entwickeln. Sicherlich ist vor allem Apple mit Schuld daran, dass ich dieses Ziel über Jahre hinweg verfolgt habe -- schließlich wurde es als *der* Ersatz für den Computer beworben. Damals, wie teilweise heute, fällt das Ergebnis eher ernüchternd aus. Swift Playgrounds ist noch nicht so niet und nagelfest wie es sein könnte, und obwohl iOS 15 die Möglichkeit bringen wird, eigene Apps direkt aus Playgrounds in den AppStore zu veröffentlichen, bleiben viele Erwartungen an das iPad als Gerät zur Softwareentwicklung vorerst unangesprochen.
+Vor vier bis fünf Jahren, mit dem ersten iPad Pro, kam bei mir der Wunsch auf, mobil zu entwickeln. Sicherlich ist vor allem Apple mit Schuld daran, dass ich dieses Ziel über Jahre hinweg verfolgt habe -- schließlich wurde es als *der* Ersatz für den Computer beworben. Damals, wie teilweise heute, fällt das Ergebnis eher ernüchternd aus. Swift Playgrounds ist noch nicht so niet und nagelfest wie es sein könnte, und obwohl iOS 15 die Möglichkeit bringen wird, eigene Apps direkt aus Playgrounds in den AppStore zu veröffentlichen, bleiben viele Erwartungen an das iPad als Gerät zur Softwareentwicklung vorerst unangesprochen.
 
 Nun gibt es eine Firma namens [Coder](https://coder.com/), die ihr Geld mit Browser-basierten Entwicklungsumgebungen verdient. Im Rahmen meiner Beschäftigungen habe ich hier und da Berührungspunkte mit deren Diensten gehabt, bin aber nicht auf die Idee gekommen, ganze IDEs selbst zu hosten. 
 
 ## Visual Studio Code selbst hosten
-
-![](/assets/posts/derEntwickler/2021-07-10-vscode/vscode-ipad.JPG)
 
 Ist das nicht mega stark? Im Folgenden möchte ich euch erklären wie ihr zum selben Ergebnis kommen könnt wie ich.
 

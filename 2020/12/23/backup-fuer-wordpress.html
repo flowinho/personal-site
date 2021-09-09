@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Meine Backup-Strategie für WordPress-Websiten | der flo</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Meine Backup-Strategie für WordPress-Websiten" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Was ist der erste Schritt zu einer neuen Website, nachdem man sich für ein CMS (Content-Management-System) entschieden hat? Dieses installieren. In manchem Falle WordPress 5." />
+<meta property="og:description" content="Was ist der erste Schritt zu einer neuen Website, nachdem man sich für ein CMS (Content-Management-System) entschieden hat? Dieses installieren. In manchem Falle WordPress 5." />
+<link rel="canonical" href="/2020/12/23/backup-fuer-wordpress.html" />
+<meta property="og:url" content="/2020/12/23/backup-fuer-wordpress.html" />
+<meta property="og:site_name" content="der flo" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-12-23T00:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Meine Backup-Strategie für WordPress-Websiten" />
+<script type="application/ld+json">
+{"headline":"Meine Backup-Strategie für WordPress-Websiten","dateModified":"2020-12-23T00:00:00+01:00","description":"Was ist der erste Schritt zu einer neuen Website, nachdem man sich für ein CMS (Content-Management-System) entschieden hat? Dieses installieren. In manchem Falle WordPress 5.","datePublished":"2020-12-23T00:00:00+01:00","url":"/2020/12/23/backup-fuer-wordpress.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"/2020/12/23/backup-fuer-wordpress.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/uikit/uikit.min.css" />
+  <script src="/assets/uikit/uikit.min.js"></script>
+  <script src="/assets/uikit/uikit-icons.min.js"></script>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/prism/prism.css">
+  <script src="/assets/prism/prism.js"></script><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="der flo" />
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">der flo</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/">Blog
+              
+                &nbsp;<span uk-icon="rss"></span>
+              
+              </a><a class="page-link" href="/ueber-den-entwickler/">Über den Entwickler
+              
+                &nbsp;<span uk-icon="git-branch"></span>
+              
+              </a><a class="page-link" href="/ueber-diese-seite.html">Über diese Seite
+              
+                &nbsp;<span uk-icon="server"></span>
+              
+              </a><a class="page-link" href="/downloads/">Downloads
+              
+                &nbsp;<span uk-icon="cloud-download"></span>
+              
+              </a><a class="page-link" href="/kontakt/">Kontakt
+              
+                &nbsp;<span uk-icon="mail"></span>
+              
+              </a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Meine Backup-Strategie für WordPress-Websiten</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2020-12-23T00:00:00+01:00" itemprop="datePublished">
+        Dec 23, 2020
+      </time>
+      in Kategorie <span uk-icon="folder"></span>&nbsp;derEntwickler
+      
+    </p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Was ist der erste Schritt zu einer neuen Website, nachdem man sich für ein CMS (Content-Management-System) entschieden hat? Dieses installieren. In manchem Falle WordPress 5.</p>
+
+<p>Was ist der zweite Schritt zu einer neuen Website, nachdem man das CMS installiert hat? Ein Backup einrichten.</p>
+
+<p>Backup. Backup.</p>
+
+<p>Backup.</p>
+
+<blockquote>
+  <p>Ein Backup ist kein Backup — und zwei Backups sind ein Backup.</p>
+</blockquote>
+
+<p>Was Prof. Dr. Ertel damals wiedergab, ist einer der Kernweisheiten der Informationstechnologie und sollte für jedes System gelten, mit dem man in Berührung kommt, egal ob komplexes System welches eine professionelle Anwendung findet oder privates Laptop. Genau deshalb gilt dieses Credo selbstverständlich auch für Websites.</p>
+
+<p>Idealerweise arbeitet dieses Backup automatisiert, denn manuell ausgeführte Backups werden erfahrungsgemäß nicht regelmäßig genug ausgeführt.</p>
+
+<p>Zusätzlich zur Automatisierung ist erstrebenswert das Backup auf ein Speichermedium genauer gesagt einen Speicherort zu legen, der unter der eigenen Kontrolle und auch dem Datenschutzrecht des eigenen Landes unterliegt. <strong>Dieser Speicherort sollte ebenfalls über automatische Backups gesichert sein.</strong> Denn wie wir alle wissen: Ein Backup ist kein Backup.</p>
+
+<p>Manche Seite nutzt WordPress, welches mir ermöglicht das meiner Erfahrung nach gute Plug-in XCloner zu nutzen. Details dazu findet ihr auf der Plug-in-Seite: <a href="https://de.wordpress.org/plugins/xcloner-backup-and-restore/">https://de.wordpress.org/plugins/xcloner-backup-and-restore/</a></p>
+
+<p>Warum ich XCloner mag und gerne empfehle:</p>
+
+<ul>
+  <li>Die Benutzerführung ist sehr einfach gehalten und damit sehr zugänglich.</li>
+  <li>Es unterstützt WebDAV, und ist damit mit Nextcloud-Instanzen kompatibel.</li>
+  <li>Es bietet die Möglichkeit Verzeichnisse oder einzelne Dateien vom Backup-Vorgang auszuschließen. Das ist wichtig, um sehr kleine Backups zu erzeugen, welche sich wesentlich besser archivieren lassen, da diese Archive nur das Minimum an relevanten Daten beinhalten.</li>
+  <li>Es bekommt recht schnell Updates, um kompatibel mit aktuellen WordPress-Versionen zu bleiben.</li>
+  <li>XCloner kann, falls gewünscht, über den Status des letzten Backups per E-Mail informieren. Das ist besonders relevant für Nutzer die mehrere WordPress-Instanzen betreiben oder betreuen.</li>
+</ul>
+
+<h2 id="konfiguration-von-nextcloud">Konfiguration von Nextcloud</h2>
+
+<p>Es ist wichtig für diese Backup-Vorgänge einen eigenen User in der Nextcloud Administrationsoberfläche anzulegen.</p>
+
+<p>Warum?</p>
+
+<ul>
+  <li>Ein User-Account sollte nicht von automatisierter Software gefüllt werden, da Fehlfunktionen möglicherweise großen Einfluss auf diesen Account haben. Es ist eine etablierte Herangehensweise für automatisierte Aufgaben sogenannte „technische Nutzer“ anzulegen, um den Einfluss auf produktiv genutzte User-Accounts nicht negativ zu beeinträchtigen.</li>
+  <li>Wird ein technischer Nutzer statt ein echter Nutzer verwendet, lassen sich dessen Zugriffsrechte besser regeln.</li>
+  <li>Der Nutzer wird nicht mit automatisierten Backups „zugemüllt“. Wer will das schon?</li>
+  <li>Sowohl bei WordPress als auch bei XCloner handelt es sich um „Fremd-Software“ die selbst schadhaft sein kann, oder durch Sicherheitslücken angreifbar werden könnte. Durch das Anlegen eines technischen Nutzers wird die Gefahr einer Kompromittierung der Nextcloud durch WordPress oder XCloner reduziert.</li>
+</ul>
+
+<p>Idealerweise wird das Speicherkontingent des technischen Nutzers eingeschränkt, bei mir wäre das 1 Gigabyte.</p>
+
+<p>Nachdem der technische Nutzer angelegt wurde, wird die WebDAV-URL dieses Nutzers benötigt um XCloner korrekt konfigurieren zu können. Prinzipiell ist das Format der WebDAV-Url eines Nextcloud-Nutzers nach folgendem Schema definiert:</p>
+
+<p>https://<url-der-cloud>/remote.php/dav/files/<nutzername></nutzername></url-der-cloud></p>
+
+<p>Alternativ kann die WebDAV-Url im Webinterface gefunden werden – dazu die Einstellungen der Nextcloud in der linken unteren Ecke einblenden.</p>
+
+<h2 id="konfiguration-von-xcloner">Konfiguration von XCloner</h2>
+
+<p>Nachdem Nextcloud nun konfiguriert ist als nächstes XCloner an der Reihe.
+Storage Locations</p>
+
+<p>Im Reiter „Storage Locations“ bietet XCloner mehrere Optionen. Da sich dieser Artikel auf Nextcloud konzentriert ist der Bereich WebDAV relevant.</p>
+
+<p>Eine Beispielkonfiguration für einen technischen Nutzer der Nextcloud-Instanz „https://meine.private-wolke.de“ könnte folgendermaßen aussehen:</p>
+
+<pre><code class="language-bash">WebDAV Base URL: https://meine.private-wolke.de/remote.php/dav/files/wordpress/
+WebDAV Username: technischerNutzer
+WebDAV Target Path: 
+Cleanup by Age: 90
+Cleanup by Quantity: 10
+Cleanup by Capacity: 1024
+Keep backups taken on days:
+</code></pre>
+
+<p>Nach einem Klick auf „Save“ sollte nicht vergessen werden die WebDAV Storage Location auch auf On zu stellen.</p>
+
+<p>Im Bereich „Generate Backups“ kann man das Ganze dann testen</p>
+
+<h2 id="reiter-backup-options">Reiter: Backup Options</h2>
+
+<ul>
+  <li>Eine Verschlüsselung des Backups ist nicht zwingend erforderlich, kann aber optional aktiviert werden. Da es sich beim Speicherort des Backups um eine selbst betriebene Nextcloud handelt kann davon ausgegangen werden dass sie vertrauenswürdig ist.</li>
+  <li>Im Feld Send to remote storage: den zuvor konfigurierten Speicherort WebDAV wählen.</li>
+</ul>
+
+<h2 id="reiter-database-options">Reiter: Database Options</h2>
+
+<p>Hier einfach alle Datenbanken auswählen die für ein Backup relevant und / oder interessant wären. Im Normalfall sollten hier alle Datenbanken gewählt werden.</p>
+
+<h2 id="reiter-files-options">Reiter: Files Options</h2>
+
+<p>Der Bereich Files Options böte die Möglichkeit Verzeichnisse und / oder Dateien explizit vom Backup auszuschließen.</p>
+
+<p>Im Normalfall, also einer Standard-Installation sollte dies nicht notwendig sein.</p>
+
+<h2 id="reiter-schedule-backup">Reiter: Schedule Backup</h2>
+
+<p>Dieser Reiter bietet die Möglichkeit regelmäßige Backups in einem Zeitplan zu hinterlegen. Diese Vorgehensweise ist absolut zu empfehlen, da manuell ausgeführten Backups oft eine gewisse Regelmäßigkeit fehlt.</p>
+
+<p>Idealerweise einmal wöchentlich.</p>
+
+<p>Das war’s! Ich hoffe ich konnte euch mit diesem Artikel weiterhelfen und aufzeigen wie einfach es sein kann automatisierte Backups der eigenen WordPress-Seite umzusetzen.</p>
+
+  </div><a class="u-url" href="/2020/12/23/backup-fuer-wordpress.html" hidden></a>
+</article>
+
+        <a href="" uk-totop>Nach oben scrollen </a>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <!-- <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div> -->
+      <div class="footer-col">
+        <p>Gewidmet meinen wundervollen Töchtern.&nbsp;<span uk-icon="heart"></span></p>
+      </div>
+      <div class="footer-col">
+        <p>Alle Inhalte sind CC-BY-SA 4.0 lizensiert. </p>
+      </div>
+      <!-- Social -->
+      <div class="footer-col">
+        <ul class="uk-iconnav">
+          <li><a href="https://github.com/flowinho" uk-icon="icon: github"></a></li>
+          <li><a href="#" uk-icon="icon: discord"></a></li>
+          <li><a href="https://twitter.com/flowinho" uk-icon="icon: twitter"></a></li>
+          <li><a href="https://flickr.com/photos/shutterinho/" uk-icon="icon: flickr"></a></li>
+          <li><a href="https://stackoverflow.com/users/15840803/flowinho" uk-icon="icon: comments"></a></li>
+      </ul>
+      </div>
+      <div class="footer-col">
+        <p><a href="/impressum/">Impressum</a></p>
+        <p><a href="/datenschutz/">Datenschutzerklärung</a></p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

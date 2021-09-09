@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Dependencies zukunftssicher in UIViewController weitergeben | der flo</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Dependencies zukunftssicher in UIViewController weitergeben" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="UIViewController ist eine der ersten Kern-Klassen denen ein iOS-Entwickler begegnet. Insbesondere wenn man mit der Entwicklung von iOS-Software beginnt, drängt sich dem Entwicker regelrecht auf, sich mit dieser Klasse auseinanderzusetzen. Ihre Einsatzmöglichkeiten sind vielfältig – aber genau hier liegt das Problem. UIViewController ist, nach modernem Verständnis, nicht mehr als eine Erweiterung der View - also der Anzeigeschicht. Leider neigen nach wie vor viele Entwickler dazu große Menge Business-Logic oder Interaktions-Logik wie zB. UITableViewDelegate in dieser Klasse abzulegen. Das altbekannte Massive-View-Controller-Syndrom." />
+<meta property="og:description" content="UIViewController ist eine der ersten Kern-Klassen denen ein iOS-Entwickler begegnet. Insbesondere wenn man mit der Entwicklung von iOS-Software beginnt, drängt sich dem Entwicker regelrecht auf, sich mit dieser Klasse auseinanderzusetzen. Ihre Einsatzmöglichkeiten sind vielfältig – aber genau hier liegt das Problem. UIViewController ist, nach modernem Verständnis, nicht mehr als eine Erweiterung der View - also der Anzeigeschicht. Leider neigen nach wie vor viele Entwickler dazu große Menge Business-Logic oder Interaktions-Logik wie zB. UITableViewDelegate in dieser Klasse abzulegen. Das altbekannte Massive-View-Controller-Syndrom." />
+<link rel="canonical" href="/2021/06/27/dependencies-zukunftssicher-in-uiviewcontroller-weitergeben.html" />
+<meta property="og:url" content="/2021/06/27/dependencies-zukunftssicher-in-uiviewcontroller-weitergeben.html" />
+<meta property="og:site_name" content="der flo" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-06-27T00:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Dependencies zukunftssicher in UIViewController weitergeben" />
+<script type="application/ld+json">
+{"headline":"Dependencies zukunftssicher in UIViewController weitergeben","dateModified":"2021-06-27T00:00:00+02:00","description":"UIViewController ist eine der ersten Kern-Klassen denen ein iOS-Entwickler begegnet. Insbesondere wenn man mit der Entwicklung von iOS-Software beginnt, drängt sich dem Entwicker regelrecht auf, sich mit dieser Klasse auseinanderzusetzen. Ihre Einsatzmöglichkeiten sind vielfältig – aber genau hier liegt das Problem. UIViewController ist, nach modernem Verständnis, nicht mehr als eine Erweiterung der View - also der Anzeigeschicht. Leider neigen nach wie vor viele Entwickler dazu große Menge Business-Logic oder Interaktions-Logik wie zB. UITableViewDelegate in dieser Klasse abzulegen. Das altbekannte Massive-View-Controller-Syndrom.","datePublished":"2021-06-27T00:00:00+02:00","url":"/2021/06/27/dependencies-zukunftssicher-in-uiviewcontroller-weitergeben.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"/2021/06/27/dependencies-zukunftssicher-in-uiviewcontroller-weitergeben.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/uikit/uikit.min.css" />
+  <script src="/assets/uikit/uikit.min.js"></script>
+  <script src="/assets/uikit/uikit-icons.min.js"></script>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/prism/prism.css">
+  <script src="/assets/prism/prism.js"></script><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="der flo" />
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">der flo</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/">Blog
+              
+                &nbsp;<span uk-icon="rss"></span>
+              
+              </a><a class="page-link" href="/ueber-den-entwickler/">Über den Entwickler
+              
+                &nbsp;<span uk-icon="git-branch"></span>
+              
+              </a><a class="page-link" href="/ueber-diese-seite.html">Über diese Seite
+              
+                &nbsp;<span uk-icon="server"></span>
+              
+              </a><a class="page-link" href="/downloads/">Downloads
+              
+                &nbsp;<span uk-icon="cloud-download"></span>
+              
+              </a><a class="page-link" href="/kontakt/">Kontakt
+              
+                &nbsp;<span uk-icon="mail"></span>
+              
+              </a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Dependencies zukunftssicher in UIViewController weitergeben</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-06-27T00:00:00+02:00" itemprop="datePublished">
+        Jun 27, 2021
+      </time>
+      in Kategorie <span uk-icon="folder"></span>&nbsp;derEntwickler
+      
+    </p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>UIViewController ist eine der ersten Kern-Klassen denen ein iOS-Entwickler begegnet. Insbesondere wenn man mit der Entwicklung von iOS-Software beginnt, drängt sich dem Entwicker
+regelrecht auf, sich mit dieser Klasse auseinanderzusetzen. Ihre Einsatzmöglichkeiten sind vielfältig – aber genau hier liegt das Problem. UIViewController ist, nach modernem Verständnis, nicht mehr als eine Erweiterung der View - also der Anzeigeschicht. Leider neigen nach wie vor viele Entwickler dazu große Menge Business-Logic oder Interaktions-Logik wie zB. UITableViewDelegate in dieser Klasse abzulegen. Das altbekannte <a href="https://www.hackingwithswift.com/articles/159/how-to-refactor-massive-view-controllers">Massive-View-Controller-Syndrom</a>.</p>
+
+<p>Doch auch View-Controller brauchen Logik. Je nach Architektur greifen ViewController auf verschiedenste Implementierungen zu, sei es ein ViewModel innerhalb einer MVVM-Architektur<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>, oder der Presenter eines MVP<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup> oder V.I.P.E.R.<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup> Stack oder einfach nur der vom Nutzer in einer TableView ausgewählte Datensatz.</p>
+
+<p>Unabhängig von der zugrunde liegenden Architektur brauchen ViewController also oftmals weitere Daten. Nur wie kommen die ViewController an diese Daten?</p>
+
+<p>Im Laufe der letzten 7-8 Jahre sind mir viele verschiedene, teils sehr kreative, teils sehr durchdachte, und teils sehr fragwürdige Antworten für diese Fragestellungen begegnet. Fairerweise muss man sagen, das iOS SDK hat sich über die Jahre stark weiterentwickelt. Die Einführungen neuer APIs, die Einführung von Storyboards &amp; Swift UI und nicht zuletzt die Entwicklung von SWIFT als neue Programmiersprache für das Apple Ökosystem, haben es uns Entwicklern über die Jahre einfacher gemacht. Aber nicht alle APIs und Sprachkomponenten sollten gedankenlos genutzt werden. <em>Insbesondere UIViewController, das zentrale Herzstück jedes App-Bildschirms und damit Kern der Nutzererfahrung, sollte mit Bedacht konstruiert werden.</em></p>
+
+<p>Doch wie lassen sich Abhänigkeiten nun erfolgreich an UIViewController weitergeben?</p>
+
+<p>Um dieses Thema näher zu verstehen würde ich gerne zuerst auf  ein gängiges Modell und seine etwaigen Nachteile eingehen.</p>
+
+<h2 id="prepare-for-segue">Prepare for Segue</h2>
+
+<p>Mit der Einführung von Storyboards in iOS7 und den damit einhergehenden Segues<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">4</a></sup> begannen meine Kollegen und anfangs auch Ich, die neu eingeführte Methode <code>func prepare(for segue: UIStoryboardSegue, sender: Any?)</code> zu nutzen. Die Grundidee ist denkbar einfach: iOS ruft diese Methode vor jedem Übergang zwischen zwei UIViewController auf, sofern sich diese in derselben Storyboard-Datei befinden und durch eine Segue miteinander verbunden sind. Dabei spielt es keine Rolle ob die Segue über <code>performSegue(...)</code> angesteuert wird, oder durch Antippen eines UIButton durch den Nutzer.</p>
+
+<p>Apple selbst <a href="https://developer.apple.com/library/archive/featuredarticles/ViewControllerPGforiPhoneOS/UsingSegues.html">lehrt diese Herangehensweise innerhalb seiner Einführung für Entwickler</a>.</p>
+
+<p>Ein Beispiel:</p>
+
+<pre><code class="language-swift">public class MainVC: UIViewController {
+    ...
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)  {
+        // 1. Um welche Segue handelt es sich?
+        if segue.identifier == "MainToSettingsVC" {
+            // 2. Handelt es sich beim Ziel-ViewController der Segue um den erwarteten?
+            // Diese Prüfung ist auch notwendig um Zugriff auf die Funktionen und Properties der Ziel-Klasse zu erhalten.
+            if let destinationVC = segue.destination as? SettingsVC {
+                // 3. Zuweisung des Ziel-Datenmodells.
+                destinationVC.viewModel = self.viewModel
+            } else {
+                // Ziel-ViewController entspricht trotz vorhandenem Identifier nicht dem erwarteten Typs. Ein fatalError().
+            }
+        } else {
+            // Der vom Entwickler erwartete Identifier wurde nicht gefunden. Das kann mehrere Ursache haben,
+            // u.a. eine Änderung des Identifiers innerhalb der Storyboard-Datei.
+        }
+    }
+    ...
+}
+</code></pre>
+
+<h3 id="nachteile-von-prepare-for-segue">Nachteile von Prepare for Segue</h3>
+
+<ul>
+  <li>Alle UIViewController Interface-Builder Definitionen müssen sich in einem einzigen Storyboard befinden. Davon ist insbesondere bei mehr als einem Entwickler im Team grundlegend abzuraten, da sich Storyboard-Dateien aufgrund ihrer eigenwilligen, XML-artigen Struktur nur sehr schwer mergen lassen.</li>
+  <li>UISegue ist ein Konstrukt dass noch nicht ganz ausgereift ist. Durch die harte Kopplung an UIStoryBoard und der erzwungenden Definition des Eingangs- und Ausgangs-ViewController kann hier nicht von einer allgemein gültigen Lösung gesprochen werden.</li>
+  <li>UISegue ist nicht verfügbar, wenn Benutzeroberflächen mittels SwiftUI definiert werden.</li>
+  <li>Diese Herangehensweise birgt die Gefahr, dass beide UIViewController stark aneinander gekoppelt werden, und von ihren jeweiligen Typen abhängig werden.</li>
+  <li>Die Dependency wird <em>nach</em> dem Aufruf von <code>viewDidLoad()</code> weitergegeben.</li>
+  <li>Die Verwendung String-basierter Identifier ist sehr volatil.</li>
+  <li>Da <code>prepare(for segue: sender:)</code> nicht mit zusätzlichen Parametern aufgerufen werden kann, ist der Entwickler gezwungen das weiterzuleitende Datenobjekt innerhalb einer Klassenvariable abzulegen – ein unnötiger Mehraufwand, und eine unnötige Fehlerquelle, da die Beeinflussung des Datensatzes möglich ist, was zu Fehlverhalten führen kann.</li>
+  <li>Die Prüfung auf den <code>segue.identifier</code> muss für jeden UIViewController durchgeführt werden, der auf diese Weise angesprochen wird. Sehr viel redundanter Code, der sich durch Auslagerung in Funktionen lesbarer machen lässt, das Ursprungsproblem der direkten Kopplung an die Storyboard-Files aber nicht ändern.</li>
+</ul>
+
+<h3 id="testbarkeit-von-prepare-for-segue">Testbarkeit von Prepare for Segue</h3>
+
+<p>Unit-Tests für diese Art der Datenweitergabe zu schreiben ist machbar, aber durchaus schwer. Der Unit-Test für die Klasse <code>SettingsVC</code> bräuchte Zugriff auf:</p>
+
+<ul>
+  <li>Die Klasse <code>MainVC</code>.</li>
+  <li>Alle Abhängigkeiten von <code>MainVC</code> und <code>SettingsVC</code>.</li>
+  <li>Zugriff auf den Segue-Identifier.</li>
+</ul>
+
+<p>Des Weiteren kann, wie bereits erwähnt, die Dependency erst weitergegeben, <em>nachdem</em> die Kern-Funktion <code>viewDidLoad()</code> des Ausgangs-ViewController aufgerufen wurde. Etwaige Logik innerhalb dieser ist somit bereits abgelaufen, <em>nachdem</em> die Dependency übergeben wurde. Daraus resultiert: die Dependency muss eine <em>Optional</em> sein.</p>
+
+<p>Moment? Eine fundamental wichtige, für die Funktionalität wichtige Datenklasse als optional? Hier stutzt nicht nur der alte Hase, sondern auch bei Neuankömmlingen sollten hier die Alarmglocken läuten. Zusätzliche artet jeder Zugriff auf diese wichtige Datenstruktur nun zu einer “Unwrapping-Party” aus.</p>
+
+<pre><code class="language-swift">public class SettingsVC: UIViewController {
+    var viewModel: SettingsViewModel?
+    ...
+    func updateOutlets(){
+        if let vm = viewModel {
+            ...
+        } else {
+            ...
+        }
+    }
+
+    func populateTableView(){
+        if let vm = viewModel {
+            ...
+        } else {
+            ...
+        }
+    }
+}
+</code></pre>
+<p>Eine unnötige Verkomplizierung, die kaum spürbaren Mehrwert generiert, aber durchaus mehr Code benötigt.</p>
+
+<h2 id="die-alternative-protocol-injection-in-einer-erweiterung-des-viewcontrollers">Die Alternative: Protocol-injection, in einer Erweiterung des ViewControllers</h2>
+
+<pre><code class="language-swift">// Die Verwendung eines Protokolls ermöglich die 
+public protocol SettingsVM {
+    var title: String { get set }
+    var text: String { get set }
+}
+
+extension SettingsVC {
+    // Die Verwendung von storyboard?=nil erlaubt es, diese Funktion auch ohne die Übergabe von UIStoryboard aufzurufen.
+    // Das ist wichtig für Klassen, die keinen Zugriff auf UIKit benötigen. Bspw. Unit-Tests, Router.
+    // Dennoch sollte der Parameter mit implementiert und geprüft werden, da sich die Eindeutigkeit der Funktion damit erhöht.
+    public static func instantiate(from storyboard: UIStoryboard?=nil, with viewModel: SettingsVM) -&gt; SettingsVC? {
+        // Der Identifier wird in der dafür zuständigen Funktion abgelegt.
+        let identifier = "SettingsVC"
+        // Verwende das "Haupt"-Storyboard, falls keines per Parameter übergeben wurde.
+        var sb = storyboard == nil ? UIStoryboard(name: "Profile", bundle: Bundle.main) : storyboard
+        // Prüfung auf instanziierbaren ViewController. Der Vorteil? Die App crasht nicht bei dieser Funktion, wird können also
+        // getrost auf eine unwrappable Optional prüfen.
+        guard let vc = sb.instantiateViewController(withIdentifier: identifier) as? SettingsVC else {
+            nil
+        }
+        // Zuweisung der Dependency.
+        vc.viewModel = viewModel
+        return vc
+    }
+}
+</code></pre>
+
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>Model-View-Viewmodel, <a href="https://de.wikipedia.org/wiki/Model_View_ViewModel">https://de.wikipedia.org/wiki/Model_View_ViewModel</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p>Model-View-Presenter, <a href="https://de.wikipedia.org/wiki/Model_View_Presenter">https://de.wikipedia.org/wiki/Model_View_Presenter</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p>View-Iterator-Presenter-Entity-Router, <a href="https://de.wikipedia.org/wiki/VIPER_(Entwurfsmuster)">https://de.wikipedia.org/wiki/VIPER_(Entwurfsmuster)</a> <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:4" role="doc-endnote">
+      <p>Storyboard-Segues, Übergänge zwischen verschiedenen ViewControllern. <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+  </div><a class="u-url" href="/2021/06/27/dependencies-zukunftssicher-in-uiviewcontroller-weitergeben.html" hidden></a>
+</article>
+
+        <a href="" uk-totop>Nach oben scrollen </a>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <!-- <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div> -->
+      <div class="footer-col">
+        <p>Gewidmet meinen wundervollen Töchtern.&nbsp;<span uk-icon="heart"></span></p>
+      </div>
+      <div class="footer-col">
+        <p>Alle Inhalte sind CC-BY-SA 4.0 lizensiert. </p>
+      </div>
+      <!-- Social -->
+      <div class="footer-col">
+        <ul class="uk-iconnav">
+          <li><a href="https://github.com/flowinho" uk-icon="icon: github"></a></li>
+          <li><a href="#" uk-icon="icon: discord"></a></li>
+          <li><a href="https://twitter.com/flowinho" uk-icon="icon: twitter"></a></li>
+          <li><a href="https://flickr.com/photos/shutterinho/" uk-icon="icon: flickr"></a></li>
+          <li><a href="https://stackoverflow.com/users/15840803/flowinho" uk-icon="icon: comments"></a></li>
+      </ul>
+      </div>
+      <div class="footer-col">
+        <p><a href="/impressum/">Impressum</a></p>
+        <p><a href="/datenschutz/">Datenschutzerklärung</a></p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

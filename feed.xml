@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-09-09T08:26:33+02:00</updated><id>/feed.xml</id><title type="html">der flo</title><subtitle>Gewidmet meinen wundervollen Töchtern.</subtitle><entry><title type="html">Ubuntu: Visual Studio Code auf dem eigenen VPS hosten</title><link href="/2021/07/10/vscode-auf-dem-vps.html" rel="alternate" type="text/html" title="Ubuntu: Visual Studio Code auf dem eigenen VPS hosten" /><published>2021-07-10T00:00:00+02:00</published><updated>2021-07-10T00:00:00+02:00</updated><id>/2021/07/10/vscode-auf-dem-vps</id><content type="html" xml:base="/2021/07/10/vscode-auf-dem-vps.html">&lt;p&gt;Vor vier bis fünf Jahren, mit dem ersten iPad Pro, kam bei mir der Wunsch auf, mobil zu entwickeln. Sicherlich ist vor allem Apple mit Schuld daran, dass ich dieses Ziel über Jahre hinweg verfolgt habe – schließlich wurde es als &lt;em&gt;der&lt;/em&gt; Ersatz für den Computer beworben. Damals, wie teilweise heute, fällt das Ergebnis eher ernüchternd aus. Swift Playgrounds ist noch nicht so niet und nagelfest wie es sein könnte, und obwohl iOS 15 die Möglichkeit bringen wird, eigene Apps direkt aus Playgrounds in den AppStore zu veröffentlichen, bleiben viele Erwartungen an das iPad als Gerät zur Softwareentwicklung vorerst unangesprochen.&lt;/p&gt;
+
+&lt;p&gt;Nun gibt es eine Firma namens &lt;a href=&quot;https://coder.com/&quot;&gt;Coder&lt;/a&gt;, die ihr Geld mit Browser-basierten Entwicklungsumgebungen verdient. Im Rahmen meiner Beschäftigungen habe ich hier und da Berührungspunkte mit deren Diensten gehabt, bin aber nicht auf die Idee gekommen, ganze IDEs selbst zu hosten.&lt;/p&gt;
+
+&lt;h2 id=&quot;visual-studio-code-selbst-hosten&quot;&gt;Visual Studio Code selbst hosten&lt;/h2&gt;
+
+&lt;p&gt;Ist das nicht mega stark? Im Folgenden möchte ich euch erklären wie ihr zum selben Ergebnis kommen könnt wie ich.&lt;/p&gt;
+
+&lt;h3 id=&quot;vorraussetzungen&quot;&gt;Vorraussetzungen&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Ein VPS mit SSH Zugang und einen User der über sudo-Rechte verfügt und Software installieren darf.&lt;/li&gt;
+  &lt;li&gt;Ubuntu Server 18 oder höher.&lt;/li&gt;
+  &lt;li&gt;NGINX sollte bereits eingerichtet sein und mit Let’s Encrypt gesichert worden sein. Vorwissen bezüglich NGINX-Konfigurationen sollte vorhanden sein.&lt;/li&gt;
+  &lt;li&gt;Coder empfiehlt 1GB RAM, &lt;em&gt;obwohl ich das so nicht bestätigen kann&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Das Ziel dieses Artikels:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Coder installieren und über den Reverse-Proxy NGINX ausliefern.&lt;/li&gt;
+  &lt;li&gt;Sicherung von Coder durch HTTP-Basic-Auth.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Beginnen wir mit den Grundeinstellungen:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# Alle Pakete aktualisieren
+sudo apt update &amp;amp;&amp;amp; sudo apt upgrade -y
+
+# Apache-Utils installieren um htpasswd nutzen zu können
+sudo apt install apache2-utils
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Damit wäre unser System bereit.&lt;/p&gt;
+
+&lt;h3 id=&quot;coder-installieren&quot;&gt;Coder installieren&lt;/h3&gt;
+
+&lt;p&gt;Coder lässt sich dank dem &lt;a href=&quot;https://raw.githubusercontent.com/cdr/code-server/main/install.sh&quot;&gt;exzellenten Install-Script&lt;/a&gt; sehr einfach per SSH installieren:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;curl -fsSL https://code-server.dev/install.sh | sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Coder bietet nach geglückter Installation an, die Software als Service zu registrieren und zu starten. Es ist empfehlenswert den Service zu starten, da dieser sonst nach Neustart des Servers von Hand per SSH gestartet werden muss. Nach erfolgreichem Start des Dienstes läuft der Coder-Server und lauscht auf &lt;code&gt;127.0.0.1:8080&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;htpasswd-konfigurieren-um-das-verzeichnis-zu-schützen&quot;&gt;HTPasswd konfigurieren um das Verzeichnis zu schützen&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;sudo htpasswd -c /&amp;lt;gewuenschterPfad&amp;gt;/.htpasswd &amp;lt;username&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nach Eingabe des Befehls kann das Passwort festgelegt, welches dann gehashed abgelegt wird.&lt;/p&gt;
+
+&lt;h3 id=&quot;nginx-konfigurieren&quot;&gt;NGINX konfigurieren&lt;/h3&gt;
+
+&lt;p&gt;Als nächstes konfigurieren wir NGINX um den lokal gehosteten Coder-Server über das Internet erreichbar zu machen. Dazu öffnen wir die bestehende NGINX-Konfigurationsdatei und fügen eine weitere Location hinzu:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;sudo vim /etc/nginx/sites-available/&amp;lt;nameEurerSite&amp;gt;
+
+server {
+    # ... Jede Menge Inhalt
+
+    location ^~ /code/ {
+        # Basic Auth-Konfiguration
+        auth_basic &quot;Only for Unicorns&quot;;
+        auth_basic_user_file /&amp;lt;pfad&amp;gt;/.htpasswd; # Pfad der im vorherigen Schritt gewählt wurde.
+
+        # Location /code/ auf den lokalen Coder-Server zeigen lassen
+        proxy_pass http://127.0.0.1:8080/;
+
+        proxy_http_version 1.1;
+        proxy_set_header Connection &quot;upgrade&quot;;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header X-Forward-For $remote_addr;
+        proxy_set_header X-Foward-Proto $scheme;
+
+        proxy_read_timeout 1d;
+    }
+
+    # ... Jede Menge Inhalt
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Als nächstes prüfen wir die NGINX-Konfiguration auf (Tipp-)Fehler und starten NGINX neu um die neuen Einstellungen zu übernehmen:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# Prüfen ob alles korrekt
+sudo nginx -T
+# NGINX neu starten
+sudo systemctl restart nginx
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Und das wars!&lt;/p&gt;</content><author><name></name></author><category term="derEntwickler" /><category term="vscode" /><category term="vps" /><category term="coder-server" /><category term="ubuntu" /><summary type="html">Vor vier bis fünf Jahren, mit dem ersten iPad Pro, kam bei mir der Wunsch auf, mobil zu entwickeln. Sicherlich ist vor allem Apple mit Schuld daran, dass ich dieses Ziel über Jahre hinweg verfolgt habe – schließlich wurde es als der Ersatz für den Computer beworben. Damals, wie teilweise heute, fällt das Ergebnis eher ernüchternd aus. Swift Playgrounds ist noch nicht so niet und nagelfest wie es sein könnte, und obwohl iOS 15 die Möglichkeit bringen wird, eigene Apps direkt aus Playgrounds in den AppStore zu veröffentlichen, bleiben viele Erwartungen an das iPad als Gerät zur Softwareentwicklung vorerst unangesprochen.</summary></entry><entry><title type="html">Cold Storage: Dateien verschlüsseln und auf B2 archivieren</title><link href="/2021/07/04/shell-script-cold-storage-verschluesseln-und-hochladen.html" rel="alternate" type="text/html" title="Cold Storage: Dateien verschlüsseln und auf B2 archivieren" /><published>2021-07-04T00:00:00+02:00</published><updated>2021-07-04T00:00:00+02:00</updated><id>/2021/07/04/shell-script-cold-storage-verschluesseln-und-hochladen</id><content type="html" xml:base="/2021/07/04/shell-script-cold-storage-verschluesseln-und-hochladen.html">&lt;p&gt;Eine wunderbare Möglichkeit Dateien zu archivieren bietet der unschlagbar günstige Object-Storage von Backblaze B2. Da es sich um eine “public” Cloud handelt,
+sollte jede Datei, die hochgeladen wird, verschlüsselt werden.&lt;/p&gt;
+
+&lt;p&gt;Aufgrund seiner Langlebigkeit und erwiesenen Sicherheit nutze ich PGP um Datei-Archive zu verschlüsseln. Das Backblaze B2 CLI lässt allerdings nicht zu, mehrere Dateien auf einen Schlag hochzuladen, weswegen ich ein kleines Script schreiben musste, um alle Dateien innerhalb eines Verzeichnis zu verschlüsseln und hochzuladen.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;echo &quot;Enter target bucket name&quot;
+read TARGET_BUCKET
+
+echo &quot;Enter target directory&quot;
+read TARGET_DIR
+
+echo &quot;Enter key to be used (email)&quot;
+read GPG_KEY
+
+cd $1
+for i in *; do
+   echo ------------------------------------------
+   echo The current file is $i
+
+   ENC=$i.asc
+   echo Encrypting the file to $ENC...
+
+   gpg \
+    --encrypt \
+    --recipient $GPG_KEY \
+    --armour \
+    --batch \
+    $i
+
+   echo Encryption finished!
+   echo -------------------------------------------
+   echo Uploading to b2
+   b2 upload_file $TARGET_BUCKET $ENC $TARGET_DIR/$ENC
+   echo Upload finished, removing $ENC
+   rm $ENC
+   echo &quot;Done! Next file...&quot;
+done
+&lt;/code&gt;&lt;/pre&gt;</content><author><name></name></author><category term="derEntwickler" /><category term="pgp" /><category term="bash" /><category term="script" /><category term="backblaze-b2" /><summary type="html">Eine wunderbare Möglichkeit Dateien zu archivieren bietet der unschlagbar günstige Object-Storage von Backblaze B2. Da es sich um eine “public” Cloud handelt, sollte jede Datei, die hochgeladen wird, verschlüsselt werden.</summary></entry><entry><title type="html">Dependencies zukunftssicher in UIViewController weitergeben</title><link href="/2021/06/27/dependencies-zukunftssicher-in-uiviewcontroller-weitergeben.html" rel="alternate" type="text/html" title="Dependencies zukunftssicher in UIViewController weitergeben" /><published>2021-06-27T00:00:00+02:00</published><updated>2021-06-27T00:00:00+02:00</updated><id>/2021/06/27/dependencies-zukunftssicher-in-uiviewcontroller-weitergeben</id><content type="html" xml:base="/2021/06/27/dependencies-zukunftssicher-in-uiviewcontroller-weitergeben.html">&lt;p&gt;UIViewController ist eine der ersten Kern-Klassen denen ein iOS-Entwickler begegnet. Insbesondere wenn man mit der Entwicklung von iOS-Software beginnt, drängt sich dem Entwicker
+regelrecht auf, sich mit dieser Klasse auseinanderzusetzen. Ihre Einsatzmöglichkeiten sind vielfältig – aber genau hier liegt das Problem. UIViewController ist, nach modernem Verständnis, nicht mehr als eine Erweiterung der View - also der Anzeigeschicht. Leider neigen nach wie vor viele Entwickler dazu große Menge Business-Logic oder Interaktions-Logik wie zB. UITableViewDelegate in dieser Klasse abzulegen. Das altbekannte &lt;a href=&quot;https://www.hackingwithswift.com/articles/159/how-to-refactor-massive-view-controllers&quot;&gt;Massive-View-Controller-Syndrom&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Doch auch View-Controller brauchen Logik. Je nach Architektur greifen ViewController auf verschiedenste Implementierungen zu, sei es ein ViewModel innerhalb einer MVVM-Architektur&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;, oder der Presenter eines MVP&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; oder V.I.P.E.R.&lt;sup id=&quot;fnref:3&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt; Stack oder einfach nur der vom Nutzer in einer TableView ausgewählte Datensatz.&lt;/p&gt;
+
+&lt;p&gt;Unabhängig von der zugrunde liegenden Architektur brauchen ViewController also oftmals weitere Daten. Nur wie kommen die ViewController an diese Daten?&lt;/p&gt;
+
+&lt;p&gt;Im Laufe der letzten 7-8 Jahre sind mir viele verschiedene, teils sehr kreative, teils sehr durchdachte, und teils sehr fragwürdige Antworten für diese Fragestellungen begegnet. Fairerweise muss man sagen, das iOS SDK hat sich über die Jahre stark weiterentwickelt. Die Einführungen neuer APIs, die Einführung von Storyboards &amp;amp; Swift UI und nicht zuletzt die Entwicklung von SWIFT als neue Programmiersprache für das Apple Ökosystem, haben es uns Entwicklern über die Jahre einfacher gemacht. Aber nicht alle APIs und Sprachkomponenten sollten gedankenlos genutzt werden. &lt;em&gt;Insbesondere UIViewController, das zentrale Herzstück jedes App-Bildschirms und damit Kern der Nutzererfahrung, sollte mit Bedacht konstruiert werden.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Doch wie lassen sich Abhänigkeiten nun erfolgreich an UIViewController weitergeben?&lt;/p&gt;
+
+&lt;p&gt;Um dieses Thema näher zu verstehen würde ich gerne zuerst auf  ein gängiges Modell und seine etwaigen Nachteile eingehen.&lt;/p&gt;
+
+&lt;h2 id=&quot;prepare-for-segue&quot;&gt;Prepare for Segue&lt;/h2&gt;
+
+&lt;p&gt;Mit der Einführung von Storyboards in iOS7 und den damit einhergehenden Segues&lt;sup id=&quot;fnref:4&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt; begannen meine Kollegen und anfangs auch Ich, die neu eingeführte Methode &lt;code&gt;func prepare(for segue: UIStoryboardSegue, sender: Any?)&lt;/code&gt; zu nutzen. Die Grundidee ist denkbar einfach: iOS ruft diese Methode vor jedem Übergang zwischen zwei UIViewController auf, sofern sich diese in derselben Storyboard-Datei befinden und durch eine Segue miteinander verbunden sind. Dabei spielt es keine Rolle ob die Segue über &lt;code&gt;performSegue(...)&lt;/code&gt; angesteuert wird, oder durch Antippen eines UIButton durch den Nutzer.&lt;/p&gt;
+
+&lt;p&gt;Apple selbst &lt;a href=&quot;https://developer.apple.com/library/archive/featuredarticles/ViewControllerPGforiPhoneOS/UsingSegues.html&quot;&gt;lehrt diese Herangehensweise innerhalb seiner Einführung für Entwickler&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Ein Beispiel:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;public class MainVC: UIViewController {
+    ...
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)  {
+        // 1. Um welche Segue handelt es sich?
+        if segue.identifier == &quot;MainToSettingsVC&quot; {
+            // 2. Handelt es sich beim Ziel-ViewController der Segue um den erwarteten?
+            // Diese Prüfung ist auch notwendig um Zugriff auf die Funktionen und Properties der Ziel-Klasse zu erhalten.
+            if let destinationVC = segue.destination as? SettingsVC {
+                // 3. Zuweisung des Ziel-Datenmodells.
+                destinationVC.viewModel = self.viewModel
+            } else {
+                // Ziel-ViewController entspricht trotz vorhandenem Identifier nicht dem erwarteten Typs. Ein fatalError().
+            }
+        } else {
+            // Der vom Entwickler erwartete Identifier wurde nicht gefunden. Das kann mehrere Ursache haben,
+            // u.a. eine Änderung des Identifiers innerhalb der Storyboard-Datei.
+        }
+    }
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;nachteile-von-prepare-for-segue&quot;&gt;Nachteile von Prepare for Segue&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Alle UIViewController Interface-Builder Definitionen müssen sich in einem einzigen Storyboard befinden. Davon ist insbesondere bei mehr als einem Entwickler im Team grundlegend abzuraten, da sich Storyboard-Dateien aufgrund ihrer eigenwilligen, XML-artigen Struktur nur sehr schwer mergen lassen.&lt;/li&gt;
+  &lt;li&gt;UISegue ist ein Konstrukt dass noch nicht ganz ausgereift ist. Durch die harte Kopplung an UIStoryBoard und der erzwungenden Definition des Eingangs- und Ausgangs-ViewController kann hier nicht von einer allgemein gültigen Lösung gesprochen werden.&lt;/li&gt;
+  &lt;li&gt;UISegue ist nicht verfügbar, wenn Benutzeroberflächen mittels SwiftUI definiert werden.&lt;/li&gt;
+  &lt;li&gt;Diese Herangehensweise birgt die Gefahr, dass beide UIViewController stark aneinander gekoppelt werden, und von ihren jeweiligen Typen abhängig werden.&lt;/li&gt;
+  &lt;li&gt;Die Dependency wird &lt;em&gt;nach&lt;/em&gt; dem Aufruf von &lt;code&gt;viewDidLoad()&lt;/code&gt; weitergegeben.&lt;/li&gt;
+  &lt;li&gt;Die Verwendung String-basierter Identifier ist sehr volatil.&lt;/li&gt;
+  &lt;li&gt;Da &lt;code&gt;prepare(for segue: sender:)&lt;/code&gt; nicht mit zusätzlichen Parametern aufgerufen werden kann, ist der Entwickler gezwungen das weiterzuleitende Datenobjekt innerhalb einer Klassenvariable abzulegen – ein unnötiger Mehraufwand, und eine unnötige Fehlerquelle, da die Beeinflussung des Datensatzes möglich ist, was zu Fehlverhalten führen kann.&lt;/li&gt;
+  &lt;li&gt;Die Prüfung auf den &lt;code&gt;segue.identifier&lt;/code&gt; muss für jeden UIViewController durchgeführt werden, der auf diese Weise angesprochen wird. Sehr viel redundanter Code, der sich durch Auslagerung in Funktionen lesbarer machen lässt, das Ursprungsproblem der direkten Kopplung an die Storyboard-Files aber nicht ändern.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;testbarkeit-von-prepare-for-segue&quot;&gt;Testbarkeit von Prepare for Segue&lt;/h3&gt;
+
+&lt;p&gt;Unit-Tests für diese Art der Datenweitergabe zu schreiben ist machbar, aber durchaus schwer. Der Unit-Test für die Klasse &lt;code&gt;SettingsVC&lt;/code&gt; bräuchte Zugriff auf:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Die Klasse &lt;code&gt;MainVC&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Alle Abhängigkeiten von &lt;code&gt;MainVC&lt;/code&gt; und &lt;code&gt;SettingsVC&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Zugriff auf den Segue-Identifier.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Des Weiteren kann, wie bereits erwähnt, die Dependency erst weitergegeben, &lt;em&gt;nachdem&lt;/em&gt; die Kern-Funktion &lt;code&gt;viewDidLoad()&lt;/code&gt; des Ausgangs-ViewController aufgerufen wurde. Etwaige Logik innerhalb dieser ist somit bereits abgelaufen, &lt;em&gt;nachdem&lt;/em&gt; die Dependency übergeben wurde. Daraus resultiert: die Dependency muss eine &lt;em&gt;Optional&lt;/em&gt; sein.&lt;/p&gt;
+
+&lt;p&gt;Moment? Eine fundamental wichtige, für die Funktionalität wichtige Datenklasse als optional? Hier stutzt nicht nur der alte Hase, sondern auch bei Neuankömmlingen sollten hier die Alarmglocken läuten. Zusätzliche artet jeder Zugriff auf diese wichtige Datenstruktur nun zu einer “Unwrapping-Party” aus.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;public class SettingsVC: UIViewController {
+    var viewModel: SettingsViewModel?
+    ...
+    func updateOutlets(){
+        if let vm = viewModel {
+            ...
+        } else {
+            ...
+        }
+    }
+
+    func populateTableView(){
+        if let vm = viewModel {
+            ...
+        } else {
+            ...
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Eine unnötige Verkomplizierung, die kaum spürbaren Mehrwert generiert, aber durchaus mehr Code benötigt.&lt;/p&gt;
+
+&lt;h2 id=&quot;die-alternative-protocol-injection-in-einer-erweiterung-des-viewcontrollers&quot;&gt;Die Alternative: Protocol-injection, in einer Erweiterung des ViewControllers&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;// Die Verwendung eines Protokolls ermöglich die 
+public protocol SettingsVM {
+    var title: String { get set }
+    var text: String { get set }
+}
+
+extension SettingsVC {
+    // Die Verwendung von storyboard?=nil erlaubt es, diese Funktion auch ohne die Übergabe von UIStoryboard aufzurufen.
+    // Das ist wichtig für Klassen, die keinen Zugriff auf UIKit benötigen. Bspw. Unit-Tests, Router.
+    // Dennoch sollte der Parameter mit implementiert und geprüft werden, da sich die Eindeutigkeit der Funktion damit erhöht.
+    public static func instantiate(from storyboard: UIStoryboard?=nil, with viewModel: SettingsVM) -&amp;gt; SettingsVC? {
+        // Der Identifier wird in der dafür zuständigen Funktion abgelegt.
+        let identifier = &quot;SettingsVC&quot;
+        // Verwende das &quot;Haupt&quot;-Storyboard, falls keines per Parameter übergeben wurde.
+        var sb = storyboard == nil ? UIStoryboard(name: &quot;Profile&quot;, bundle: Bundle.main) : storyboard
+        // Prüfung auf instanziierbaren ViewController. Der Vorteil? Die App crasht nicht bei dieser Funktion, wird können also
+        // getrost auf eine unwrappable Optional prüfen.
+        guard let vc = sb.instantiateViewController(withIdentifier: identifier) as? SettingsVC else {
+            nil
+        }
+        // Zuweisung der Dependency.
+        vc.viewModel = viewModel
+        return vc
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Model-View-Viewmodel, &lt;a href=&quot;https://de.wikipedia.org/wiki/Model_View_ViewModel&quot;&gt;https://de.wikipedia.org/wiki/Model_View_ViewModel&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Model-View-Presenter, &lt;a href=&quot;https://de.wikipedia.org/wiki/Model_View_Presenter&quot;&gt;https://de.wikipedia.org/wiki/Model_View_Presenter&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;View-Iterator-Presenter-Entity-Router, &lt;a href=&quot;https://de.wikipedia.org/wiki/VIPER_(Entwurfsmuster)&quot;&gt;https://de.wikipedia.org/wiki/VIPER_(Entwurfsmuster)&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:4&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Storyboard-Segues, Übergänge zwischen verschiedenen ViewControllern. &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name></name></author><category term="derEntwickler" /><category term="swift" /><category term="uikit" /><category term="uiviewcontroller" /><category term="dependency-injection" /><summary type="html">UIViewController ist eine der ersten Kern-Klassen denen ein iOS-Entwickler begegnet. Insbesondere wenn man mit der Entwicklung von iOS-Software beginnt, drängt sich dem Entwicker regelrecht auf, sich mit dieser Klasse auseinanderzusetzen. Ihre Einsatzmöglichkeiten sind vielfältig – aber genau hier liegt das Problem. UIViewController ist, nach modernem Verständnis, nicht mehr als eine Erweiterung der View - also der Anzeigeschicht. Leider neigen nach wie vor viele Entwickler dazu große Menge Business-Logic oder Interaktions-Logik wie zB. UITableViewDelegate in dieser Klasse abzulegen. Das altbekannte Massive-View-Controller-Syndrom.</summary></entry><entry><title type="html">Chatons: eine Gruppe Katzen für mehr Datenschutz</title><link href="/2021/06/11/chatons-die-datenschutz-katzen.html" rel="alternate" type="text/html" title="Chatons: eine Gruppe Katzen für mehr Datenschutz" /><published>2021-06-11T00:00:00+02:00</published><updated>2021-06-11T00:00:00+02:00</updated><id>/2021/06/11/chatons-die-datenschutz-katzen</id><content type="html" xml:base="/2021/06/11/chatons-die-datenschutz-katzen.html">&lt;p&gt;Heute bin ich über eine tolle Sammlung von FOSS-Diensten gestolpert. Gehostet von der Gruppe &lt;a href=&quot;https://chatons.org/fr/accueil_v2&quot;&gt;Chatons&lt;/a&gt; finden sich einige nützliche Dienste auf der Website &lt;a href=&quot;https://entraide.chatons.org&quot;&gt;https://entraide.chatons.org&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Etherpad &lt;br /&gt;
+  Ein kollanborativen Texteditor, Open-Source.&lt;/li&gt;
+  &lt;li&gt;Jitsi Meet &lt;br /&gt;
+  Open-Source Meetingsoftware, die so manchem bereits bekannt sein könnte.&lt;/li&gt;
+  &lt;li&gt;Framadate &lt;br /&gt;
+  Open-Source Meeting-Scheduler, ähnlich Doodle.&lt;/li&gt;
+  &lt;li&gt;Ethercalc &lt;br /&gt;
+  Kollaborative Tabellenkalkulation, Open-Source.&lt;/li&gt;
+  &lt;li&gt;Lufi  &lt;br /&gt;
+  Anonymes File-Sharing, Open-Source&lt;/li&gt;
+  &lt;li&gt;Lutim &lt;br /&gt;
+  Alternative zu IMGur, keine Anmeldung notwending, Open-Source.&lt;/li&gt;
+  &lt;li&gt;Scrumblr &lt;br /&gt;
+  Digitales, kollaboratives Whiteboar, Open-Source.&lt;/li&gt;
+  &lt;li&gt;Polr &lt;br /&gt;
+  Open-Source Link-Shortener.&lt;/li&gt;
+  &lt;li&gt;Privatebin &lt;br /&gt;
+  Quelloffene Pasteboard-Alternative.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Als wäre dieser Haufen an Services nicht genug, präsentiert sich die Webseite voller Katzen. Und wer kann da schon wiederstehen? ;-)&lt;/p&gt;</content><author><name></name></author><category term="derPodcaster" /><category term="privacy" /><summary type="html">Heute bin ich über eine tolle Sammlung von FOSS-Diensten gestolpert. Gehostet von der Gruppe Chatons finden sich einige nützliche Dienste auf der Website https://entraide.chatons.org.</summary></entry><entry><title type="html">TestFlight Rejection: Wie grep den Tag rettete</title><link href="/2021/06/11/testflight-rejection-grep-rettet-den-tag.html" rel="alternate" type="text/html" title="TestFlight Rejection: Wie grep den Tag rettete" /><published>2021-06-11T00:00:00+02:00</published><updated>2021-06-11T00:00:00+02:00</updated><id>/2021/06/11/testflight-rejection-grep-rettet-den-tag</id><content type="html" xml:base="/2021/06/11/testflight-rejection-grep-rettet-den-tag.html">&lt;p&gt;Heute hatte ich die schöne Gelegenheit einen TestFlight einer App zu betreuen, deren Code-Basis fast ein Jahrzehnt lang gewachsen war.&lt;/p&gt;
+
+&lt;p&gt;Solche Apps sind immer interessant. das Besondere an dieser Submission?&lt;/p&gt;
+
+&lt;p&gt;Die Code-Basis wurde, nach einem Rebranding, als neue, zusätzliche App in den Store übertragen.&lt;/p&gt;
+
+&lt;p&gt;Doch dann der Schock:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Rejected. Reason: Deprecated API usage (UIWebView).&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;UIWebView ist ein veraltetes Konstrukt, das seit iOS 12 nicht mehr verwendet werden sollte. Neue Apps dürfen diese Komponente nicht mehr nutzen.&lt;/p&gt;
+
+&lt;p&gt;Normalerweise ist sowas kein Aufwand, wäre da nicht ein Problem: die App verwendet überhaupt keine UIWebViews.&lt;/p&gt;
+
+&lt;p&gt;Wo kam der Fehler also her? Eine Suche innerhalb des Projekts ergab keine Treffer, also war klar, dass sich UIWebView innerhalb einer der statischen Bibliotheken befinden muss.&lt;/p&gt;
+
+&lt;p&gt;Und hier kam &lt;code&gt;grep&lt;/code&gt; zur Hilfe! Es ist in der Lage auch binäre Dateien zu durchsuchen.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;grep -r UIWebView .
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Die Eingabe dieses Befehls im Projektverzeichnis offenbarte, dass sich die UIWebView in einer alten Integration des PayPal-iOS-SDK befand.&lt;/p&gt;
+
+&lt;p&gt;In Momenten wie Diesem erinnere ich mich gerne an meinen alten Chef von Zeitland, der mich maßgeblich dazu motivierte meine Terminal-Kenntnisse zu vertiefen.&lt;/p&gt;
+
+&lt;p&gt;Danke, Mic 🍻&lt;/p&gt;</content><author><name></name></author><category term="derEntwickler" /><category term="bash" /><category term="zsh" /><category term="grep" /><category term="testflight" /><category term="apple" /><summary type="html">Heute hatte ich die schöne Gelegenheit einen TestFlight einer App zu betreuen, deren Code-Basis fast ein Jahrzehnt lang gewachsen war.</summary></entry><entry><title type="html">Audiodump 98: World Wide Dinowitz Conference</title><link href="/2021/06/09/audiodump-98.html" rel="alternate" type="text/html" title="Audiodump 98: World Wide Dinowitz Conference" /><published>2021-06-09T00:00:00+02:00</published><updated>2021-06-09T00:00:00+02:00</updated><id>/2021/06/09/audiodump-98</id><content type="html" xml:base="/2021/06/09/audiodump-98.html">&lt;p&gt;Ihr könnt die Folge direkt in Apple Podcasts anhören, oder auf unserer Website: &lt;a href=&quot;https://audiodump.de/2021/06/09/ad098-world-wide-dinowitz-conference/&quot;&gt;World Wide Dinowitz Conference&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://audiodump.de/2021/06/09/ad098-world-wide-dinowitz-conference/&quot;&gt;
+    &lt;img src=&quot;/assets/apple/DE_Apple_Podcasts_Listen_Badge_RGB.svg&quot; /&gt;
+&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="derPodcaster" /><category term="wwdc" /><category term="apple" /><category term="ios" /><category term="ipadOS" /><category term="macOS" /><summary type="html">Ihr könnt die Folge direkt in Apple Podcasts anhören, oder auf unserer Website: World Wide Dinowitz Conference.</summary></entry><entry><title type="html">7zip im Terminal durch feiner granulierte Alias steuern</title><link href="/2021/06/09/7zip-aliases.html" rel="alternate" type="text/html" title="7zip im Terminal durch feiner granulierte Alias steuern" /><published>2021-06-09T00:00:00+02:00</published><updated>2021-06-09T00:00:00+02:00</updated><id>/2021/06/09/7zip-aliases</id><content type="html" xml:base="/2021/06/09/7zip-aliases.html">&lt;p&gt;7Zip ist ein Open-Source Archivierungsprogramm, das sich durch lange Existenz, Open-Source und Plattformunabhängigkeit auszeichnet.
+7Zip ist eines der langlebigsten Archivierungsprogramme und zeichnet sich durch &lt;a href=&quot;https://www.7-zip.org/history.txt&quot;&gt;kontinuierliche Weiterentwicklung seit 1999&lt;/a&gt; aus.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Wer nur Zip kennt, kann sich das folgendermaßen vorstellen: ZIP ist wie das Outlook der Archivierungsprogramme. Die meisten Menschen nutzen es, “weil das halt jeder macht”.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;installation-unter-macos&quot;&gt;Installation unter macOS&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;brew install p7zip
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nicht immer ist die maximale Kompressionsrate gewünscht, deswegen bietet es sich an mehrere Alias anzulegen die eine genauere Steuerung ermöglichen.&lt;/p&gt;
+
+&lt;h2 id=&quot;nützliche-terminal-alias&quot;&gt;Nützliche Terminal-Alias&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;alias 75\='7z a -r -t7z -m0=lzma2 -mx=9 -myx=9 -mqs=on -ms=on'
+alias 74\='7z a -r -t7z -m0=lzma2 -mx=9'
+alias 73\='7z a -r -t7z -m0=lzma2 -mx=7'
+alias 72\='7z a -r -t7z -m0=lzma2 -mx=5'
+alias 71\= '7z a -r -t7z -m0=lzma2 -mx=3'
+alias 70\='7z a -r -t7z -m0=lzma2 -mx=1'
+&lt;/code&gt;&lt;/pre&gt;</content><author><name></name></author><category term="derEntwickler" /><category term="bash" /><category term="zsh" /><category term="7zip" /><summary type="html">7Zip ist ein Open-Source Archivierungsprogramm, das sich durch lange Existenz, Open-Source und Plattformunabhängigkeit auszeichnet. 7Zip ist eines der langlebigsten Archivierungsprogramme und zeichnet sich durch kontinuierliche Weiterentwicklung seit 1999 aus.</summary></entry><entry><title type="html">How-to: Nightly Builds für Jekyll Blogs mit GitHub Actions umsetzen</title><link href="/2021/03/21/nightly-builds-mit-jekyll-und-github-actions.html" rel="alternate" type="text/html" title="How-to: Nightly Builds für Jekyll Blogs mit GitHub Actions umsetzen" /><published>2021-03-21T00:00:00+01:00</published><updated>2021-03-21T00:00:00+01:00</updated><id>/2021/03/21/nightly-builds-mit-jekyll-und-github-actions</id><content type="html" xml:base="/2021/03/21/nightly-builds-mit-jekyll-und-github-actions.html">&lt;p&gt;Dieser Post ist eine Art selbst-validierendes Experiment. Geschrieben am 20.03.2021, aber &lt;em&gt;datiert&lt;/em&gt; auf den 21.03.2021. Das bedeutet er wird nur im Blog sichtbar, 
+wenn heute Nacht, 00:00 GMT+1 die entsprechende GitHub Action aktiv wird und diesen Blog baut. Hoffen wir dass es klappt! 🤞🏻😊&lt;/p&gt;
+
+&lt;h2 id=&quot;warum-nightly-builds-für-einen-blog&quot;&gt;Warum Nightly Builds für einen Blog?&lt;/h2&gt;
+
+&lt;p&gt;Die Antwort ist sehr simpel: um Beiträge planen zu können. Jekyll Blogs sind statische Webseiten, die in aller Regel durch einen Githook auf das “Push” Event auf einen Branch, normalerweise &lt;code&gt;master&lt;/code&gt;, gebaut und deployed werden. Statische Webseiten sind deshalb so toll, weil sie über keinerlei Datenbanken oder sonstiges Backends verfügen, die die Auslieferung oder Anzeige der Seite bremsen könnten.&lt;/p&gt;
+
+&lt;p&gt;Doch statische Webseiten hab auch Nachteile. So lassen sich beispielsweise ohne Continuous Integration bzw. Nightly Builds keine Beiträge einplanen. Denn selbst wenn ein Post, wie dieser hier, ein zukünftiges Datum trägt, wird die statische Seite nur bei jedem Push gebaut. Wer also nicht jede Nacht manuell einen push durchführen möchte, braucht eine Pipeline, die idealerweise Nachts um 00:00 Uhr oder 03:00 Uhr läuft.&lt;/p&gt;
+
+&lt;p&gt;Des weiteren eignen sich Jekyll Builds über GitHub Actions besonders gut für GitHub-Pages, da auf diese Weise die von Microsoft definierten Blacklist von Jekyll-Plugins und Ruby-Gems umgehen werden kann.&lt;/p&gt;
+
+&lt;p&gt;Dieser Post wird eine solche Pipeline für einen Jekyll Blog mittels GitHub Actions umsetzen, das Prinzip lässt sich aber auf beliebige Integrations-Services ausweiten.&lt;/p&gt;
+
+&lt;h2 id=&quot;github-actions--jekyll--️&quot;&gt;GitHub Actions + Jekyll = ❤️&lt;/h2&gt;
+
+&lt;p&gt;GitHub Actions funktioniert sehr straigtforward mittels einer &lt;code&gt;.yml&lt;/code&gt;-Datei. Wer bereits Berührung mit alternativen Build-Systemen hatte wird diese Form der Konfiguration kennen. Wir starten also in dem wir im Ordner &lt;code&gt;.github/workflows/&lt;/code&gt; eine neue Datei für unsere Action anlegen, beispielsweise &lt;code&gt;github-pages.yml&lt;/code&gt;. Die .yml-Datei für diesen Blog kann &lt;a href=&quot;https://github.com/flowinho/my-blog/blob/master/.github/workflows/github-pages.yml&quot;&gt;hier&lt;/a&gt; eingesehen werden.&lt;/p&gt;
+
+&lt;p&gt;Hier nun der kommentierte Inhalt von &lt;code&gt;github-pages.yml&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-yml&quot;&gt;name: GitHub Actions Nightly Build
+
+# Das Keyword `on` definiert das Event welches die Action startet.
+on:
+  push:                     # Sobald ein neuer Commit auf einen beliebigen Branch gepushed wurde.
+  schedule:                 # Build mittels cron-Syntax einplanen.
+    - cron: &quot;1 6 * * *&quot;     # Morgens, 06:01 Uhr UTC
+
+# Das Keyword `jobs` definiert die auszuführenden Schritte.
+jobs:
+  jekyll:
+    runs-on: ubuntu-16.04   # Zielsystem, ein Docker-Container.
+    steps:
+    - uses: actions/checkout@v2 # Eine Basis-Action, die es erlaubt Code aus dem Repository 
+                                # in dem die Action definiert wurde auszuchecken.
+
+    # Cached den Container um die Buildzeit drastisch zu verkürzen. Erste Build ca 3min, danach ~40s.
+    - uses: actions/cache@v2
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile') }}
+        restore-keys: |
+          ${{ runner.os }}-gems-
+
+    # Der eigentliche Jekyll Build
+    - uses:  helaili/jekyll-action@v2       # Eine GitHub-Action, gewartet von einem Mitglied des Jekyll-Teams.
+      with:                                 # Das AccessToken um den Build auszuführen.
+        token: ${{ secrets.GITHUB_TOKEN }}
+        target_branch: 'gh-pages'           # Diese Branchspezifikation ist notwendig, um den bestehenden Branch zu überschreiben.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Kleines Schmankerl: GitHub Actions zeigt die Auflösung der eingetragenen Cron-Syntax als Popup an.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/posts/2021-03-21-github-actions-cron-popover.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Nach dem Datei erstellt und befüllt wurde sollten wir sie über “Start Commit” im Webinterface oder einen &lt;code&gt;git push&lt;/code&gt; ins Repository speichern. Dieser Vorgang führt auch gleich zu einer initialen Ausführung der Action.&lt;/p&gt;
+
+&lt;p&gt;Wer die Actions die diesen Blog bauen in Aktion sehen möchte, kann sie jederzeit gerne &lt;a href=&quot;https://github.com/flowinho/my-blog/actions/runs/672710303&quot;&gt;hier&lt;/a&gt; betrachten.&lt;/p&gt;
+
+&lt;p&gt;Zurücklehnen und genießen!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/posts/2021-03-21-github-action-jekyll.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Nun muss noch ein evtl. bestehendes GitHub-Pages Environment vom Repository entfernt werden, damit die Action genutzt wird, und nicht das default Environment.&lt;/p&gt;
+
+&lt;p&gt;Und wenn alles geklappt hat,  taucht dieser Post morgen in meinem devDiary auf! 🖖🏻&lt;/p&gt;</content><author><name></name></author><category term="derEntwickler" /><category term="yml" /><summary type="html">Dieser Post ist eine Art selbst-validierendes Experiment. Geschrieben am 20.03.2021, aber datiert auf den 21.03.2021. Das bedeutet er wird nur im Blog sichtbar, wenn heute Nacht, 00:00 GMT+1 die entsprechende GitHub Action aktiv wird und diesen Blog baut. Hoffen wir dass es klappt! 🤞🏻😊</summary></entry><entry><title type="html">GTD, Kanban, Scrum — Alle starten mit derselben Grundidee</title><link href="/2021/03/07/gtd-kanban-scrum-alle-dieselbe-idee.html" rel="alternate" type="text/html" title="GTD, Kanban, Scrum — Alle starten mit derselben Grundidee" /><published>2021-03-07T00:00:00+01:00</published><updated>2021-03-07T00:00:00+01:00</updated><id>/2021/03/07/gtd-kanban-scrum-alle-dieselbe-idee</id><content type="html" xml:base="/2021/03/07/gtd-kanban-scrum-alle-dieselbe-idee.html">&lt;p&gt;Der heutige Dschungel an digitalen Inhalten überfällt uns manchmal völlig unvorbereitet. Witzige, aber nutzlose Videos und ernste Fragen werden per Messenger geschickt, Emails kommen im Minutentakt, und unser Instagram-Feed erzeugt Lust darauf ein neues Rezept auszuprobieren. Selbst nach Feierabend trudeln auf unseren privaten Smartphones weiter Mails ein: Versandbestätigungen, Rechnungen und all die Newsletter, von denen wir uns nicht abmelden, sondern lieber täglich auf „Löschen“ tippen. Die meisten dieser Inhalte erreichen uns mit derselben Priorität, unsortiert und teilweise fast schon chaotisch und in ihrer Menge manchmal regelrecht überfordernd.&lt;/p&gt;
+
+&lt;p&gt;Doch was davon ist relevant? Auf welche Dinge sollten wir reagieren? Welche Mail ist nützlich für später, und wann entsteht echter Handlungsbedarf? Wie beurteilt man all das überhaupt?&lt;/p&gt;
+
+&lt;p&gt;Die Beurteilung, Kategorisierung und Einplanung von tatsächlichen Aufgaben werden in den verschiedenen Systemen unterschiedlich angegangen. Es gibt starre Systeme, es gibt flexible Systeme und es gibt Herangehensweise die nur ein Rahmenkonstrukt vorgeben und dem Nutzer ermöglichen sollen seine eigene Organisationsstruktur zu finden und zu kultivieren.&lt;/p&gt;
+
+&lt;p&gt;Aber einen sehr prägnanten Aspekt haben die meisten Organisationssysteme gemeinsam, nämlich den Versuch die Flut an Eindrücken, Anfragen und Inhalten zu bändigen. Dies geschieht über eine zentrale Ablage für all diese Dinge: die oft sogenannte „Inbox“.
+Die Inbox — eine Kiste für alle Gedanken, Aufgaben und potentiellen Vorhaben&lt;/p&gt;
+
+&lt;p&gt;Das Prinzip „Inbox“ gründet auf der Annahme, dass wir alle ständig Ideen, Einfälle oder Erinnerungen haben, auf die reagiert werden sollte — nur eben nie zum gerade jetzt passenden Zeitpunkt. Hier ein paar beispielhafte Gedankengänge und ein beispielhafter, unpassender Zeitpunkt:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;„Ich sollte morgen dringend meine Ärztin anrufen und nach meinem schmerzenden Ohren schauen lassen“ — Während dem Geschirrspülen.&lt;/li&gt;
+  &lt;li&gt;„Es wäre echt toll, dieses Jahr einen Zelturlaub zu machen.“ — Während einem Spaziergang.&lt;/li&gt;
+  &lt;li&gt;„Ich sollte noch diese Woche meine alten BlueRays auf eBay verkaufen.“ — Während dem Filmabend mit dem Partner.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Diese Liste lässt sich ewig fortführen, und den meisten werden derartige Situationen völlig bekannt vorkommen. Doch wohin mit diesen Gedanken? Auf Notizzettel? Auch hier gibt es mehrere Annahmen bezüglich des Umgangs von Menschen mit „spontanen Einfällen“:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Die meisten Menschen „merken“ sich diese Einfälle, um genau diese ein paar Minuten später wieder vergessen zu haben.&lt;/li&gt;
+  &lt;li&gt;Manche Menschen „notieren“ sich diese Einfälle, meistens auf oder in was auch immer gerade herumliegt. Bereits Kinder greifen diese Methode in der Schule auf, indem sie wichtige Dinge beispielsweise auf ihrer Handfläche notieren.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Die meisten dieser Gedanken lassen sich kategorisieren, beispielsweise in:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Dinge die man irgendwann mal erledigen / erleben möchte.&lt;/li&gt;
+  &lt;li&gt;Dinge die zu einem bestimmten Zeitpunkt erledigt sein sollten.&lt;/li&gt;
+  &lt;li&gt;Informationen die für eine bestimmte Tätigkeit entweder zeitnah oder irgendwann einmal relevant sein könnten.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Ihnen allen liegt die zentrale Aussage zugrunde, dass diese Gedanken zwar relevant sind, aber oft nicht in den aktuellen Moment gehören, nicht zur aktuellen Tätigkeit passen, oder einfach nur ablenken können. Daraus resultiert die Notwendigkeit diese Gedanken und Einfälle in einem Werkzeug abzulegen, dem man vertraut und dass einem ermöglicht, diese Gedanken zu einem späteren Zeitpunkt noch einmal anzuschauen und sie passend zur eigenen Selbstorganisationsmethode, noch einmal kritisch zu betrachten.&lt;/p&gt;
+
+&lt;p&gt;Wie genau sich diese Gedanken dann aber genau organisieren, formatieren und einsortieren lassen — damit beschäftigen sich die verschiedensten Produktivitäts-Gurus seit Jahrzehnten. Meistens resultieren diese Recherchen und Überlegungen in der Geburt eines oder mehrerer Selbst-Organisationssysteme, wie beispielsweise „Personal Kanban“, „Time Blocking“, „G.T.D“ oder das „Time Sector System“, die wir an dieser Stelle aber nicht näher beleuchten wollen.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Ist dieser Gedanke überhaupt noch relevant? Was genau ist das? Kann ich mit „Garage entrümpeln“ überhaupt anfangen? Oder brauche ich nicht vorher einen Anhänger?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Genau diese Herangehensweise der „Wiedervorlage“ ermöglicht es, die eigenen Einfälle nicht nur als wertvoll zu betrachten, sondern sie auch aus Situationen, in denen sie aktuell keinen Mehrwert generieren, herauszulösen und sich dabei sicher zu sein dass sie für einen späteren, passenderen Zeitpunkt nicht vergessen werden.&lt;/p&gt;
+
+&lt;p&gt;Dieses Prinzip ist die „Inbox“.&lt;/p&gt;
+
+&lt;p&gt;Aber wie geht man mit „digitalen Gedanken“ um? Also Dingen, die uns andere Menschen per Messenger oder Email in unser Leben werfen und entwedersagen: „Erledig das!“ oder „Lies / schau das! Wichtig! Witzig! Süß! Verrückt!“&lt;/p&gt;
+
+&lt;p&gt;Auch diese können in einer Inbox abgelegt und später einmal betrachtet werden. Manchmal ist es genau richtig, gerade diese Inhalte nicht sofort zu konsumieren bzw. auchnicht sofort auf jede Email zu reagieren, sondern eben erst später, zu einem geeigneteren Zeitpunkt, noch einmal reflektiert sagen zu können: Ist das jetzt wirklich relevant? Will ich hierfür meine Zeit verwenden?&lt;/p&gt;
+
+&lt;p&gt;Eine abschließende, persönliche Anmerkung: Durch die heutige Kommunikation über Messenger wie Signal, Wire und leider auch Telegram &amp;amp; WhatsApp ist es Standard geworden dass Menschen sich kurzweilige Inhalte hin und her schicken mit der Erwartung das Gegenüber betrachtet und bewertet diese Inhalte. Adam Alter beschreibt in seinem Buch Irresistible dieses Verhalten mit „der Suche nach sofortiger Belohnung“ (engl. „the search for instant gratification“). Der Hauptgedanke dabei ist, dass die Sucht nach digitalen Medien das Verhalten hervorbringt sich gegenseitig Eindrücke zu schicken, um dafür Lob und Anerkennung zu ernten (engl. „social proof“). Prinzipiell heftet diesem Verhalten nichts verwerfliches an, schließlich wollen auch Links zu potentiellen Sicherheitslücken in Routern, wichtigen Nachrichten oder ähnlichem ausgetauscht werden. Ohne das eine oder andere Katzenvideo wäre die Welt auch um einiges grauer. Dennoch birgt das anhaltende Betrachten solcher kurzweiliger Inhalte große Risiken, die Adam Alter in seinem Buch wissenschaftlich erforscht und ergründet:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Das Entstehen einer Sucht nach digitalen Inhalten, inklusive Entzugserscheinungen.&lt;/li&gt;
+  &lt;li&gt;Der langfristige Abbau der Konzentrationsfähigkeit.&lt;/li&gt;
+  &lt;li&gt;Die Förderungen von unsozialem Verhalten.&lt;/li&gt;
+  &lt;li&gt;Und weitere Beobachtungen, die ich potentiellen Lesern nicht vorwegnehmen möchte.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Wer aufmerksam die Medien betrachtet, wird feststellen, dass überhöhter Medienkonsum ein großes Problem unserer heutigen Gesellschaft ist. Mit diesem neuen Bewusstsein fällt es uns vielleicht leichter, TikTok einmal geschlossen zu lassen und zu schreiben: „Schau ich mir später an.“&lt;/p&gt;</content><author><name></name></author><category term="derPodcaster" /><category term="gtd" /><category term="inbox" /><category term="produktivität" /><category term="kanban" /><summary type="html">Der heutige Dschungel an digitalen Inhalten überfällt uns manchmal völlig unvorbereitet. Witzige, aber nutzlose Videos und ernste Fragen werden per Messenger geschickt, Emails kommen im Minutentakt, und unser Instagram-Feed erzeugt Lust darauf ein neues Rezept auszuprobieren. Selbst nach Feierabend trudeln auf unseren privaten Smartphones weiter Mails ein: Versandbestätigungen, Rechnungen und all die Newsletter, von denen wir uns nicht abmelden, sondern lieber täglich auf „Löschen“ tippen. Die meisten dieser Inhalte erreichen uns mit derselben Priorität, unsortiert und teilweise fast schon chaotisch und in ihrer Menge manchmal regelrecht überfordernd.</summary></entry><entry><title type="html">Fünf Gründe weshalb ich so schlecht bin in LOL Wild Rift</title><link href="/2021/01/31/fuenf-grunde-warum-ich-schlecht-bin-in-wild-rift.html" rel="alternate" type="text/html" title="Fünf Gründe weshalb ich so schlecht bin in LOL Wild Rift" /><published>2021-01-31T00:00:00+01:00</published><updated>2021-01-31T00:00:00+01:00</updated><id>/2021/01/31/fuenf-grunde-warum-ich-schlecht-bin-in-wild-rift</id><content type="html" xml:base="/2021/01/31/fuenf-grunde-warum-ich-schlecht-bin-in-wild-rift.html">&lt;p&gt;Viele von uns wollen besser werden in irgendeinem Spiel. Für manche von uns heißt dieses Spiel League of Legends: Wild Rift. Auch ich will besser werden. Denn ich spiele schlecht. Aktuell hohes Silber, eher niedriges Gold.&lt;/p&gt;
+
+&lt;p&gt;Wie kommt das?&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Ich spiele ohne Skins. Jeder weiß, dass League of Legends: Wild Rift reines Pay-to-Win ist und ich ohne Skins nicht weit genug kommen kann. Insofern steht mir mein Geiz im Weg.&lt;/li&gt;
+  &lt;li&gt;Ich helfe meinem Teammates. Dumme Idee. League of Legends war, ist, und bleibt, ein Einzelspielerspiel.&lt;/li&gt;
+  &lt;li&gt;Ich achte auf die Mini-Map. Würde ich nicht dauernd auf diese verfluchte Karte schauen und nach dem gegnerischen Jungler Ausschau halten wäre ich nicht so vom eigentlichen Spielgeschehen abgelenkt.&lt;/li&gt;
+  &lt;li&gt;Ich spiele auf Objectives — nicht Kills. Viele freundliche Mitspieler haben mich bereits des Öfteren darauf hingewiesen, aber es will einfach nicht in meinen Kopf: Gegner töten ist wichtiger als das Spiel zu gewinnen.&lt;/li&gt;
+  &lt;li&gt;Ich chatte zu wenig. Oft habe ich das Gefühl ich könnte viele Spiele noch rumreißen in dem ich das Team motiviere, Streits schlichte und meine Teammates Frage wie ihr Tag heute so war.&lt;/li&gt;
+  &lt;li&gt;Bonusgrund: Meine Champions sind nicht sexy genug. Ein schwerer Fehler. Hätten die Figuren die ich spiele größere Brüste (ernsthaft, Zed, was soll das?!) würde ich mich in meiner Männlichkeit beflügelt fühlen und deshalb besser zocken.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Ich hoffe ich kann diese Aspekte verbessern, sonst sieht es wirklich schlecht aus mit meinen Season-Rewards….&lt;/p&gt;</content><author><name></name></author><category term="derPodcaster" /><category term="games" /><category term="iphone" /><category term="league" /><category term="of" /><category term="legends" /><summary type="html">Viele von uns wollen besser werden in irgendeinem Spiel. Für manche von uns heißt dieses Spiel League of Legends: Wild Rift. Auch ich will besser werden. Denn ich spiele schlecht. Aktuell hohes Silber, eher niedriges Gold.</summary></entry></feed>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>How-to: Einbinden einer eigenen Schriftart in das Jekyll Standard-Thema Minima | der flo</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="How-to: Einbinden einer eigenen Schriftart in das Jekyll Standard-Thema Minima" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Das Thema Minima welches Jekyll als Grunddesign dient ist sehr schön, allerdings bin ich ein großer Fan der Open-Source Schrift Hack. Ich möchte dass dieser Blog in dieser Schriftart erstrahlt, vielleicht nicht alles, zumindest aber die Code-Snippets." />
+<meta property="og:description" content="Das Thema Minima welches Jekyll als Grunddesign dient ist sehr schön, allerdings bin ich ein großer Fan der Open-Source Schrift Hack. Ich möchte dass dieser Blog in dieser Schriftart erstrahlt, vielleicht nicht alles, zumindest aber die Code-Snippets." />
+<link rel="canonical" href="/2021/01/28/how-to-einbindung-custom-font-jekyll-minima.html" />
+<meta property="og:url" content="/2021/01/28/how-to-einbindung-custom-font-jekyll-minima.html" />
+<meta property="og:site_name" content="der flo" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-01-28T00:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="How-to: Einbinden einer eigenen Schriftart in das Jekyll Standard-Thema Minima" />
+<script type="application/ld+json">
+{"headline":"How-to: Einbinden einer eigenen Schriftart in das Jekyll Standard-Thema Minima","dateModified":"2021-01-28T00:00:00+01:00","description":"Das Thema Minima welches Jekyll als Grunddesign dient ist sehr schön, allerdings bin ich ein großer Fan der Open-Source Schrift Hack. Ich möchte dass dieser Blog in dieser Schriftart erstrahlt, vielleicht nicht alles, zumindest aber die Code-Snippets.","datePublished":"2021-01-28T00:00:00+01:00","url":"/2021/01/28/how-to-einbindung-custom-font-jekyll-minima.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"/2021/01/28/how-to-einbindung-custom-font-jekyll-minima.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/uikit/uikit.min.css" />
+  <script src="/assets/uikit/uikit.min.js"></script>
+  <script src="/assets/uikit/uikit-icons.min.js"></script>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/prism/prism.css">
+  <script src="/assets/prism/prism.js"></script><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="der flo" />
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">der flo</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/">Blog
+              
+                &nbsp;<span uk-icon="rss"></span>
+              
+              </a><a class="page-link" href="/ueber-den-entwickler/">Über den Entwickler
+              
+                &nbsp;<span uk-icon="git-branch"></span>
+              
+              </a><a class="page-link" href="/ueber-diese-seite.html">Über diese Seite
+              
+                &nbsp;<span uk-icon="server"></span>
+              
+              </a><a class="page-link" href="/downloads/">Downloads
+              
+                &nbsp;<span uk-icon="cloud-download"></span>
+              
+              </a><a class="page-link" href="/kontakt/">Kontakt
+              
+                &nbsp;<span uk-icon="mail"></span>
+              
+              </a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">How-to: Einbinden einer eigenen Schriftart in das Jekyll Standard-Thema Minima</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-01-28T00:00:00+01:00" itemprop="datePublished">
+        Jan 28, 2021
+      </time>
+      in Kategorie <span uk-icon="folder"></span>&nbsp;derEntwickler
+      
+    </p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Das Thema Minima welches Jekyll als Grunddesign dient ist sehr schön, allerdings bin ich ein großer Fan der Open-Source Schrift <a href="https://sourcefoundry.org/hack/">Hack</a>. Ich möchte dass dieser Blog in dieser Schriftart erstrahlt, vielleicht nicht alles, zumindest aber die Code-Snippets.</p>
+
+<p>Aufgrund mangelnder Erfahrung mit scss hat das Ganze etwas länger gedauert als erwartet…..</p>
+
+<ol>
+  <li>Lade Hack auf deinen Computer und extrahiere die Dateien in das Verzeichnis in dem sich dein Jekyll-Blog befindet.</li>
+  <li>Platziere die heruntergeladenen <code>*.ttf</code> Dateien in <code>&lt;deinVerzeichnis&gt;/assets/hack/</code>. Falls <code>/assets</code> nicht existiert, erstelle ihn.</li>
+  <li>Erstelle eine <code>.scss</code> Datei die den Namen der einzubindenden Schriftart trägt innerhalb von <code>_sass</code></li>
+  <li>Importiere <code>hack.scss</code> in <code>_sass/minima.scss</code>.</li>
+  <li>Fertig.</li>
+</ol>
+
+<pre><code class="language-scss">@import
+  "hack",
+  "minima/base",
+  "minima/layout"
+;
+</code></pre>
+
+<p>Inhalt von <code>hack.scss</code>:</p>
+
+<pre><code class="language-scss">@font-face {
+  font-family: 'Hack';
+  src: local(bttf_font), url('hack/Hack-Regular.ttf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+} 
+
+@font-face {
+  font-family: 'Hack-Bold';
+  src: local(bttf_font), url('hack/Hack-Bold.ttf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Hack-Italic';
+  src: local(bttf_font), url('hack/Hack-Italic.ttf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Hack-BoldItalic';
+  src: local(bttf_font), url('hack/Hack-BoldItalic.ttf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+}
+</code></pre>
+
+<p>Kleinere Anpassungen an <code>prismjs.css</code> um die Schriftart in Snippets zu verkleinern:</p>
+
+<pre><code class="language-css">code[class*="language-"],
+pre[class*="language-"] {
+	// omitted
+	font-family: 'Hack', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 0.9em;
+	// omitted
+}
+</code></pre>
+
+  </div><a class="u-url" href="/2021/01/28/how-to-einbindung-custom-font-jekyll-minima.html" hidden></a>
+</article>
+
+        <a href="" uk-totop>Nach oben scrollen </a>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <!-- <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div> -->
+      <div class="footer-col">
+        <p>Gewidmet meinen wundervollen Töchtern.&nbsp;<span uk-icon="heart"></span></p>
+      </div>
+      <div class="footer-col">
+        <p>Alle Inhalte sind CC-BY-SA 4.0 lizensiert. </p>
+      </div>
+      <!-- Social -->
+      <div class="footer-col">
+        <ul class="uk-iconnav">
+          <li><a href="https://github.com/flowinho" uk-icon="icon: github"></a></li>
+          <li><a href="#" uk-icon="icon: discord"></a></li>
+          <li><a href="https://twitter.com/flowinho" uk-icon="icon: twitter"></a></li>
+          <li><a href="https://flickr.com/photos/shutterinho/" uk-icon="icon: flickr"></a></li>
+          <li><a href="https://stackoverflow.com/users/15840803/flowinho" uk-icon="icon: comments"></a></li>
+      </ul>
+      </div>
+      <div class="footer-col">
+        <p><a href="/impressum/">Impressum</a></p>
+        <p><a href="/datenschutz/">Datenschutzerklärung</a></p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
